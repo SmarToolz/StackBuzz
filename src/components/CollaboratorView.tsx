@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ActionableCreator, mockActionableCreators } from '@/lib/mock-data';
 import CollaboratorCard from './CollaboratorCard';
+import CollaboratorDetailModal from './CollaboratorDetailModal';
 
 // Define the categories based on the mock data structure
 type CategoryKey = ActionableCreator['category'];
@@ -21,6 +22,8 @@ const categoryMap: Record<CategoryKey, { title: string; description: string }> =
 };
 
 const CollaboratorView: React.FC = () => {
+  const [selectedCreator, setSelectedCreator] = useState<ActionableCreator | null>(null);
+
   // Group creators by category
   const groupedCreators = mockActionableCreators.reduce((acc, creator) => {
     const key = creator.category;
@@ -32,6 +35,14 @@ const CollaboratorView: React.FC = () => {
   }, {} as Record<CategoryKey, ActionableCreator[]>);
 
   const categories: CategoryKey[] = ['Reach Target', 'Peer Swap', 'Rising Star'];
+
+  const handleCardClick = (creator: ActionableCreator) => {
+    setSelectedCreator(creator);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedCreator(null);
+  };
 
   return (
     <div className="space-y-12">
@@ -50,12 +61,24 @@ const CollaboratorView: React.FC = () => {
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {creators.map((creator) => (
-                <CollaboratorCard key={creator.id} creator={creator} />
+                <CollaboratorCard 
+                  key={creator.id} 
+                  creator={creator} 
+                  onClick={handleCardClick}
+                />
               ))}
             </div>
           </section>
         );
       })}
+
+      {selectedCreator && (
+        <CollaboratorDetailModal
+          creator={selectedCreator}
+          isOpen={!!selectedCreator}
+          onClose={handleCloseModal}
+        />
+      )}
     </div>
   );
 };

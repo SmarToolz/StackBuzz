@@ -14,6 +14,16 @@ export const mockLivePulse: LivePulseData = {
 };
 
 // --- Actionable Creator Data ---
+export interface PostHistory {
+  date: string;
+  posts: number;
+}
+
+export interface RecentPost {
+  title: string;
+  commentCount: number;
+}
+
 export interface ActionableCreator {
   id: number;
   handle: string;
@@ -21,6 +31,9 @@ export interface ActionableCreator {
   lastPostDate: string;
   category: 'Reach Target' | 'Peer Swap' | 'Rising Star';
   metric: string; // e.g., "posted yesterday", "replies daily", "47 comments"
+  postHistory: PostHistory[];
+  recentPosts: RecentPost[];
+  outreachLine: string;
 }
 
 export const mockActionableCreators: ActionableCreator[] = [
@@ -31,6 +44,21 @@ export const mockActionableCreators: ActionableCreator[] = [
     lastPostDate: "2 days ago", 
     category: 'Reach Target',
     metric: "posted yesterday",
+    postHistory: [
+      { date: "Mon", posts: 1 },
+      { date: "Tue", posts: 0 },
+      { date: "Wed", posts: 2 },
+      { date: "Thu", posts: 1 },
+      { date: "Fri", posts: 0 },
+      { date: "Sat", posts: 1 },
+      { date: "Sun", posts: 0 },
+    ],
+    recentPosts: [
+      { title: "The 5 Mistakes I Made Scaling My Newsletter", commentCount: 89 },
+      { title: "Why Consistency Beats Quality (Sometimes)", commentCount: 45 },
+      { title: "My Favorite Tools for Substack Growth", commentCount: 120 },
+    ],
+    outreachLine: "Hey Jane, your post on newsletter scaling was spot on. I'm working on a piece about audience retention—would love to cross-promote or swap insights!",
   },
   { 
     id: 2, 
@@ -39,6 +67,21 @@ export const mockActionableCreators: ActionableCreator[] = [
     lastPostDate: "5 hours ago", 
     category: 'Peer Swap',
     metric: "replies daily",
+    postHistory: [
+      { date: "Mon", posts: 0 },
+      { date: "Tue", posts: 1 },
+      { date: "Wed", posts: 0 },
+      { date: "Thu", posts: 1 },
+      { date: "Fri", posts: 1 },
+      { date: "Sat", posts: 0 },
+      { date: "Sun", posts: 1 },
+    ],
+    recentPosts: [
+      { title: "Quick Tip: Use Threads for Idea Validation", commentCount: 15 },
+      { title: "My Q3 Revenue Report (Transparent)", commentCount: 30 },
+      { title: "The Power of a Small, Engaged Audience", commentCount: 22 },
+    ],
+    outreachLine: "Hi Alex, I saw your recent post on idea validation—great stuff. We have similar audience sizes and niches. Interested in a quick peer swap or a joint post?",
   },
   { 
     id: 3, 
@@ -47,6 +90,21 @@ export const mockActionableCreators: ActionableCreator[] = [
     lastPostDate: "1 day ago", 
     category: 'Rising Star',
     metric: "47 comments on last post",
+    postHistory: [
+      { date: "Mon", posts: 1 },
+      { date: "Tue", posts: 1 },
+      { date: "Wed", posts: 1 },
+      { date: "Thu", posts: 1 },
+      { date: "Fri", posts: 1 },
+      { date: "Sat", posts: 1 },
+      { date: "Sun", posts: 1 },
+    ],
+    recentPosts: [
+      { title: "The Hidden GPU Costs of Training LLMs", commentCount: 47 },
+      { title: "AI Ethics: Who is Responsible?", commentCount: 21 },
+      { title: "My Journey into AI Development", commentCount: 10 },
+    ],
+    outreachLine: "Hey, your take on GPU costs is everywhere — I just wrote the counter-take. Want to co-write?",
   },
   { 
     id: 4, 
@@ -55,6 +113,21 @@ export const mockActionableCreators: ActionableCreator[] = [
     lastPostDate: "1 week ago", 
     category: 'Reach Target',
     metric: "high engagement",
+    postHistory: [
+      { date: "Mon", posts: 0 },
+      { date: "Tue", posts: 0 },
+      { date: "Wed", posts: 1 },
+      { date: "Thu", posts: 0 },
+      { date: "Fri", posts: 0 },
+      { date: "Sat", posts: 0 },
+      { date: "Sun", posts: 0 },
+    ],
+    recentPosts: [
+      { title: "The Policy Changes We Need for Green Energy", commentCount: 150 },
+      { title: "Why Carbon Capture is a Distraction", commentCount: 90 },
+      { title: "Interview with a Climate Scientist", commentCount: 50 },
+    ],
+    outreachLine: "Hi ClimateWriter, I'm a big fan of your work on green energy policy. I have a unique data set on local climate initiatives—could we collaborate on a piece?",
   },
   { 
     id: 5, 
@@ -63,6 +136,21 @@ export const mockActionableCreators: ActionableCreator[] = [
     lastPostDate: "3 days ago", 
     category: 'Peer Swap',
     metric: "consistent posting",
+    postHistory: [
+      { date: "Mon", posts: 1 },
+      { date: "Tue", posts: 0 },
+      { date: "Wed", posts: 1 },
+      { date: "Thu", posts: 0 },
+      { date: "Fri", posts: 1 },
+      { date: "Sat", posts: 0 },
+      { date: "Sun", posts: 0 },
+    ],
+    recentPosts: [
+      { title: "The 5-Minute Morning Routine", commentCount: 18 },
+      { title: "Deep Work vs. Shallow Work: A Breakdown", commentCount: 35 },
+      { title: "My Favorite Note-Taking App", commentCount: 12 },
+    ],
+    outreachLine: "Hey ProductivityPro, your focus on deep work aligns perfectly with my audience. Let's explore a mutual recommendation or a quick interview swap!",
   },
   { 
     id: 6, 
@@ -71,6 +159,21 @@ export const mockActionableCreators: ActionableCreator[] = [
     lastPostDate: "1 hour ago", 
     category: 'Rising Star',
     metric: "viral thread",
+    postHistory: [
+      { date: "Mon", posts: 2 },
+      { date: "Tue", posts: 1 },
+      { date: "Wed", posts: 3 },
+      { date: "Thu", posts: 1 },
+      { date: "Fri", posts: 2 },
+      { date: "Sat", posts: 1 },
+      { date: "Sun", posts: 2 },
+    ],
+    recentPosts: [
+      { title: "How I Built a SaaS in 48 Hours", commentCount: 65 },
+      { title: "The Best Low-Code Tools for Founders", commentCount: 40 },
+      { title: "Pricing Strategy for Your First 100 Users", commentCount: 30 },
+    ],
+    outreachLine: "IndieHackerBot, your recent thread on building SaaS quickly is viral! I'm writing about the next steps after launch—we should connect and share audiences.",
   },
 ];
 

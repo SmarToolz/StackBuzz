@@ -6,6 +6,7 @@ import { ArrowRight, MessageSquare, User } from 'lucide-react';
 
 interface CollaboratorCardProps {
   creator: ActionableCreator;
+  onClick: (creator: ActionableCreator) => void;
 }
 
 const getCategoryDetails = (category: ActionableCreator['category']) => {
@@ -28,11 +29,14 @@ const getCategoryDetails = (category: ActionableCreator['category']) => {
   }
 };
 
-const CollaboratorCard: React.FC<CollaboratorCardProps> = ({ creator }) => {
+const CollaboratorCard: React.FC<CollaboratorCardProps> = ({ creator, onClick }) => {
   const { title, color } = getCategoryDetails(creator.category);
 
   return (
-    <Card className="bg-gray-900 border-gray-800 text-white h-full flex flex-col transition-all hover:border-brand-primary/50">
+    <Card 
+      className="bg-gray-900 border-gray-800 text-white h-full flex flex-col transition-all hover:border-brand-primary/50 cursor-pointer"
+      onClick={() => onClick(creator)}
+    >
       <CardHeader className="pb-3">
         <div className="flex items-center justify-between">
           <CardTitle className={`text-sm font-bold uppercase tracking-wider ${color}`}>
@@ -55,7 +59,8 @@ const CollaboratorCard: React.FC<CollaboratorCardProps> = ({ creator }) => {
         <Button 
           variant="outline" 
           className="w-full bg-black border-gray-700 text-gray-300 hover:bg-gray-800 mt-4"
-          onClick={() => console.log(`Viewing activity for ${creator.handle}`)}
+          // This button click is now handled by the card click, but we keep the visual for context
+          onClick={(e) => { e.stopPropagation(); onClick(creator); }}
         >
           View Activity <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
