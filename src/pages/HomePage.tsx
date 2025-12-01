@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Card } from "@/components/ui/card";
 import { toast } from "sonner";
+import CountdownTimer from "@/components/CountdownTimer";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
@@ -21,6 +22,9 @@ const HomePage: React.FC = () => {
       email: "",
     },
   });
+
+  // Target date: January 1st, 2025, 00:00:00 UTC
+  const launchDate = new Date(Date.UTC(2025, 0, 1, 0, 0, 0));
 
   const onSubmit = (values: EarlyBirdFormValues) => {
     console.log("Early Bird Sign Up Attempt:", values);
@@ -47,6 +51,14 @@ const HomePage: React.FC = () => {
           <br className="hidden sm:inline" />
           <span className="font-semibold text-brand-primary">The first 500 writers get lifetime early-bird pricing and first access.</span>
         </p>
+        
+        {/* Countdown Timer */}
+        <div className="mb-16">
+          <p className="text-sm font-mono text-gray-500 uppercase tracking-widest mb-4">
+            Launching January 1st, 2025
+          </p>
+          <CountdownTimer targetDate={launchDate} />
+        </div>
 
         {/* Live Ticker */}
         <div className="mb-16 space-y-2">
@@ -92,7 +104,7 @@ const HomePage: React.FC = () => {
             </form>
           </Form>
           <p className="text-xs text-gray-500 mt-4">
-            No spam ever. Unsubscribe anytime. We launch in December.
+            No spam ever. Unsubscribe anytime. We launch on January 1st, 2025.
           </p>
         </Card>
       </div>
