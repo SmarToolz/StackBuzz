@@ -1,4 +1,4 @@
-import { Flame } from "lucide-react";
+import { Flame, TrendingUp, Users, Zap } from "lucide-react";
 
 // --- Live Pulse Data (Simulating dynamic data based on a topic) ---
 export interface LivePulseData {
@@ -12,6 +12,77 @@ export const mockLivePulse: LivePulseData = {
   count: 1400,
   icon: Flame,
 };
+
+// --- NEW Dashboard Overview Data ---
+
+export interface SummaryStat {
+  title: string;
+  value: string;
+  change: string;
+  icon: typeof Flame | typeof Users | typeof Zap | typeof TrendingUp;
+  color: string;
+}
+
+export const mockSummaryStats: SummaryStat[] = [
+  {
+    title: "Trending Topics",
+    value: "12,450",
+    change: "+20.1% from last month",
+    icon: TrendingUp,
+    color: "text-green-400",
+  },
+  {
+    title: "New Creators Tracked",
+    value: "5,320",
+    change: "+15% from last month",
+    icon: Users,
+    color: "text-blue-400",
+  },
+  {
+    title: "Average Engagement Score",
+    value: "92%",
+    change: "Highest score this quarter",
+    icon: Zap,
+    color: "text-yellow-400",
+  },
+  {
+    title: "Velocity Spike Alerts",
+    value: "14",
+    change: "3 critical spikes today",
+    icon: Flame,
+    color: "text-red-400",
+  },
+];
+
+export interface VelocityData {
+  day: string;
+  mentions: number;
+}
+
+export const mockVelocityData: VelocityData[] = [
+  { day: "Day 1", mentions: 1200 },
+  { day: "Day 2", mentions: 1900 },
+  { day: "Day 3", mentions: 1500 },
+  { day: "Day 4", mentions: 3500 },
+  { day: "Day 5", mentions: 2800 },
+  { day: "Day 6", mentions: 4100 },
+  { day: "Day 7", mentions: 3800 },
+];
+
+export interface TopInfluencer {
+  name: string;
+  topic: string;
+  subs: string;
+  engagement: string;
+}
+
+export const mockTopInfluencers: TopInfluencer[] = [
+  { name: "Jane Doe", topic: "Future of AI", subs: "15k Subs", engagement: "95%" },
+  { name: "Alex Smith", topic: "Indie Hacking", subs: "8k Subs", engagement: "88%" },
+  { name: "Chris Lee", topic: "Web3 & Culture", subs: "22k Subs", engagement: "91%" },
+  { name: "Maria Garcia", topic: "Remote Work Burnout", subs: "12k Subs", engagement: "85%" },
+];
+
 
 // --- Actionable Creator Data ---
 export interface PostHistory {

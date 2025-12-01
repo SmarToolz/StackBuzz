@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import TopicSearch from "@/components/TopicSearch";
-import LivePulseCard from "@/components/LivePulseCard";
 import { toast } from "sonner";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import CollaboratorView from "@/components/CollaboratorView";
 import SuperfansView from "@/components/SuperfansView";
+import DashboardOverview from "@/components/DashboardOverview";
 
 const DashboardPage: React.FC = () => {
   const [currentTopic, setCurrentTopic] = useState("AI Ethics");
@@ -16,7 +16,7 @@ const DashboardPage: React.FC = () => {
     }
     setCurrentTopic(newTopic);
     toast.info(`Dashboard updated for topic: "${newTopic}"`);
-    // In a real app, this would trigger data fetching for LivePulseCard and CollaboratorView
+    // In a real app, this would trigger data fetching for all dashboard components
   };
 
   return (
@@ -29,7 +29,7 @@ const DashboardPage: React.FC = () => {
         {/* 1. Topic Input (Persists across tabs) */}
         <TopicSearch initialTopic={currentTopic} onTopicChange={handleTopicChange} />
 
-        <Tabs defaultValue="collaborators" className="w-full">
+        <Tabs defaultValue="dashboard" className="w-full">
           <TabsList className="grid w-full grid-cols-3 max-w-2xl mx-auto mb-8 bg-gray-900 border border-gray-800">
             <TabsTrigger value="dashboard" className="data-[state=active]:bg-brand-primary data-[state=active]:text-white">
               Dashboard
@@ -44,14 +44,7 @@ const DashboardPage: React.FC = () => {
 
           {/* Dashboard Tab Content */}
           <TabsContent value="dashboard">
-            {/* Live Pulse Card */}
-            <div className="mb-10 max-w-3xl mx-auto">
-              <LivePulseCard />
-            </div>
-            
-            <div className="text-center text-gray-500 p-10 border border-dashed border-gray-800 rounded-lg">
-                Dashboard content coming soon. Use the Collaborators tab for networking insights.
-            </div>
+            <DashboardOverview />
           </TabsContent>
 
           {/* Collaborators Tab Content */}
