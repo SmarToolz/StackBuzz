@@ -8,6 +8,7 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from "@/component
 import { Card } from "@/components/ui/card";
 import { toast } from "sonner";
 import CountdownTimer from "@/components/CountdownTimer";
+import { useNavigate } from "react-router-dom";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
@@ -23,6 +24,8 @@ const HomePage: React.FC = () => {
     },
   });
 
+  const navigate = useNavigate();
+
   // Target date: February 2nd, 2026, 00:00:00 UTC (Month index 1 is February)
   const launchDate = new Date(Date.UTC(2026, 1, 2, 0, 0, 0));
 
@@ -30,6 +33,7 @@ const HomePage: React.FC = () => {
     console.log("Early Bird Sign Up Attempt:", values);
     toast.success("You've secured your spot! We'll be in touch.");
     form.reset();
+    navigate("/thank-you");
   };
 
   return (

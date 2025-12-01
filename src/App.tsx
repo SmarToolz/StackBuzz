@@ -9,6 +9,7 @@ import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
 import TrialPage from "./pages/TrialPage";
 import NotFound from "./pages/NotFound";
+import ThankYouPage from "./pages/ThankYouPage";
 import { Layout } from "./components/Layout";
 
 const queryClient = new QueryClient();
@@ -34,8 +35,9 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          {/* Standalone Route (No Header/Footer) */}
+          {/* Standalone Routes (No Header/Footer) */}
           <Route path="/" element={<HomePage />} />
+          <Route path="/thank-you" element={<ThankYouPage />} />
           
           {/* Routes with Layout (Header/Footer) */}
           <Route path="/*" element={<AppRoutesWithLayout />} />
