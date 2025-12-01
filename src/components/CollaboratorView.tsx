@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { ActionableCreator, mockActionableCreators } from '@/lib/mock-data';
 import CollaboratorCard from './CollaboratorCard';
 import CollaboratorDetailModal from './CollaboratorDetailModal';
+import { Button } from '@/components/ui/button';
+import { Download } from 'lucide-react';
+import { downloadCSV } from '@/lib/export-utils';
+import { toast } from 'sonner';
 
 // Define the categories based on the mock data structure
 type CategoryKey = ActionableCreator['category'];
@@ -43,9 +47,25 @@ const CollaboratorView: React.FC = () => {
   const handleCloseModal = () => {
     setSelectedCreator(null);
   };
+  
+  const handleExport = () => {
+    downloadCSV(mockActionableCreators, 'substrate_collaborators.csv');
+    toast.success(`Exported ${mockActionableCreators.length} collaborators.`);
+  };
 
   return (
     <div className="space-y-12">
+      <div className="flex justify-end mb-4">
+        <Button 
+          variant="outline" 
+          onClick={handleExport}
+          className="bg-gray-900 border-gray-700 text-gray-300 hover:bg-gray-800"
+        >
+          <Download className="h-4 w-4 mr-2" />
+          Download CSV
+        </Button>
+      </div>
+      
       {categories.map((category) => {
         const creators = groupedCreators[category] || [];
         const details = categoryMap[category];

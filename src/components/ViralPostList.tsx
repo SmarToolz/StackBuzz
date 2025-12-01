@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Input } from "@/components/ui/input";
-import { Search, Flame, MessageSquare, User, Loader2 } from 'lucide-react';
+import { Search, Flame, MessageSquare, User, Loader2, Download } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
 import { ViralPost, mockViralPosts } from '@/lib/mock-data';
 import PostInsightModal from './PostInsightModal';
 import { mockPostInsights, PostInsight } from '@/lib/mock-data';
 import { toast } from 'sonner';
+import { Button } from '@/components/ui/button';
+import { downloadCSV } from '@/lib/export-utils';
 
 const ViralPostList: React.FC = () => {
   const [keyword, setKeyword] = useState('');
@@ -49,6 +51,15 @@ const ViralPostList: React.FC = () => {
     setSelectedPost(null);
     setInsight(null);
   };
+  
+  const handleExport = () => {
+    if (results.length === 0) {
+      toast.error("No data to export. Run a search first.");
+      return;
+    }
+    downloadCSV(results, 'substrate_viral_trends.csv');
+    toast.success(`Exported ${results.length} viral trends.`);
+  };
 
   // Initial load simulation (optional, but good for first view)
   useEffect(() => {
@@ -75,6 +86,18 @@ const ViralPostList: React.FC = () => {
           />
         </div>
         <p className="text-xs text-gray-500 mt-2">Press Enter to run a live scrape for fresh data.</p>
+      </div>
+      
+      {/* Export Button */}
+      <div className="flex justify-end mb-6">
+        <Button 
+          variant="outline" 
+          onClick={handleExport}
+          className="bg-gray-900 border-gray-700 text-gray-300 hover:bg-gray-800"
+        >
+          <Download className="h-4 w-4 mr-2" />
+          Download CSV
+        </Button>
       </div>
 
       {/* Results Display */}
