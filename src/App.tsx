@@ -2,33 +2,19 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
 import TrialPage from "./pages/TrialPage";
-import TrendsPage from "./pages/TrendsPage"; // Import new page
+import TrendsPage from "./pages/TrendsPage";
 import NotFound from "./pages/NotFound";
 import ThankYouPage from "./pages/ThankYouPage";
 import { Layout } from "./components/Layout";
+import { DashboardLayout } from "./components/DashboardLayout";
 
 const queryClient = new QueryClient();
-
-// Routes that should include the Global Header and Footer
-const AppRoutesWithLayout = () => (
-  <Layout>
-    <Routes>
-      <Route path="/signup" element={<SignUpPage />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/dashboard" element={<DashboardPage />} />
-      <Route path="/trial" element={<TrialPage />} />
-      <Route path="/trends" element={<TrendsPage />} /> {/* New Trends Route */}
-      {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-      <Route path="*" element={<NotFound />} />
-    </Routes>
-  </Layout>
-);
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -37,12 +23,24 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          {/* Standalone Routes (No Header/Footer) */}
+          {/* Standalone Routes (No Layout) */}
           <Route path="/" element={<HomePage />} />
           <Route path="/thank-you" element={<ThankYouPage />} />
           
-          {/* Routes with Layout (Header/Footer) */}
-          <Route path="/*" element={<AppRoutesWithLayout />} />
+          {/* Standard Layout Group (Header + Footer) */}
+          <Route element={<Layout />}>
+            <Route path="/signup" element={<SignUpPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/trial" element={<TrialPage />} />
+            {/* Catch-all for 404 within the standard layout */}
+            <Route path="*" element={<NotFound />} />
+          </Route>
+
+          {/* Dashboard Layout Group (Header + Sidebar + Footer) */}
+          <Route element={<DashboardLayout />}>
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/trends" element={<TrendsPage />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
