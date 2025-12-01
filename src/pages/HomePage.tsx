@@ -23,8 +23,8 @@ const HomePage: React.FC = () => {
     },
   });
 
-  // Target date: January 1st, 2025, 00:00:00 UTC
-  const launchDate = new Date(Date.UTC(2025, 0, 1, 0, 0, 0));
+  // Target date: February 2nd, 2026, 00:00:00 UTC (Month index 1 is February)
+  const launchDate = new Date(Date.UTC(2026, 1, 2, 0, 0, 0));
 
   const onSubmit = (values: EarlyBirdFormValues) => {
     console.log("Early Bird Sign Up Attempt:", values);
@@ -52,10 +52,10 @@ const HomePage: React.FC = () => {
           <span className="font-semibold text-brand-primary">The first 500 writers get lifetime early-bird pricing and first access.</span>
         </p>
         
-        {/* Main Launch Countdown Timer (Jan 1st) */}
+        {/* Main Launch Countdown Timer (Feb 2nd, 2026) */}
         <div className="mb-16">
           <p className="text-sm font-mono text-gray-500 uppercase tracking-widest mb-4">
-            Official Launch Countdown
+            EARLY BIRD OFFER STARTS IN:
           </p>
           <CountdownTimer targetDate={launchDate} />
         </div>
@@ -112,7 +112,7 @@ const HomePage: React.FC = () => {
             </form>
           </Form>
           <p className="text-xs text-gray-500 mt-4">
-            No spam ever. Unsubscribe anytime. We launch on January 1st, 2025.
+            No spam ever. Unsubscribe anytime. We launch on February 2nd, 2026.
           </p>
         </Card>
       </div>
