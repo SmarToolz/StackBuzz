@@ -11,6 +11,8 @@ import TrialPage from "./pages/TrialPage";
 import TrendsPage from "./pages/TrendsPage";
 import NotFound from "./pages/NotFound";
 import ThankYouPage from "./pages/ThankYouPage";
+import SearchHistoryPage from "./pages/SearchHistoryPage";
+import ExportsPage from "./pages/ExportsPage";
 import { Layout } from "./components/Layout";
 import { DashboardLayout } from "./components/DashboardLayout";
 
@@ -40,6 +42,8 @@ const App = () => (
           <Route element={<DashboardLayout />}>
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/trends" element={<TrendsPage />} />
+            <Route path="/history" element={<SearchHistoryPage />} />
+            <Route path="/exports" element={<ExportsPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

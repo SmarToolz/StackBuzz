@@ -5,6 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import CollaboratorView from "@/components/CollaboratorView";
 import SuperfansView from "@/components/SuperfansView";
 import LivePulseCard from "@/components/LivePulseCard";
+import DashboardOverview from "@/components/DashboardOverview";
 
 const DashboardPage: React.FC = () => {
   const [currentTopic, setCurrentTopic] = useState("AI Ethics");
@@ -25,8 +26,13 @@ const DashboardPage: React.FC = () => {
         <h1 className="text-4xl font-bold mb-8 text-center">
           Your Creator Radar
         </h1>
+        
+        {/* 1. Dashboard Overview (Placed at the top) */}
+        <div className="mb-12">
+            <DashboardOverview />
+        </div>
 
-        {/* 1. Topic Input (Persists across tabs) */}
+        {/* 2. Topic Input (Persists across tabs) */}
         <TopicSearch initialTopic={currentTopic} onTopicChange={handleTopicChange} />
 
         <Tabs defaultValue="pulse" className="w-full">
