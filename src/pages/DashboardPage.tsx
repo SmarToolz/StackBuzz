@@ -1,67 +1,23 @@
-import React, { useState } from "react";
-import TopicSearch from "@/components/TopicSearch";
-import { toast } from "sonner";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import CollaboratorView from "@/components/CollaboratorView";
-import SuperfansView from "@/components/SuperfansView";
-import LivePulseCard from "@/components/LivePulseCard";
+import React from "react";
 import DashboardOverview from "@/components/DashboardOverview";
 
 const DashboardPage: React.FC = () => {
-  const [currentTopic, setCurrentTopic] = useState("AI Ethics");
-
-  const handleTopicChange = (newTopic: string) => {
-    if (newTopic.trim() === "") {
-        toast.error("Please enter a topic to search.");
-        return;
-    }
-    setCurrentTopic(newTopic);
-    toast.info(`Dashboard updated for topic: "${newTopic}"`);
-    // In a real app, this would trigger data fetching for all dashboard components
-  };
+  // The TopicSearch, Tabs, and related views have been moved to IntelligentStackPage.
 
   return (
     <div className="min-h-[calc(100vh-100px)] p-4 sm:p-8 bg-black text-white">
       <div className="max-w-7xl mx-auto">
         
-        {/* 1. Dashboard Overview (Placed at the top) */}
+        {/* Dashboard Overview remains as the primary content for the main dashboard route */}
         <div className="mb-12">
             <DashboardOverview />
         </div>
-
-        {/* 2. Topic Input (Persists across tabs) */}
-        <TopicSearch initialTopic={currentTopic} onTopicChange={handleTopicChange} />
-
-        <Tabs defaultValue="pulse" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 max-w-2xl mx-auto mb-8 bg-gray-900 border border-gray-800">
-            <TabsTrigger value="pulse" className="data-[state=active]:bg-brand-primary data-[state=active]:text-white">
-              Pulse
-            </TabsTrigger>
-            <TabsTrigger value="collaborators" className="data-[state=active]:bg-brand-primary data-[state=active]:text-white">
-              Collaborators
-            </TabsTrigger>
-            <TabsTrigger value="superfans" className="data-[state=active]:bg-brand-primary data-[state=active]:text-white">
-              My Superfans
-            </TabsTrigger>
-          </TabsList>
-
-          {/* Pulse Tab Content */}
-          <TabsContent value="pulse">
-            <div className="max-w-4xl mx-auto">
-              <LivePulseCard />
-            </div>
-          </TabsContent>
-
-          {/* Collaborators Tab Content */}
-          <TabsContent value="collaborators">
-            <CollaboratorView />
-          </TabsContent>
-          
-          {/* Superfans Tab Content */}
-          <TabsContent value="superfans">
-            <SuperfansView />
-          </TabsContent>
-        </Tabs>
+        
+        <div className="text-center mt-20">
+            <p className="text-lg text-gray-400">
+                Navigate to the <span className="font-semibold text-brand-primary">Intelligent Stack</span> section to analyze topics and view creator insights.
+            </p>
+        </div>
       </div>
     </div>
   );

@@ -13,6 +13,10 @@ import NotFound from "./pages/NotFound";
 import ThankYouPage from "./pages/ThankYouPage";
 import SearchHistoryPage from "./pages/SearchHistoryPage";
 import ExportsPage from "./pages/ExportsPage";
+import IntelligentStackPage from "./pages/IntelligentStackPage";
+import PulsePage from "./pages/PulsePage";
+import CollaboratorsPage from "./pages/CollaboratorsPage";
+import SuperfansPage from "./pages/SuperfansPage";
 import { Layout } from "./components/Layout";
 import { DashboardLayout } from "./components/DashboardLayout";
 
@@ -44,6 +48,14 @@ const App = () => (
             <Route path="/trends" element={<TrendsPage />} />
             <Route path="/history" element={<SearchHistoryPage />} />
             <Route path="/exports" element={<ExportsPage />} />
+            
+            {/* Intelligent Stack Nested Routes */}
+            <Route path="/stack" element={<IntelligentStackPage />}>
+                <Route index element={<PulsePage />} /> {/* Default route for /stack */}
+                <Route path="pulse" element={<PulsePage />} />
+                <Route path="collaborators" element={<CollaboratorsPage />} />
+                <Route path="superfans" element={<SuperfansPage />} />
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>

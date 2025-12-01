@@ -1,11 +1,12 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { LayoutDashboard, TrendingUp, Settings, LogOut, History, Download } from "lucide-react";
+import { LayoutDashboard, TrendingUp, Settings, LogOut, History, Download, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const navItems = [
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
+  { name: "Intelligent Stack", href: "/stack", icon: Zap }, // New item
   { name: "Trends", href: "/trends", icon: TrendingUp },
   { name: "Search History", href: "/history", icon: History },
   { name: "Exports CSV", href: "/exports", icon: Download },
@@ -21,7 +22,8 @@ export const Sidebar: React.FC = () => {
     <aside className="w-64 flex-shrink-0 bg-sidebar-background border-r border-sidebar-border p-4 flex flex-col h-full">
       <nav className="flex-grow space-y-2">
         {navItems.map((item) => {
-          const isActive = location.pathname === item.href;
+          // Check if the current path starts with the item's href (for nested routes like /stack)
+          const isActive = location.pathname === item.href || (item.href !== "/" && location.pathname.startsWith(item.href + '/'));
           const Icon = item.icon;
           
           return (
