@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import TopicSearch from "@/components/TopicSearch";
 import LivePulseCard from "@/components/LivePulseCard";
-import ActionableCreatorFeed from "@/components/ActionableCreatorFeed";
 import { toast } from "sonner";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import CollaboratorView from "@/components/CollaboratorView";
 
 const DashboardPage: React.FC = () => {
   const [currentTopic, setCurrentTopic] = useState("AI Ethics");
@@ -14,7 +15,7 @@ const DashboardPage: React.FC = () => {
     }
     setCurrentTopic(newTopic);
     toast.info(`Dashboard updated for topic: "${newTopic}"`);
-    // In a real app, this would trigger data fetching for LivePulseCard and ActionableCreatorFeed
+    // In a real app, this would trigger data fetching for LivePulseCard and CollaboratorView
   };
 
   return (
@@ -24,19 +25,36 @@ const DashboardPage: React.FC = () => {
           Your Creator Radar
         </h1>
 
-        {/* 1. Topic Input */}
+        {/* 1. Topic Input (Persists across tabs) */}
         <TopicSearch initialTopic={currentTopic} onTopicChange={handleTopicChange} />
 
-        {/* 2. Live Pulse Card */}
-        <div className="mb-10 max-w-3xl mx-auto">
-          <LivePulseCard />
-        </div>
+        <Tabs defaultValue="collaborators" className="w-full">
+          <TabsList className="grid w-full grid-cols-2 max-w-md mx-auto mb-8 bg-gray-900 border border-gray-800">
+            <TabsTrigger value="dashboard" className="data-[state=active]:bg-brand-primary data-[state=active]:text-white">
+              Dashboard
+            </TabsTrigger>
+            <TabsTrigger value="collaborators" className="data-[state=active]:bg-brand-primary data-[state=active]:text-white">
+              Collaborators
+            </TabsTrigger>
+          </TabsList>
 
-        {/* 3. Actionable Creator Feed */}
-        <h2 className="text-2xl font-bold mb-6 text-white text-center">
-          Who to DM Today
-        </h2>
-        <ActionableCreatorFeed />
+          {/* Dashboard Tab Content */}
+          <TabsContent value="dashboard">
+            {/* Live Pulse Card */}
+            <div className="mb-10 max-w-3xl mx-auto">
+              <LivePulseCard />
+            </div>
+            
+            <div className="text-center text-gray-500 p-10 border border-dashed border-gray-800 rounded-lg">
+                Dashboard content coming soon. Use the Collaborators tab for networking insights.
+            </div>
+          </TabsContent>
+
+          {/* Collaborators Tab Content */}
+          <TabsContent value="collaborators">
+            <CollaboratorView />
+          </TabsContent>
+        </Tabs>
       </div>
     </div>
   );

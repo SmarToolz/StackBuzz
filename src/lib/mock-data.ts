@@ -18,7 +18,7 @@ export interface ActionableCreator {
   id: number;
   handle: string;
   subscribers: string;
-  actionDescription: string;
+  lastPostDate: string;
   category: 'Reach Target' | 'Peer Swap' | 'Rising Star';
   metric: string; // e.g., "posted yesterday", "replies daily", "47 comments"
 }
@@ -26,27 +26,51 @@ export interface ActionableCreator {
 export const mockActionableCreators: ActionableCreator[] = [
   { 
     id: 1, 
-    handle: "@JaneDoe", 
+    handle: "JaneDoe", 
     subscribers: "20k", 
-    actionDescription: "Reach Target", 
+    lastPostDate: "2 days ago", 
     category: 'Reach Target',
     metric: "posted yesterday",
   },
   { 
     id: 2, 
-    handle: "@AlexGrowth", 
+    handle: "AlexGrowth", 
     subscribers: "2k", 
-    actionDescription: "Peer Swap", 
+    lastPostDate: "5 hours ago", 
     category: 'Peer Swap',
     metric: "replies daily",
   },
   { 
     id: 3, 
-    handle: "@NewVoiceAI", 
+    handle: "NewVoiceAI", 
     subscribers: "200", 
-    actionDescription: "Rising Star", 
+    lastPostDate: "1 day ago", 
     category: 'Rising Star',
     metric: "47 comments on last post",
+  },
+  { 
+    id: 4, 
+    handle: "ClimateWriter", 
+    subscribers: "15k", 
+    lastPostDate: "1 week ago", 
+    category: 'Reach Target',
+    metric: "high engagement",
+  },
+  { 
+    id: 5, 
+    handle: "ProductivityPro", 
+    subscribers: "3k", 
+    lastPostDate: "3 days ago", 
+    category: 'Peer Swap',
+    metric: "consistent posting",
+  },
+  { 
+    id: 6, 
+    handle: "IndieHackerBot", 
+    subscribers: "500", 
+    lastPostDate: "1 hour ago", 
+    category: 'Rising Star',
+    metric: "viral thread",
   },
 ];
 
