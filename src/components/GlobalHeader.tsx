@@ -16,10 +16,6 @@ export const GlobalHeader: React.FC = () => {
 
         {/* Navigation & CTA */}
         <nav className="flex items-center space-x-4">
-          {/* Primary Navigation Links */}
-          <Link to="/trends" className="text-sm font-medium text-gray-300 hover:text-white transition-colors hidden sm:inline">
-            Trends
-          </Link>
           
           {isAuthenticated ? (
             <>
@@ -31,16 +27,11 @@ export const GlobalHeader: React.FC = () => {
               </Button>
             </>
           ) : (
-            <>
-              <Link to="/login" className="text-sm font-medium text-gray-300 hover:text-white transition-colors hidden sm:inline">
-                Log In
+            <Button asChild className="bg-brand-primary hover:bg-brand-hover text-white">
+              <Link to="/trial">
+                Start Trial
               </Link>
-              <Button asChild className="bg-brand-primary hover:bg-brand-hover text-white">
-                <Link to="/signup">
-                  Sign Up
-                </Link>
-              </Button>
-            </>
+            </Button>
           )}
         </nav>
       </div>
