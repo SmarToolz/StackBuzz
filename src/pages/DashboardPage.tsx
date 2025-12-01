@@ -4,6 +4,7 @@ import LivePulseCard from "@/components/LivePulseCard";
 import { toast } from "sonner";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import CollaboratorView from "@/components/CollaboratorView";
+import SuperfansView from "@/components/SuperfansView";
 
 const DashboardPage: React.FC = () => {
   const [currentTopic, setCurrentTopic] = useState("AI Ethics");
@@ -29,12 +30,15 @@ const DashboardPage: React.FC = () => {
         <TopicSearch initialTopic={currentTopic} onTopicChange={handleTopicChange} />
 
         <Tabs defaultValue="collaborators" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 max-w-md mx-auto mb-8 bg-gray-900 border border-gray-800">
+          <TabsList className="grid w-full grid-cols-3 max-w-2xl mx-auto mb-8 bg-gray-900 border border-gray-800">
             <TabsTrigger value="dashboard" className="data-[state=active]:bg-brand-primary data-[state=active]:text-white">
               Dashboard
             </TabsTrigger>
             <TabsTrigger value="collaborators" className="data-[state=active]:bg-brand-primary data-[state=active]:text-white">
               Collaborators
+            </TabsTrigger>
+            <TabsTrigger value="superfans" className="data-[state=active]:bg-brand-primary data-[state=active]:text-white">
+              My Superfans
             </TabsTrigger>
           </TabsList>
 
@@ -53,6 +57,11 @@ const DashboardPage: React.FC = () => {
           {/* Collaborators Tab Content */}
           <TabsContent value="collaborators">
             <CollaboratorView />
+          </TabsContent>
+          
+          {/* Superfans Tab Content */}
+          <TabsContent value="superfans">
+            <SuperfansView />
           </TabsContent>
         </Tabs>
       </div>

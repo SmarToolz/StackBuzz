@@ -221,3 +221,33 @@ export const mockPostInsights: Record<number, PostInsight> = {
         suggestedTitle: "Write this: You Don't Have a Growth Problem, You Have a Niche Problem",
     },
 };
+
+// --- Superfans Data ---
+export interface UserPost {
+  id: number;
+  title: string;
+  commentCount: number;
+}
+
+export interface Superfan {
+  id: number;
+  name: string;
+  handle: string;
+  commentCount: number;
+  lastCommentDate: string;
+}
+
+export const mockUserPosts: UserPost[] = [
+  { id: 101, title: "My Q4 Revenue Breakdown", commentCount: 45 },
+  { id: 102, title: "The Future of AI in Writing", commentCount: 62 },
+  { id: 103, title: "How to Niche Down Effectively", commentCount: 31 },
+  { id: 104, title: "The 5-Minute Morning Routine", commentCount: 18 },
+  { id: 105, title: "Deep Work vs. Shallow Work: A Breakdown", commentCount: 35 },
+];
+
+export const mockSuperfans: Superfan[] = [
+  { id: 201, name: "Sarah K.", handle: "@sarahk", commentCount: 11, lastCommentDate: "today" },
+  { id: 202, name: "Mark T.", handle: "@markt", commentCount: 8, lastCommentDate: "yesterday" },
+  { id: 203, name: "Aisha L.", handle: "@aishal", commentCount: 6, lastCommentDate: "2 days ago" },
+  { id: 204, name: "John D.", handle: "@johnd", commentCount: 5, lastCommentDate: "3 days ago" },
+];
