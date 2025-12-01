@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface TopicSearchProps {
   initialTopic: string;
@@ -9,10 +10,13 @@ interface TopicSearchProps {
 
 const TopicSearch: React.FC<TopicSearchProps> = ({ initialTopic, onTopicChange }) => {
   const [topic, setTopic] = useState(initialTopic);
+  const navigate = useNavigate();
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       onTopicChange(topic);
+      // Navigate to the Search Trends page
+      navigate('/trends');
     }
   };
 
