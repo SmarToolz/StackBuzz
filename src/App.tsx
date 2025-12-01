@@ -8,6 +8,7 @@ import AppPage from "./pages/AppPage";
 import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
+import TrialPage from "./pages/TrialPage";
 import NotFound from "./pages/NotFound";
 import { Layout } from "./components/Layout";
 
@@ -21,6 +22,7 @@ const AppRoutesWithLayout = () => (
       <Route path="/signup" element={<SignUpPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/dashboard" element={<DashboardPage />} />
+      <Route path="/trial" element={<TrialPage />} />
       {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
       <Route path="*" element={<NotFound />} />
     </Routes>
