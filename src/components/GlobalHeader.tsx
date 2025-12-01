@@ -16,6 +16,11 @@ export const GlobalHeader: React.FC = () => {
 
         {/* Navigation & CTA */}
         <nav className="flex items-center space-x-4">
+          {/* Primary Navigation Links */}
+          <Link to="/trends" className="text-sm font-medium text-gray-300 hover:text-white transition-colors hidden sm:inline">
+            Trends
+          </Link>
+          
           {isAuthenticated ? (
             <>
               <Link to="/dashboard" className="text-sm font-medium text-gray-300 hover:text-white transition-colors hidden sm:inline">

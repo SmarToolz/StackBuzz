@@ -8,6 +8,7 @@ import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
 import TrialPage from "./pages/TrialPage";
+import TrendsPage from "./pages/TrendsPage"; // Import new page
 import NotFound from "./pages/NotFound";
 import ThankYouPage from "./pages/ThankYouPage";
 import { Layout } from "./components/Layout";
@@ -22,6 +23,7 @@ const AppRoutesWithLayout = () => (
       <Route path="/login" element={<LoginPage />} />
       <Route path="/dashboard" element={<DashboardPage />} />
       <Route path="/trial" element={<TrialPage />} />
+      <Route path="/trends" element={<TrendsPage />} /> {/* New Trends Route */}
       {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
       <Route path="*" element={<NotFound />} />
     </Routes>
