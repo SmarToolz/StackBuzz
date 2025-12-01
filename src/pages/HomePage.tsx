@@ -66,7 +66,7 @@ const HomePage: React.FC = () => {
             Right now
           </p>
           <div className="text-lg sm:text-xl font-semibold text-left inline-block space-y-1 p-4 rounded-lg border border-gray-800 bg-gray-900/50">
-            <p className="text-white">→ 3,412 people talking about “AI energy costs”</p>
+            <p className="text-white">→ 3,412 people talking about “AI journaling”</p>
             <p className="text-white">→ 1,890 comments on “remote work burnout”</p>
             <p className="text-white">→ “Indie hacking” just spiked 180 %</p>
           </div>
