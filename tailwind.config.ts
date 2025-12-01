@@ -62,6 +62,11 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Custom brand colors for Substrate.bot
+        brand: {
+          primary: "#E86324",
+          hover: "#FF8A3A",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
