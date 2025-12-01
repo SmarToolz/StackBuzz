@@ -8,15 +8,16 @@ import { mockPostInsights, PostInsight } from '@/lib/mock-data';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { downloadCSV } from '@/lib/export-utils';
+import SavedKeywordsList from './SavedKeywordsList'; // Import the new component
 
 const ViralPostList: React.FC = () => {
-  const [keyword, setKeyword] = useState('');
+  const [keyword, setKeyword] = useState('AI'); // Default initial keyword
   const [results, setResults] = useState<ViralPost[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedPost, setSelectedPost] = useState<ViralPost | null>(null);
   const [insight, setInsight] = useState<PostInsight | null>(null);
 
-  const handleSearch = (searchKeyword: string) => {
+  const runSearch = (searchKeyword: string) => {
     if (!searchKeyword.trim()) {
       toast.error("Please enter a keyword to find trends.");
       return;
@@ -34,9 +35,18 @@ const ViralPostList: React.FC = () => {
     }, 3000);
   };
 
+  const handleSearchInput = () => {
+    runSearch(keyword);
+  };
+  
+  const handleKeywordClick = (clickedKeyword: string) => {
+    setKeyword(clickedKeyword);
+    runSearch(clickedKeyword);
+  };
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      handleSearch(keyword);
+      handleSearchInput();
     }
   };
 
@@ -61,9 +71,9 @@ const ViralPostList: React.FC = () => {
     toast.success(`Exported ${results.length} viral trends.`);
   };
 
-  // Initial load simulation (optional, but good for first view)
+  // Initial load simulation
   useEffect(() => {
-    handleSearch("AI");
+    runSearch(keyword);
   }, []);
 
 
@@ -88,6 +98,9 @@ const ViralPostList: React.FC = () => {
         <p className="text-xs text-gray-500 mt-2">Press Enter to run a live scrape for fresh data.</p>
       </div>
       
+      {/* Saved Keywords List (New Section) */}
+      <SavedKeywordsList onKeywordClick={handleKeywordClick} />
+
       {/* Export Button */}
       <div className="flex justify-end mb-6">
         <Button 

@@ -322,3 +322,18 @@ export const mockSuperfans: Superfan[] = [
   { id: 203, name: "Aisha L.", handle: "@aishal", commentCount: 6, lastCommentDate: "2 days ago" },
   { id: 204, name: "John D.", handle: "@johnd", commentCount: 5, lastCommentDate: "3 days ago" },
 ];
+
+// --- Saved Keywords Data ---
+export interface SavedKeyword {
+  id: number;
+  keyword: string;
+  commentCount: number;
+  changePercent: number;
+  isUp: boolean;
+}
+
+export const mockSavedKeywords: SavedKeyword[] = [
+  { id: 1, keyword: "AI Ethics", commentCount: 1412, changePercent: 28, isUp: true },
+  { id: 2, keyword: "Remote work burnout", commentCount: 890, changePercent: 5, isUp: false },
+  { id: 3, keyword: "Indie hacking", commentCount: 312, changePercent: 12, isUp: true },
+];
