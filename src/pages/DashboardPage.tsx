@@ -4,7 +4,7 @@ import { toast } from "sonner";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import CollaboratorView from "@/components/CollaboratorView";
 import SuperfansView from "@/components/SuperfansView";
-import DashboardOverview from "@/components/DashboardOverview";
+import LivePulseCard from "@/components/LivePulseCard";
 
 const DashboardPage: React.FC = () => {
   const [currentTopic, setCurrentTopic] = useState("AI Ethics");
@@ -29,10 +29,10 @@ const DashboardPage: React.FC = () => {
         {/* 1. Topic Input (Persists across tabs) */}
         <TopicSearch initialTopic={currentTopic} onTopicChange={handleTopicChange} />
 
-        <Tabs defaultValue="dashboard" className="w-full">
+        <Tabs defaultValue="pulse" className="w-full">
           <TabsList className="grid w-full grid-cols-3 max-w-2xl mx-auto mb-8 bg-gray-900 border border-gray-800">
-            <TabsTrigger value="dashboard" className="data-[state=active]:bg-brand-primary data-[state=active]:text-white">
-              Dashboard
+            <TabsTrigger value="pulse" className="data-[state=active]:bg-brand-primary data-[state=active]:text-white">
+              Pulse
             </TabsTrigger>
             <TabsTrigger value="collaborators" className="data-[state=active]:bg-brand-primary data-[state=active]:text-white">
               Collaborators
@@ -42,9 +42,11 @@ const DashboardPage: React.FC = () => {
             </TabsTrigger>
           </TabsList>
 
-          {/* Dashboard Tab Content */}
-          <TabsContent value="dashboard">
-            <DashboardOverview />
+          {/* Pulse Tab Content */}
+          <TabsContent value="pulse">
+            <div className="max-w-4xl mx-auto">
+              <LivePulseCard />
+            </div>
           </TabsContent>
 
           {/* Collaborators Tab Content */}
