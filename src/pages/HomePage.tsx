@@ -74,14 +74,6 @@ const HomePage: React.FC = () => {
 
         {/* Email Form */}
         <Card className="bg-gray-900 border-gray-800 p-6 sm:p-8 max-w-lg mx-auto">
-          {/* Dummy Urgency Timer */}
-          <div className="mb-6 p-3 bg-brand-primary/10 border border-brand-primary/30 rounded-lg">
-            <p className="text-sm font-semibold text-brand-primary mb-3 uppercase tracking-wider">
-              Early Bird Offer Expires In:
-            </p>
-            <CountdownTimer dailyReset={true} />
-          </div>
-          
           <h3 className="text-xl font-bold mb-4 text-white">Enter your email — secure your spot</h3>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
