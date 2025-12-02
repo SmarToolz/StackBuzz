@@ -3,12 +3,6 @@ import { useOutletContext } from "react-router-dom";
 import LivePulseCard from "@/components/LivePulseCard";
 import TopicHeatmap from "@/components/TopicHeatmap";
 import { ViralPost } from "@/lib/mock-data";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 
 interface IntelligentStackContext {
     currentTopic: string;
@@ -25,18 +19,8 @@ const PulsePage: React.FC = () => {
       {/* 1. Live Pulse Card */}
       <LivePulseCard />
       
-      {/* 2. Topic Specific Heatmap wrapped in Accordion */}
-      <Accordion type="single" collapsible defaultValue="heatmap">
-        <AccordionItem value="heatmap" className="border-gray-800 bg-gray-900 rounded-lg px-4">
-          <AccordionTrigger className="text-xl font-semibold text-white hover:no-underline">
-            Optimal Posting Time Heatmap
-          </AccordionTrigger>
-          <AccordionContent>
-            {/* The TopicHeatmap component itself already contains a Card structure, so we pass the posts directly */}
-            <TopicHeatmap posts={viralPosts} />
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
+      {/* 2. Topic Specific Heatmap */}
+      <TopicHeatmap posts={viralPosts} />
     </div>
   );
 };
