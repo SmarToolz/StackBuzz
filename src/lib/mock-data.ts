@@ -83,6 +83,53 @@ export const mockTopInfluencers: TopInfluencer[] = [
   { name: "Maria Garcia", topic: "Remote Work Burnout", subs: "12k Subs", engagement: "85%" },
 ];
 
+// --- Heatmap Data ---
+export interface HeatmapActivity {
+  dayIndex: number; // 0=Sun, 1=Mon, ..., 6=Sat
+  hour: number; // 0 to 23
+  activityCount: number; // 0 to 100 (for scaling)
+}
+
+// Generate mock data for a 7x24 grid.
+const generateMockHeatmapData = (): HeatmapActivity[] => {
+  const data: HeatmapActivity[] = [];
+  for (let dayIndex = 0; dayIndex < 7; dayIndex++) {
+    for (let hour = 0; hour < 24; hour++) {
+      let activityCount = 0;
+      
+      // Higher activity on weekdays (1-5)
+      if (dayIndex >= 1 && dayIndex <= 5) {
+        // Peak hours (9 AM to 5 PM)
+        if (hour >= 9 && hour <= 17) {
+          activityCount = Math.floor(Math.random() * 60) + 40; // 40-100
+        } 
+        // Shoulder hours (7-9 AM, 5-7 PM)
+        else if ((hour >= 7 && hour < 9) || (hour > 17 && hour <= 19)) {
+          activityCount = Math.floor(Math.random() * 30) + 10; // 10-40
+        }
+        // Off hours
+        else {
+          activityCount = Math.floor(Math.random() * 10); // 0-10
+        }
+      } 
+      // Lower activity on weekends (0=Sun, 6=Sat)
+      else {
+        // Weekend peak (mid-day)
+        if (hour >= 10 && hour <= 15) {
+          activityCount = Math.floor(Math.random() * 30) + 10; // 10-40
+        } else {
+          activityCount = Math.floor(Math.random() * 15); // 0-15
+        }
+      }
+      
+      data.push({ dayIndex, hour, activityCount });
+    }
+  }
+  return data;
+};
+
+export const mockHeatmapData: HeatmapActivity[] = generateMockHeatmapData();
+
 
 // --- Actionable Creator Data ---
 export interface PostHistory {

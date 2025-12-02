@@ -11,7 +11,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import { ArrowUp } from "lucide-react";
-import { Separator } from "@/components/ui/separator";
+import ActivityHeatmap from "./ActivityHeatmap";
 
 // Helper component for the summary cards
 const SummaryCard: React.FC<{ stat: SummaryStat }> = ({ stat }) => {
@@ -65,9 +65,12 @@ const DashboardOverview: React.FC = () => {
           <SummaryCard key={index} stat={stat} />
         ))}
       </div>
+      
+      {/* 2. Engagement Heatmap */}
+      <ActivityHeatmap />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* 2. Trend Velocity Chart */}
+        {/* 3. Trend Velocity Chart */}
         <Card className="lg:col-span-2 bg-gray-900 border-gray-800 text-white">
           <CardHeader>
             <CardTitle className="text-xl font-semibold text-gray-300">
@@ -92,7 +95,7 @@ const DashboardOverview: React.FC = () => {
           </CardContent>
         </Card>
 
-        {/* 3. Top Influencers List */}
+        {/* 4. Top Influencers List */}
         <Card className="lg:col-span-1 bg-gray-900 border-gray-800 text-white">
           <CardHeader>
             <CardTitle className="text-xl font-semibold text-gray-300">
