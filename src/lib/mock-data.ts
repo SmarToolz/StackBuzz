@@ -115,6 +115,20 @@ const generateMockHeatmapData = (): HeatmapActivity[] => {
 
 export const mockHeatmapData: HeatmapActivity[] = generateMockHeatmapData();
 
+// --- Top Influencers Data ---
+export interface TopInfluencer {
+  name: string;
+  topic: string;
+  subs: string;
+  engagement: string;
+}
+
+export const mockTopInfluencers: TopInfluencer[] = [
+  { name: "Jane Doe", topic: "AI Ethics", subs: "20k", engagement: "120%" },
+  { name: "Alex Chen", topic: "Indie Hacking", subs: "8k", engagement: "95%" },
+  { name: "Sarah K.", topic: "Climate Tech", subs: "35k", engagement: "88%" },
+];
+
 
 // --- Actionable Creator Data ---
 export interface PostHistory {
