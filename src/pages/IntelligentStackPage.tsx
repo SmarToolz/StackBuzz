@@ -4,6 +4,7 @@ import TopicSearch from "@/components/TopicSearch";
 import { toast } from "sonner";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
+import { ViralPost, mockViralPosts } from "@/lib/mock-data";
 
 // Define sub-navigation items
 const stackNavItems = [
@@ -12,12 +13,19 @@ const stackNavItems = [
   { name: "Superfans", path: "superfans" },
 ];
 
+// Define context interface
+interface IntelligentStackContext {
+    currentTopic: string;
+    viralPosts: ViralPost[];
+}
+
 const IntelligentStackPage: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   
-  // State for the topic, shared across all sub-views
+  // State for the topic and associated data, shared across all sub-views
   const [currentTopic, setCurrentTopic] = useState("AI Ethics");
+  const [viralPosts, setViralPosts] = useState<ViralPost[]>(mockViralPosts); // Initialize with mock data
 
   // Determine the active tab based on the current URL path
   const activePath = location.pathname.split('/').pop();
@@ -38,6 +46,13 @@ const IntelligentStackPage: React.FC = () => {
         return;
     }
     setCurrentTopic(newTopic);
+    
+    // --- SIMULATE API CALL ---
+    // In a real app, this would fetch data based on newTopic.
+    // For now, we just reset the mock data.
+    setViralPosts(mockViralPosts); 
+    // -------------------------
+    
     toast.info(`Intelligent Stack updated for topic: "${newTopic}"`);
     // This state change will implicitly update all components rendered via Outlet
   };
@@ -74,7 +89,7 @@ const IntelligentStackPage: React.FC = () => {
         </Tabs>
 
         {/* Render the specific sub-page content, passing the topic state via context */}
-        <Outlet context={{ currentTopic }} />
+        <Outlet context={{ currentTopic, viralPosts }} />
       </div>
     </div>
   );

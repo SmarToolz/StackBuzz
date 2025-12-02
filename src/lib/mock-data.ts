@@ -69,21 +69,6 @@ export const mockVelocityData: VelocityData[] = [
   { day: "Day 7", mentions: 3800 },
 ];
 
-export interface TopInfluencer {
-  name: string;
-  topic: string;
-  subs: string;
-  engagement: string;
-}
-
-export const mockTopInfluencers: TopInfluencer[] = [
-  { name: "Jane Doe", topic: "Future of AI", subs: "15k Subs", engagement: "95%" },
-  { name: "Alex Smith", topic: "Indie Hacking", subs: "8k Subs", engagement: "88%" },
-  { name: "Chris Lee", topic: "Web3 & Culture", subs: "22k Subs", engagement: "91%" },
-  { name: "Maria Garcia", topic: "Remote Work Burnout", subs: "12k Subs", engagement: "85%" },
-];
-
-// --- Heatmap Data ---
 export interface HeatmapActivity {
   dayIndex: number; // 0=Sun, 1=Mon, ..., 6=Sat
   hour: number; // 0 to 23
@@ -302,6 +287,7 @@ export interface ViralPost {
   author: string;
   subscribers: string;
   commentCount: number;
+  post_date: string; // Added post_date for heatmap calculation
 }
 
 export interface PostInsight {
@@ -309,12 +295,34 @@ export interface PostInsight {
   suggestedTitle: string;
 }
 
+// Helper function to create a date string for a specific day/hour (relative to now)
+// 0 = Sunday, 1 = Monday, etc.
+const createMockDate = (dayOfWeek: number, hour: number): string => {
+  const now = new Date();
+  const currentDay = now.getDay(); // 0 (Sun) to 6 (Sat)
+  
+  // Calculate how many days ago this day was (up to 7 days ago)
+  let daysAgo = currentDay - dayOfWeek;
+  if (daysAgo < 0) {
+    daysAgo += 7;
+  }
+  
+  const date = new Date();
+  date.setDate(date.getDate() - daysAgo);
+  date.setHours(hour, 0, 0, 0);
+  return date.toISOString();
+};
+
+
 export const mockViralPosts: ViralPost[] = [
-  { id: 1, title: "Why AI is Hitting a Wall: The Hidden Costs", author: "@TechGuru", subscribers: "50k", commentCount: 312 },
-  { id: 2, title: "The Future of Remote Work is Asynchronous", author: "@ProductivityPro", subscribers: "12k", commentCount: 188 },
-  { id: 3, title: "Indie Hacking: My First $100k in 30 Days", author: "@SoloDev", subscribers: "8k", commentCount: 450 },
-  { id: 4, title: "Climate Tech: Why VCs are Missing the Biggest Opportunity", author: "@GreenInvest", subscribers: "35k", commentCount: 92 },
-  { id: 5, title: "The Real Reason Your Newsletter Isn't Growing", author: "@MarketingMind", subscribers: "15k", commentCount: 210 },
+  { id: 1, title: "Why AI is Hitting a Wall: The Hidden Costs", author: "@TechGuru", subscribers: "50k", commentCount: 312, post_date: createMockDate(1, 10) }, // Monday 10 AM
+  { id: 2, title: "The Future of Remote Work is Asynchronous", author: "@ProductivityPro", subscribers: "12k", commentCount: 188, post_date: createMockDate(3, 14) }, // Wednesday 2 PM
+  { id: 3, title: "Indie Hacking: My First $100k in 30 Days", author: "@SoloDev", subscribers: "8k", commentCount: 450, post_date: createMockDate(5, 9) }, // Friday 9 AM
+  { id: 4, title: "Climate Tech: Why VCs are Missing the Biggest Opportunity", author: "@GreenInvest", subscribers: "35k", commentCount: 92, post_date: createMockDate(2, 23) }, // Tuesday 11 PM
+  { id: 5, title: "The Real Reason Your Newsletter Isn't Growing", author: "@MarketingMind", subscribers: "15k", commentCount: 210, post_date: createMockDate(0, 7) }, // Sunday 7 AM
+  { id: 6, title: "The Next Big Thing in Web3", author: "@CryptoKing", subscribers: "100k", commentCount: 500, post_date: createMockDate(1, 10) }, // Monday 10 AM (Duplicate time for higher count)
+  { id: 7, title: "How to use GPT-5 for research", author: "@AIExpert", subscribers: "20k", commentCount: 150, post_date: createMockDate(1, 10) }, // Monday 10 AM (Duplicate time for higher count)
+  { id: 8, title: "Deep Dive into Climate Policy", author: "@PolicyNerd", subscribers: "5k", commentCount: 70, post_date: createMockDate(3, 14) }, // Wednesday 2 PM (Duplicate time for higher count)
 ];
 
 export const mockPostInsights: Record<number, PostInsight> = {
@@ -337,6 +345,18 @@ export const mockPostInsights: Record<number, PostInsight> = {
     5: {
         wordCloud: ["consistency", "SEO", "distribution", "niche", "value proposition"],
         suggestedTitle: "Write this: You Don't Have a Growth Problem, You Have a Niche Problem",
+    },
+    6: {
+        wordCloud: ["web3", "crypto", "decentralization", "NFTs"],
+        suggestedTitle: "Write this: The Web3 Hype Cycle is Over: Here's What's Next",
+    },
+    7: {
+        wordCloud: ["research", "GPT-5", "prompts", "efficiency"],
+        suggestedTitle: "Write this: 10 Advanced GPT-5 Prompts That Will 10x Your Research Speed",
+    },
+    8: {
+        wordCloud: ["policy", "legislation", "lobbying", "impact"],
+        suggestedTitle: "Write this: The Unseen Lobbying Battle Shaping Climate Policy Today",
     },
 };
 
