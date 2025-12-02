@@ -1,7 +1,7 @@
 import React from 'react';
 import { ViralPost } from '@/lib/mock-data';
 import { cn } from '@/lib/utils';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { CardTitle } from '@/components/ui/card'; // Keep CardTitle for internal structure
 
 interface TopicHeatmapProps {
   posts: ViralPost[];
@@ -65,16 +65,17 @@ const TopicHeatmap: React.FC<TopicHeatmapProps> = ({ posts }) => {
   };
 
   return (
-    <Card className="bg-gray-900 border-gray-800 text-white">
-      <CardHeader>
-        <CardTitle className="text-xl font-semibold text-gray-300">
+    <div className="text-white pt-4">
+      <div className="px-4">
+        <CardTitle className="text-lg font-semibold text-gray-300">
           Optimal Posting Time (Based on {posts.length} Viral Posts)
         </CardTitle>
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-gray-500 mb-4">
           When are creators posting about this topic? Darker squares indicate higher frequency.
         </p>
-      </CardHeader>
-      <CardContent className="p-4 overflow-x-auto">
+      </div>
+      
+      <div className="p-4 overflow-x-auto bg-gray-800 rounded-lg">
         <div className="flex flex-col min-w-[400px]">
           {/* Hour Labels (X-Axis) */}
           <div className="flex flex-row ml-10 mb-2">
@@ -114,8 +115,8 @@ const TopicHeatmap: React.FC<TopicHeatmapProps> = ({ posts }) => {
             ))}
           </div>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 };
 
