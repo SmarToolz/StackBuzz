@@ -49,7 +49,7 @@ const CollaboratorView: React.FC = () => {
   };
   
   const handleExport = () => {
-    downloadCSV(mockActionableCreators, 'substrate_collaborators.csv');
+    downloadCSV(mockActionableCreators, 'stackbuzz_collaborators.csv');
     toast.success(`Exported ${mockActionableCreators.length} collaborators.`);
   };
 

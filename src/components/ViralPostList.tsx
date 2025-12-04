@@ -67,7 +67,7 @@ const ViralPostList: React.FC = () => {
       toast.error("No data to export. Run a search first.");
       return;
     }
-    downloadCSV(results, 'substrate_viral_trends.csv');
+    downloadCSV(results, 'stackbuzz_viral_trends.csv');
     toast.success(`Exported ${results.length} viral trends.`);
   };
 

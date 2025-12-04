@@ -11,7 +11,7 @@ export const GlobalHeader: React.FC = () => {
       <div className="container flex h-16 items-center justify-between max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Logo/Brand Name */}
         <Link to="/" className="text-xl font-bold text-brand-primary hover:text-brand-hover transition-colors">
-          Substrate.bot
+          StackBuzz
         </Link>
 
         {/* Navigation & CTA */}

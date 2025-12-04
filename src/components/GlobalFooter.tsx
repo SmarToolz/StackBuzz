@@ -55,10 +55,10 @@ export const GlobalFooter: React.FC = () => {
         {/* Copyright & Disclaimer */}
         <div className="pt-6 border-t border-gray-900 text-center space-y-2">
           <p className="text-[10px] sm:text-xs text-gray-500">
-            Substrate.bot © 2025 Substrate. All rights reserved.
+            StackBuzz © 2025 StackBuzz. All rights reserved.
           </p>
           <p className="text-[10px] sm:text-xs text-gray-600 max-w-3xl mx-auto">
-            Built with ❤️ for creators. Substrate is an independent third-party
+            Built with ❤️ for creators. StackBuzz is an independent third-party
             analytics tool and is not affiliated with, endorsed by, or sponsored
             by Substack, Inc.
           </p>

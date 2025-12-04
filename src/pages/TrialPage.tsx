@@ -7,7 +7,7 @@ const TrialPage: React.FC = () => {
   const proofCards = [
     { quote: "One post from the suggestions → 8,000 new subs in 9 days.", author: "Alex Chen" },
     { quote: "Found 3 perfect collab partners in under 5 minutes.", author: "Sarah K." },
-    { quote: "Finally know what my readers actually care about.", author: "400+ creators using Substrate today" },
+    { quote: "Finally know what my readers actually care about.", author: "400+ creators using StackBuzz today" },
   ];
 
   return (

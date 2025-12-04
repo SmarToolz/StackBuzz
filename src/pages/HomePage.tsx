@@ -51,7 +51,7 @@ const HomePage: React.FC = () => {
 
         {/* Sub-headline */}
         <p className="text-lg sm:text-xl text-gray-400 mb-12 font-light max-w-2xl mx-auto">
-          Substrate is the private radar that shows Substack creators exactly what’s trending and who to talk to — in real time.
+          StackBuzz is the private radar that shows Substack creators exactly what’s trending and who to talk to — in real time.
           <br className="hidden sm:inline" />
           <span className="font-semibold text-brand-primary">The first 500 writers get lifetime early-bird pricing and first access.</span>
         </p>
