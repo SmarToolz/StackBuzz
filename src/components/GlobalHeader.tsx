@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/context/SupabaseAuthProvider";
 
 export const GlobalHeader: React.FC = () => {
-  // Placeholder for authentication state
-  const isAuthenticated = false; 
+  const { user, signOut } = useAuth();
+  const isAuthenticated = !!user; 
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-gray-800 bg-black/90 backdrop-blur-sm">
@@ -22,14 +23,18 @@ export const GlobalHeader: React.FC = () => {
               <Link to="/dashboard" className="text-sm font-medium text-gray-300 hover:text-white transition-colors hidden sm:inline">
                 Dashboard
               </Link>
-              <Button variant="secondary" className="bg-gray-800 hover:bg-gray-700 text-white">
+              <Button 
+                variant="secondary" 
+                className="bg-gray-800 hover:bg-gray-700 text-white"
+                onClick={signOut} // Use signOut function
+              >
                 Logout
               </Button>
             </>
           ) : (
             <Button asChild className="bg-brand-primary hover:bg-brand-hover text-white">
-              <Link to="/trial">
-                Start Trial
+              <Link to="/login"> {/* Direct to /login */}
+                Log In
               </Link>
             </Button>
           )}

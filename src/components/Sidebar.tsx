@@ -1,12 +1,15 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { LayoutDashboard, TrendingUp, Settings, LogOut, History, Download, Zap } from "lucide-react";
+import { LayoutDashboard, TrendingUp, Settings, LogOut, History, Download, Zap, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/context/SupabaseAuthProvider";
+
+const ADMIN_EMAIL = "admin@stackbuzz.app";
 
 const navItems = [
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
-  { name: "Intelligent Stack", href: "/stack", icon: Zap }, // New item
+  { name: "Intelligent Stack", href: "/stack", icon: Zap },
   { name: "Search Trends", href: "/trends", icon: TrendingUp },
   { name: "Search History", href: "/history", icon: History },
   { name: "Exports CSV", href: "/exports", icon: Download },
@@ -14,9 +17,10 @@ const navItems = [
 
 export const Sidebar: React.FC = () => {
   const location = useLocation();
+  const { user, signOut } = useAuth();
   
-  // Placeholder for authentication state
-  const isAuthenticated = true; 
+  const isAuthenticated = !!user; 
+  const isAdmin = user?.email === ADMIN_EMAIL;
 
   return (
     <aside className="w-64 flex-shrink-0 bg-sidebar-background border-r border-sidebar-border p-4 flex flex-col h-full">
@@ -43,6 +47,23 @@ export const Sidebar: React.FC = () => {
             </Button>
           );
         })}
+        
+        {/* Admin Link */}
+        {isAdmin && (
+            <Button
+              asChild
+              variant="ghost"
+              className={cn(
+                "w-full justify-start text-yellow-400 hover:bg-sidebar-accent hover:text-yellow-300",
+                location.pathname === "/admin" && "bg-sidebar-accent font-semibold"
+              )}
+            >
+              <Link to="/admin">
+                <Shield className="mr-3 h-5 w-5" />
+                Admin Panel
+              </Link>
+            </Button>
+        )}
       </nav>
       
       {/* Bottom section for settings/logout */}
@@ -59,7 +80,7 @@ export const Sidebar: React.FC = () => {
           <Button
             variant="ghost"
             className="w-full justify-start text-red-400 hover:bg-red-900/30"
-            onClick={() => console.log("Logging out")}
+            onClick={signOut} // Use signOut function
           >
             <LogOut className="mr-3 h-5 w-5" />
             Logout
