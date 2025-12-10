@@ -17,6 +17,7 @@ import CollaboratorsPage from "./pages/CollaboratorsPage";
 import SuperfansPage from "./pages/SuperfansPage";
 import AuthPage from "./pages/AuthPage";
 import AdminPage from "./pages/AdminPage";
+import PricingPage from "./pages/PricingPage"; // Import the new page
 import { Layout } from "./components/Layout";
 import { DashboardLayout } from "./components/DashboardLayout";
 import { SupabaseAuthProvider } from "./context/SupabaseAuthProvider";
@@ -42,6 +43,7 @@ const App = () => (
               <Route path="/trial" element={<TrialPage />} />
               <Route path="/login" element={<AuthPage />} />
               <Route path="/signup" element={<AuthPage />} />
+              <Route path="/pricing" element={<PricingPage />} /> {/* New Pricing Route */}
               {/* Catch-all for 404 within the standard layout */}
               <Route path="*" element={<NotFound />} />
             </Route>
