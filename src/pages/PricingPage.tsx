@@ -1,78 +1,115 @@
-import React from "react";
+import React, { useState } from "react";
 import PricingCard, { PricingCardProps } from "@/components/PricingCard";
 import { Check } from "lucide-react";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { cn } from "@/lib/utils";
 
-// Define a type for the full tier object, extending PricingCardProps
-interface FullPricingTier extends PricingCardProps {
-    footerNote: string;
+// Define a type for the full tier object, including both monthly and yearly data
+interface PricingTierData {
+    tier: 'Free' | 'Basic' | 'Pro';
+    description: string;
+    colorClass: string;
+    ctaText: string;
+    ctaLink: string;
+    isPrimary: boolean;
+    monthly: {
+        price: string;
+        footerNote: string;
+    };
+    yearly: {
+        price: string;
+        descriptionSuffix: string; // e.g., (or $290 / year — save 17%)
+        footerNote: string;
+    };
+    features: PricingCardProps['features'];
 }
 
-const pricingTiers: FullPricingTier[] = [
+const baseFeatures = [
+    { text: 'Live Pulse card + top posts snapshot', included: true },
+    { text: '“Who to DM Today” (3 sample cards)', included: true },
+    { text: 'Word cloud view of trending comments', included: true },
+    { text: 'Perfect for seeing the magic and getting one high‑signal insight every week', included: true },
+    { text: '3 keyword searches per week (≈12/month)', included: false },
+    { text: 'Saved Keywords with live trend arrows', included: false },
+    { text: 'Download results as CSV', included: false },
+    { text: 'Unlimited viewing of saved searches', included: false },
+    { text: 'Unlimited keyword searches (any topic, any time)', included: false },
+    { text: 'AI‑powered title & DM line generator', included: false },
+    { text: 'Superfans tab (connect your Substack to see top commenters)', included: false },
+    { text: 'Priority support', included: false },
+];
+
+const pricingTiersData: PricingTierData[] = [
   {
     tier: 'Free',
-    price: '$0 / month',
     description: 'Static dashboard preview (weekly buzz keyword pre‑loaded)',
     colorClass: 'text-yellow-400',
     ctaText: 'Start Free — No Card Required',
     ctaLink: '/signup',
     isPrimary: false,
-    features: [
-      { text: 'Live Pulse card + top posts snapshot', included: true },
-      { text: '“Who to DM Today” (3 sample cards)', included: true },
-      { text: 'Word cloud view of trending comments', included: true },
-      { text: 'Perfect for seeing the magic and getting one high‑signal insight every week', included: true },
-      { text: '3 keyword searches per week', included: false },
-      { text: 'Saved Keywords with live trend arrows', included: false },
-      { text: 'Unlimited keyword searches', included: false },
-      { text: 'Superfans tab (connect your Substack)', included: false },
-    ],
-    footerNote: 'Need more? Unlock extra searches anytime for $3.50 each or upgrade to Basic.',
+    monthly: {
+        price: '$0 / month',
+        footerNote: 'Need more? Unlock extra searches anytime for $3.50 each or upgrade to Basic.',
+    },
+    yearly: {
+        price: '$0 / year',
+        descriptionSuffix: '',
+        footerNote: 'Need more? Unlock extra searches anytime for $3.50 each or upgrade to Basic.',
+    },
+    features: baseFeatures.slice(0, 4), // First 4 features are included
   },
   {
     tier: 'Basic',
-    price: '$29 / month',
-    description: 'High‑Signal Briefing (or $290 / year — save 17%)',
+    description: 'High‑Signal Briefing',
     colorClass: 'text-blue-400',
     ctaText: 'Upgrade to Basic — Get Your Weekly Briefing',
     ctaLink: '/signup',
     isPrimary: true,
-    features: [
-      { text: 'Live Pulse card + top posts snapshot', included: true },
-      { text: '“Who to DM Today” (3 sample cards)', included: true },
-      { text: 'Word cloud view of trending comments', included: true },
-      { text: '3 keyword searches per week (≈12/month)', included: true },
-      { text: 'Saved Keywords with live trend arrows', included: true },
-      { text: 'Download results as CSV', included: true },
-      { text: 'Unlimited viewing of saved searches', included: true },
-      { text: 'Unlimited keyword searches', included: false },
-      { text: 'Superfans tab (connect your Substack)', included: false },
-    ],
-    footerNote: 'Flex option: Add extra searches anytime for $3.50 each.',
+    monthly: {
+        price: '$29 / month',
+        footerNote: 'Flex option: Add extra searches anytime for $3.50 each.',
+    },
+    yearly: {
+        price: '$290 / year',
+        descriptionSuffix: ' (save 17%)',
+        footerNote: 'Flex option: Add extra searches anytime for $3.50 each.',
+    },
+    features: baseFeatures.map((f, i) => ({
+        ...f,
+        // Combine logic: features 0-7 are included. Feature 4 text is customized.
+        text: i === 4 ? '3 keyword searches per week (≈12/month)' : f.text,
+        included: i < 8,
+    })),
   },
   {
     tier: 'Pro',
-    price: '$79 / month',
-    description: 'Full Radar Access (or $790 / year — save 17%)',
+    description: 'Full Radar Access',
     colorClass: 'text-red-400',
     ctaText: 'Go Pro — Unlock Unlimited Radar',
     ctaLink: '/signup',
     isPrimary: false,
-    features: [
-      { text: 'Live Pulse card + top posts snapshot', included: true },
-      { text: '“Who to DM Today” (3 sample cards)', included: true },
-      { text: 'Word cloud view of trending comments', included: true },
-      { text: 'Unlimited keyword searches (any topic, any time)', included: true },
-      { text: 'Saved Keywords with daily refresh', included: true },
-      { text: 'Download results as CSV', included: true },
-      { text: 'AI‑powered title & DM line generator', included: true },
-      { text: 'Superfans tab (connect your Substack to see top commenters)', included: true },
-      { text: 'Priority support', included: true },
-    ],
-    footerNote: 'For serious creators who want the full edge, every day.',
+    monthly: {
+        price: '$79 / month',
+        footerNote: 'For serious creators who want the full edge, every day.',
+    },
+    yearly: {
+        price: '$790 / year',
+        descriptionSuffix: ' (save 17%)',
+        footerNote: 'For serious creators who want the full edge, every day.',
+    },
+    features: baseFeatures.map((f, i) => ({
+        ...f,
+        // Combine logic: All features are included. Feature 8 text is customized.
+        text: i === 8 ? 'Unlimited keyword searches (any topic, any time)' : f.text,
+        included: true,
+    })),
   },
 ];
 
 const PricingPage: React.FC = () => {
+  const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('monthly');
+  const isYearly = billingCycle === 'yearly';
+
   return (
     <div className="min-h-[calc(100vh-100px)] p-4 sm:p-8 bg-black text-white relative">
       {/* Subtle Radial Gradient Overlay */}
@@ -89,16 +126,79 @@ const PricingPage: React.FC = () => {
             StackBuzz shows you the hottest topics, the posts getting thousands of comments, and exactly who to reach out to — all in seconds.
           </p>
         </header>
+        
+        {/* Monthly/Yearly Toggle */}
+        <div className="flex justify-center mb-12">
+            <Tabs value={billingCycle} onValueChange={(value) => setBillingCycle(value as 'monthly' | 'yearly')} className="w-full max-w-xs">
+                <TabsList className="grid w-full grid-cols-2 bg-gray-900 border border-gray-800">
+                    <TabsTrigger 
+                        value="monthly" 
+                        className={cn(
+                            "data-[state=active]:bg-brand-primary data-[state=active]:text-white",
+                        )}
+                    >
+                        Monthly
+                    </TabsTrigger>
+                    <TabsTrigger 
+                        value="yearly" 
+                        className={cn(
+                            "data-[state=active]:bg-brand-primary data-[state=active]:text-white relative"
+                        )}
+                    >
+                        Yearly
+                        <span className="absolute -top-2 right-0 bg-green-500 text-black text-[10px] font-bold px-2 py-0.5 rounded-full transform translate-x-1/2 -translate-y-1/2">
+                            SAVE 17%
+                        </span>
+                    </TabsTrigger>
+                </TabsList>
+            </Tabs>
+        </div>
 
         {/* Pricing Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {pricingTiers.map((tier) => (
-            <div key={tier.tier} className="flex flex-col">
-              {/* Spread the tier object, which now conforms to the expected type */}
-              <PricingCard {...tier} /> 
-              <p className="text-xs text-gray-500 mt-3 text-center italic">{tier.footerNote}</p>
-            </div>
-          ))}
+          {pricingTiersData.map((tierData) => {
+            const priceInfo = isYearly ? tierData.yearly : tierData.monthly;
+            const descriptionSuffix = isYearly ? tierData.yearly.descriptionSuffix : '';
+            
+            // Determine features based on tier logic
+            let features = tierData.features;
+            
+            // Special handling for Pro features to ensure they override Basic features correctly
+            if (tierData.tier === 'Pro') {
+                features = baseFeatures.map(f => ({ 
+                    ...f, 
+                    included: true,
+                    text: f.text.includes('Unlimited keyword searches') ? 'Unlimited keyword searches (any topic, any time)' : f.text,
+                }));
+            } else if (tierData.tier === 'Basic') {
+                features = baseFeatures.map((f, i) => ({
+                    ...f,
+                    included: i < 8,
+                    text: i === 4 ? '3 keyword searches per week (≈12/month)' : f.text,
+                }));
+            } else {
+                features = baseFeatures.map((f, i) => ({
+                    ...f,
+                    included: i < 4,
+                }));
+            }
+
+            return (
+              <div key={tierData.tier} className="flex flex-col">
+                <PricingCard 
+                    tier={tierData.tier}
+                    price={priceInfo.price}
+                    description={tierData.description + descriptionSuffix}
+                    features={features}
+                    ctaText={tierData.ctaText}
+                    ctaLink={tierData.ctaLink}
+                    isPrimary={tierData.isPrimary}
+                    colorClass={tierData.colorClass}
+                /> 
+                <p className="text-xs text-gray-500 mt-3 text-center italic">{priceInfo.footerNote}</p>
+              </div>
+            );
+          })}
         </div>
 
         {/* Why Creators Love StackBuzz Section */}
