@@ -6,7 +6,8 @@ import { Check, TrendingUp, Search, Users, Zap, Star, MessageSquare, Lightbulb }
 import HeroVisual from "@/components/HeroVisual";
 import PricingCard from "@/components/PricingCard";
 import { Feature } from "@/components/PricingCard";
-import { GlobalFooter } from "@/components/GlobalFooter"; // Import GlobalFooter
+import { GlobalFooter } from "@/components/GlobalFooter";
+import FAQSection from "@/components/FAQSection"; // Import FAQSection
 
 // Mock data for pricing preview (Monthly Free, Basic and Pro)
 const mockPricingFeatures: Feature[] = [
@@ -216,6 +217,9 @@ const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
+      
+      {/* Section 6 - FAQ */}
+      <FAQSection />
 
       {/* Section 5 — Why Creators Love StackBuzz */}
       <section className="py-20 bg-gray-900 border-t border-gray-800">
