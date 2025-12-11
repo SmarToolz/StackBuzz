@@ -35,17 +35,15 @@ const App = () => (
       <BrowserRouter>
         <SupabaseAuthProvider> {/* Wrap routes with Auth Provider */}
           <Routes>
-            {/* Standalone Routes (No Layout) */}
-            <Route path="/" element={<HomePage />} /> {/* New Homepage */}
-            <Route path="/landing" element={<LandingPage />} /> {/* Old Homepage moved */}
-            <Route path="/thank-you" element={<ThankYouPage />} />
-            
-            {/* Standard Layout Group (Header + Footer) */}
+            {/* Standard Layout Group (PublicHeader + Footer) */}
             <Route element={<Layout />}>
+              <Route path="/" element={<HomePage />} /> {/* Now uses Layout */}
+              <Route path="/landing" element={<LandingPage />} />
               <Route path="/trial" element={<TrialPage />} />
               <Route path="/login" element={<AuthPage />} />
               <Route path="/signup" element={<AuthPage />} />
               <Route path="/pricing" element={<PricingPage />} />
+              <Route path="/thank-you" element={<ThankYouPage />} /> {/* Thank you page should also have header/footer */}
               {/* Catch-all for 404 within the standard layout */}
               <Route path="*" element={<NotFound />} />
             </Route>

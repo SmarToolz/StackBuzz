@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/context/SupabaseAuthProvider";
 
-export const GlobalHeader: React.FC = () => {
+export const DashboardHeader: React.FC = () => {
   const { user, signOut } = useAuth();
+  // This header is only shown when authenticated, but we keep the check for safety/logic clarity
   const isAuthenticated = !!user; 
 
   return (
@@ -15,7 +16,7 @@ export const GlobalHeader: React.FC = () => {
           StackBuzz
         </Link>
 
-        {/* Navigation & CTA */}
+        {/* Navigation & CTA (Dashboard specific) */}
         <nav className="flex items-center space-x-4">
           
           {isAuthenticated ? (
@@ -32,8 +33,9 @@ export const GlobalHeader: React.FC = () => {
               </Button>
             </>
           ) : (
+            // Should not happen in ProtectedRoute context, but fallback to login
             <Button asChild className="bg-brand-primary hover:bg-brand-hover text-white">
-              <Link to="/login"> {/* Direct to /login */}
+              <Link to="/login">
                 Log In
               </Link>
             </Button>

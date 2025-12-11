@@ -6,7 +6,6 @@ import { Check, TrendingUp, Search, Users, Zap, Star, MessageSquare, Lightbulb }
 import HeroVisual from "@/components/HeroVisual";
 import PricingCard from "@/components/PricingCard";
 import { Feature } from "@/components/PricingCard";
-import { GlobalFooter } from "@/components/GlobalFooter";
 import FAQSection from "@/components/FAQSection"; // Import FAQSection
 
 // Mock data for pricing preview (Monthly Free, Basic and Pro)
@@ -244,9 +243,6 @@ const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
-      
-      {/* Global Footer */}
-      <GlobalFooter />
     </div>
   );
 };

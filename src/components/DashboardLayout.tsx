@@ -1,13 +1,13 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import { GlobalHeader } from "./GlobalHeader";
+import { DashboardHeader } from "./DashboardHeader";
 import { GlobalFooter } from "./GlobalFooter";
 import { Sidebar } from "./Sidebar";
 
 export const DashboardLayout: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <GlobalHeader />
+      <DashboardHeader />
       
       <div className="flex flex-grow">
         <Sidebar />
