@@ -66,7 +66,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
         <Button 
           asChild
           className={cn(
-            "w-full h-12 text-base font-semibold", // Changed text-lg to text-base
+            "w-full h-12 text-sm font-semibold", // Changed text-base to text-sm
             isPrimary 
               ? "bg-brand-primary hover:bg-brand-hover text-white" 
               : "bg-gray-800 hover:bg-gray-700 text-white border border-gray-700"
