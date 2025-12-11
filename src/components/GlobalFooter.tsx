@@ -10,6 +10,13 @@ const footerLinks = [
     ],
   },
   {
+    title: "Resources",
+    links: [
+      { text: "Blog", href: "#" }, // Placeholder link
+      { text: "X/Twitter", href: "#" }, // Placeholder link
+    ],
+  },
+  {
     title: "Support",
     links: [
       { text: "Help & Support", href: "#" }, // Placeholder link
@@ -30,7 +37,7 @@ export const GlobalFooter: React.FC = () => {
     <footer className="bg-black text-gray-400 border-t border-gray-800 pt-12 pb-4 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Footer Links Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-8 mb-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
           {footerLinks.map((column) => (
             <div key={column.title}>
               <h4 className="text-sm font-semibold text-white mb-4 uppercase tracking-wider">
