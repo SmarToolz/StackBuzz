@@ -6,6 +6,7 @@ import { Check, TrendingUp, Search, Users, Zap, Star, MessageSquare, Lightbulb }
 import HeroVisual from "@/components/HeroVisual";
 import PricingCard from "@/components/PricingCard";
 import { Feature } from "@/components/PricingCard";
+import { GlobalFooter } from "@/components/GlobalFooter"; // Import GlobalFooter
 
 // Mock data for pricing preview (Monthly Free, Basic and Pro)
 const mockPricingFeatures: Feature[] = [
@@ -62,7 +63,7 @@ const featureGridData = [
 
 const HomePage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-black text-white flex flex-col">
       {/* Hero Section */}
       <section className="py-20 sm:py-32 text-center relative overflow-hidden">
         {/* Radial Gradient Background */}
@@ -239,6 +240,9 @@ const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
+      
+      {/* Global Footer */}
+      <GlobalFooter />
     </div>
   );
 };
