@@ -1,47 +1,45 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Input } from "@/components/ui/input";
 import { Search, Flame, MessageSquare, User, Loader2, Download } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
-import { ViralPost, mockViralPosts } from '@/lib/mock-data';
+import { ViralPost, mockPostInsights, PostInsight } from '@/lib/mock-data';
 import PostInsightModal from './PostInsightModal';
-import { mockPostInsights, PostInsight } from '@/lib/mock-data';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { downloadCSV } from '@/lib/export-utils';
-import SavedKeywordsList from './SavedKeywordsList'; // Import the new component
+import SavedKeywordsList from './SavedKeywordsList';
+import { useQuery } from '@tanstack/react-query';
+import { fetchViralPosts } from '@/api/trends';
 
 const ViralPostList: React.FC = () => {
-  const [keyword, setKeyword] = useState('AI'); // Default initial keyword
-  const [results, setResults] = useState<ViralPost[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [keyword, setKeyword] = useState('AI'); // Default initial keyword for input field
+  const [searchQuery, setSearchQuery] = useState('AI'); // State to hold the keyword used for the query
   const [selectedPost, setSelectedPost] = useState<ViralPost | null>(null);
   const [insight, setInsight] = useState<PostInsight | null>(null);
 
-  const runSearch = (searchKeyword: string) => {
-    if (!searchKeyword.trim()) {
+  // Use React Query to manage fetching state
+  const { data: results, isLoading, isFetching } = useQuery<ViralPost[]>({
+    queryKey: ['viralPosts', searchQuery],
+    queryFn: () => fetchViralPosts(searchQuery),
+    // Only run the query if searchQuery is defined and not empty
+    enabled: !!searchQuery,
+    initialData: [],
+  });
+
+  const handleSearchInput = () => {
+    if (!keyword.trim()) {
       toast.error("Please enter a keyword to find trends.");
       return;
     }
     
-    setIsLoading(true);
-    setResults([]);
-    
-    // Simulate 3-second live scrape/backend magic
-    setTimeout(() => {
-      // In a real app, this would be an API call based on the keyword
-      setResults(mockViralPosts); 
-      setIsLoading(false);
-      toast.success(`Found ${mockViralPosts.length} viral trends for "${searchKeyword}"`);
-    }, 3000);
-  };
-
-  const handleSearchInput = () => {
-    runSearch(keyword);
+    // Update the state that drives the query key, triggering a new fetch
+    setSearchQuery(keyword.trim());
+    toast.info(`Searching for viral trends related to "${keyword.trim()}"...`);
   };
   
   const handleKeywordClick = (clickedKeyword: string) => {
     setKeyword(clickedKeyword);
-    runSearch(clickedKeyword);
+    setSearchQuery(clickedKeyword);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -63,19 +61,15 @@ const ViralPostList: React.FC = () => {
   };
   
   const handleExport = () => {
-    if (results.length === 0) {
+    if (!results || results.length === 0) {
       toast.error("No data to export. Run a search first.");
       return;
     }
-    downloadCSV(results, 'stackbuzz_viral_trends.csv');
-    toast.success(`Exported ${results.length} viral trends.`);
+    downloadCSV(results, `stackbuzz_viral_trends_${searchQuery}.csv`);
+    toast.success(`Exported ${results.length} viral trends for "${searchQuery}".`);
   };
 
-  // Initial load simulation
-  useEffect(() => {
-    runSearch(keyword);
-  }, []);
-
+  const isDataLoading = isLoading || isFetching;
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -107,6 +101,7 @@ const ViralPostList: React.FC = () => {
           variant="outline" 
           onClick={handleExport}
           className="bg-gray-900 border-gray-700 text-gray-300 hover:bg-gray-800"
+          disabled={isDataLoading || !results || results.length === 0}
         >
           <Download className="h-4 w-4 mr-2" />
           Download CSV
@@ -114,15 +109,15 @@ const ViralPostList: React.FC = () => {
       </div>
 
       {/* Results Display */}
-      {isLoading ? (
+      {isDataLoading ? (
         <div className="flex flex-col items-center justify-center h-64 text-gray-400">
           <Loader2 className="h-10 w-10 animate-spin text-brand-primary mb-4" />
           <p className="text-lg font-medium">Running live scrape... (3 seconds)</p>
-          <p className="text-sm">Fetching the freshest viral data right now.</p>
+          <p className="text-sm">Fetching the freshest viral data right now for "{searchQuery}".</p>
         </div>
       ) : (
         <div className="space-y-4">
-          {results.length > 0 ? (
+          {results && results.length > 0 ? (
             results.map((post) => (
               <Card 
                 key={post.id} 
@@ -150,7 +145,7 @@ const ViralPostList: React.FC = () => {
             ))
           ) : (
             <div className="text-center text-gray-500 p-10 border border-dashed border-gray-800 rounded-lg">
-                No viral posts found yet. Try searching for a broad topic like "AI" or "Finance."
+                No viral posts found yet for "{searchQuery}". Try searching for a broad topic like "AI" or "Finance."
             </div>
           )}
         </div>
