@@ -7,11 +7,12 @@ interface IntelligentStackContext {
 }
 
 const SuperfansPage: React.FC = () => {
+  // currentTopic is not used in this component, but context interface remains for consistency if needed elsewhere.
   const { currentTopic } = useOutletContext<IntelligentStackContext>();
 
   return (
     <div className="pt-8">
-      <h2 className="text-3xl font-bold mb-6 text-white">My Superfans for "{currentTopic}"</h2>
+      <h2 className="text-3xl font-bold mb-6 text-white">My Superfans</h2>
       <SuperfansView />
     </div>
   );
