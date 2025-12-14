@@ -51,9 +51,7 @@ const SavedKeywordsList: React.FC<SavedKeywordsListProps> = ({ onKeywordClick })
             Saved Keywords ({savedCount})
           </h3>
         </div>
-        <p className="text-xs text-gray-500">
-          Auto-refresh every 4 hours
-        </p>
+        {/* Removed: <p className="text-xs text-gray-500">Auto-refresh every 4 hours</p> */}
       </div>
       
       {savedCount > 0 ? (

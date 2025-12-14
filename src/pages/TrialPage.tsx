@@ -14,8 +14,8 @@ const TrialPage: React.FC = () => {
     <div className="min-h-screen flex flex-col items-center justify-center text-center p-4 sm:p-8 bg-black text-white 
                     relative overflow-hidden">
       {/* Subtle Radial Gradient Overlay for Premium Feel */}
-      <div className="absolute inset-0 pointer-events-none 
-                      bg-[radial-gradient(circle_at_center,_rgba(232,99,36,0.05)_0%,_transparent_50%)] 
+      <div className="absolute inset-0 pointer-events-none
+                      bg-[radial-gradient(circle_at_center,_rgba(232,99,36,0.05)_0%,_transparent_50%)]
                       opacity-50 z-0"></div>
 
       <div className="max-w-5xl mx-auto py-16 relative z-10">
@@ -32,7 +32,7 @@ const TrialPage: React.FC = () => {
         {/* Live Ticker */}
         <div className="mb-16 space-y-2">
           <p className="text-sm font-mono text-gray-500 uppercase tracking-widest">
-            Right now (auto-refreshed every 4h)
+            Right now
           </p>
           <div className="text-lg sm:text-xl font-semibold text-left inline-block space-y-1 p-4 rounded-lg border border-gray-800 bg-gray-900/50">
             <p className="text-white">→ 3,412 people are talking about “AI energy costs”</p>

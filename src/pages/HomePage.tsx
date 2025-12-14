@@ -105,7 +105,7 @@ const HomePage: React.FC = () => {
             <div className="p-6 space-y-3 border border-gray-800 rounded-lg bg-gray-800/50">
               <TrendingUp className="h-8 w-8 text-brand-primary mx-auto" />
               <h3 className="text-xl font-semibold text-white">Instant Trend Detection</h3>
-              <p className="text-gray-400">See what thousands of readers are talking about — updated every 4 hours.</p>
+              <p className="text-gray-400">See what thousands of readers are talking about — updated frequently.</p>
             </div>
             <div className="p-6 space-y-3 border border-gray-800 rounded-lg bg-gray-800/50">
               <Search className="h-8 w-8 text-brand-primary mx-auto" />

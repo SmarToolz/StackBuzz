@@ -27,7 +27,7 @@ const LivePulseCard: React.FC = () => {
           </div>
         </div>
         <p className="text-xs text-gray-500 mt-4">
-          Updates every 4 hours. Immediate validation for your niche.
+          Immediate validation for your niche.
         </p>
       </CardContent>
     </Card>

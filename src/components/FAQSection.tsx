@@ -13,7 +13,7 @@ const faqItems = [
   },
   {
     question: "How often is the data updated?",
-    answer: "The 'Live Pulse' and core trend data are updated every 4 hours to ensure you have the freshest insights. When you run a manual keyword search (Basic/Pro tiers), we perform a live scrape for immediate results.",
+    answer: "The 'Live Pulse' and core trend data are updated frequently to ensure you have the freshest insights. When you run a manual keyword search (Basic/Pro tiers), we perform a live scrape for immediate results.",
   },
   {
     question: "Is StackBuzz affiliated with Substack?",
