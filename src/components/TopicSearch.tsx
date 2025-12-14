@@ -22,9 +22,12 @@ const TopicSearch: React.FC<TopicSearchProps> = ({ initialTopic, onTopicChange }
 
   return (
     <div className="w-full max-w-3xl mx-auto text-center mb-12">
-      <h2 className="text-xl sm:text-2xl font-semibold text-gray-300 mb-4">
-        What topic do you write about?
+      <h2 className="text-xl sm:text-2xl font-semibold text-white mb-2">
+        Set Your Strategic Topic Focus
       </h2>
+      <p className="text-gray-400 text-sm mb-4">
+        This topic defines the context for the Pulse, Collaborators, and Superfans tabs.
+      </p>
       <div className="relative">
         <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-500" />
         <Input
