@@ -27,7 +27,7 @@ interface PricingTierData {
 const baseFeatures = [
     // Free Features
     { text: 'Weekly Buzz dashboard (pre‑loaded hottest keyword)', included: true },
-    { text: 'Live Pulse card + top posts snapshot', included: true },
+    { text: 'Pulse card + top posts snapshot', included: true }, // Updated from Live Pulse
     { text: '“Who to DM Today” (3 sample cards)', included: true },
     { text: 'Word cloud of trending comments', included: true },
     
@@ -51,7 +51,8 @@ const pricingTiersData: PricingTierData[] = [
   {
     tier: 'Free',
     description: 'Dashboard Glimpse',
-    colorClass: 'text-brand-secondary-yellow',
+    // SWAP: text-brand-secondary-yellow -> text-brand-secondary-blue
+    colorClass: 'text-brand-secondary-blue',
     ctaText: 'Start Free — No Card Required',
     ctaLink: '/signup',
     isPrimary: false,
@@ -69,7 +70,8 @@ const pricingTiersData: PricingTierData[] = [
   {
     tier: 'Basic',
     description: 'High‑Signal Briefing',
-    colorClass: 'text-brand-secondary-blue',
+    // SWAP: text-brand-secondary-blue -> text-brand-secondary-yellow
+    colorClass: 'text-brand-secondary-yellow',
     ctaText: 'Upgrade to Basic — Get Your Weekly Briefing',
     ctaLink: '/signup',
     isPrimary: true,
@@ -151,7 +153,8 @@ const PricingPage: React.FC = () => {
                         )}
                     >
                         Yearly
-                        <span className="absolute -top-2 right-0 bg-brand-secondary-blue text-black text-[10px] font-bold px-2 py-0.5 rounded-full transform translate-x-1/2 -translate-y-1/2">
+                        {/* SWAP: bg-brand-secondary-blue -> bg-brand-secondary-yellow */}
+                        <span className="absolute -top-2 right-0 bg-brand-secondary-yellow text-black text-[10px] font-bold px-2 py-0.5 rounded-full transform translate-x-1/2 -translate-y-1/2">
                             SAVE 17%
                         </span>
                     </TabsTrigger>

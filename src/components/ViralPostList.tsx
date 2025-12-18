@@ -18,7 +18,7 @@ const ViralPostList: React.FC = () => {
   const [selectedPost, setSelectedPost] = useState<ViralPost | null>(null);
   const [insight, setInsight] = useState<PostInsight | null>(null);
   
-  const { basicSearchesRemaining, proUpdateCreditsRemaining, isPro, checkAndDeductQuota } = useSearchQuota();
+  const { basicSearchesRemaining, proUpdateCreditsRemaining, isPro, checkAndDeductQuota, isPulseLive } = useSearchQuota();
 
   // Use React Query to manage fetching state
   const { data: results, isLoading, isFetching } = useQuery<ViralPost[]>({
@@ -93,6 +93,11 @@ const ViralPostList: React.FC = () => {
 
   return (
     <div className="max-w-4xl mx-auto">
+      {/* Dynamic Header: Displays 'Live Pulse' or 'Pulse' based on 24-hour window */}
+      <h1 className="text-4xl font-extrabold text-center mb-10 text-white">
+        {isPulseLive ? 'Live Pulse' : 'Pulse'} Results
+      </h1>
+      
       {/* Search Input */}
       <div className="w-full text-center mb-10">
         <h2 className="text-xl sm:text-2xl font-semibold text-gray-300 mb-4">
