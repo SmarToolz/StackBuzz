@@ -8,6 +8,7 @@ import PricingCard from "@/components/PricingCard";
 import { Feature } from "@/components/PricingCard";
 import FAQSection from "@/components/FAQSection"; // Import FAQSection
 import { cn } from "@/lib/utils";
+import LiveSignalBanner from "@/components/LiveSignalBanner"; // Import the new component
 
 // Section 2 Feature Grid Data
 const featureGridData = [
@@ -30,6 +31,10 @@ const HomePage: React.FC = () => {
                       opacity-50 z-0"></div>
         
         <div className="max-w-7xl mx-auto px-4 relative z-10">
+          
+          {/* NEW: Live Trend Signal Banner */}
+          <LiveSignalBanner />
+
           <h1 className="text-6xl sm:text-7xl md:text-8xl font-extrabold leading-none mb-6 tracking-tighter text-white">
             The Real-Time Radar for <span className="text-brand-primary">Substack Creators</span>
           </h1>
