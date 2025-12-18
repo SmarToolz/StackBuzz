@@ -31,11 +31,17 @@ const PricingCard: React.FC<PricingCardProps> = ({
   isPrimary = false,
   colorClass,
 }) => {
+  // Define glow/border classes based on primary status
+  const glowClass = isPrimary 
+    ? "shadow-2xl shadow-brand-primary/30 border-brand-primary" 
+    : "shadow-none border-gray-800 hover:border-brand-primary/50";
+
   return (
     <Card 
       className={cn(
-        "flex flex-col bg-gray-900 border-gray-800 text-white h-full transition-all duration-300",
-        isPrimary ? "border-2 border-brand-primary shadow-2xl shadow-brand-primary/20" : "hover:border-brand-primary/50"
+        "flex flex-col bg-gray-900 text-white h-full transition-all duration-300 relative",
+        "border-2", // Ensure border is always present for consistency
+        glowClass
       )}
     >
       <CardHeader className="pb-4">
@@ -66,7 +72,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
         <Button 
           asChild
           className={cn(
-            "w-full h-12 text-sm font-semibold", // Changed text-base to text-sm
+            "w-full h-12 text-sm font-semibold",
             isPrimary 
               ? "bg-brand-primary hover:bg-brand-hover text-white" 
               : "bg-gray-800 hover:bg-gray-700 text-white border border-gray-700"

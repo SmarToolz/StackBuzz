@@ -7,6 +7,7 @@ import HeroVisual from "@/components/HeroVisual";
 import PricingCard from "@/components/PricingCard";
 import { Feature } from "@/components/PricingCard";
 import FAQSection from "@/components/FAQSection"; // Import FAQSection
+import { cn } from "@/lib/utils";
 
 // Mock data for pricing preview (Monthly Free, Basic and Pro)
 const mockPricingFeatures: Feature[] = [
@@ -23,7 +24,7 @@ const mockPricingData = [
         tier: 'Free',
         price: '$0 / month',
         description: 'Static dashboard preview',
-        colorClass: 'text-yellow-400',
+        colorClass: 'text-brand-secondary-yellow',
         ctaText: 'Start Free',
         ctaLink: '/signup',
         isPrimary: false,
@@ -33,7 +34,7 @@ const mockPricingData = [
         tier: 'Basic',
         price: '$29 / month',
         description: 'High‑Signal Briefing',
-        colorClass: 'text-blue-400',
+        colorClass: 'text-brand-secondary-blue',
         ctaText: 'Upgrade to Basic',
         ctaLink: '/signup',
         isPrimary: true,
@@ -43,7 +44,7 @@ const mockPricingData = [
         tier: 'Pro',
         price: '$79 / month',
         description: 'Full Radar Access',
-        colorClass: 'text-red-400',
+        colorClass: 'text-brand-primary',
         ctaText: 'Go Pro',
         ctaLink: '/signup',
         isPrimary: false,
@@ -66,14 +67,17 @@ const HomePage: React.FC = () => {
     <div className="min-h-screen bg-black text-white flex flex-col">
       {/* Hero Section */}
       <section className="py-20 sm:py-32 text-center relative overflow-hidden">
-        {/* Radial Gradient Background */}
+        {/* Radial Gradient Background - Enhanced with Blue/Yellow */}
         <div className="absolute inset-0 pointer-events-none
                       bg-[radial-gradient(circle_at_center,_rgba(232,99,36,0.05)_0%,_transparent_50%)]
                       opacity-50 z-0"></div>
         
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           <h1 className="text-6xl sm:text-7xl md:text-8xl font-extrabold leading-none mb-6 tracking-tighter">
-            The Real-Time Radar for <span className="text-brand-primary">Substack Creators</span>
+            The Real-Time Radar for 
+            <span className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-brand-secondary-blue via-brand-secondary-yellow to-brand-primary">
+                Substack Creators
+            </span>
           </h1>
           <p className="text-xl sm:text-2xl text-gray-400 mb-10 font-light max-w-4xl mx-auto">
             Know exactly what to write, who to DM, and which topics are blowing up — without scrolling for hours.
@@ -90,7 +94,9 @@ const HomePage: React.FC = () => {
           </div>
           
           {/* Hero Visual */}
-          <HeroVisual />
+          <div className="relative z-10">
+            <HeroVisual />
+          </div>
         </div>
       </section>
 
@@ -102,17 +108,18 @@ const HomePage: React.FC = () => {
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-6 space-y-3 border border-gray-800 rounded-lg bg-gray-800/50">
-              <TrendingUp className="h-8 w-8 text-brand-primary mx-auto" />
+            {/* Update cards to use secondary colors for icons and hover borders */}
+            <div className="p-6 space-y-3 border border-gray-800 rounded-lg bg-gray-800/50 hover:border-brand-secondary-blue transition-colors">
+              <TrendingUp className="h-8 w-8 text-brand-secondary-blue mx-auto" />
               <h3 className="text-xl font-semibold text-white">Instant Trend Detection</h3>
               <p className="text-gray-400">See what thousands of readers are talking about — updated frequently.</p>
             </div>
-            <div className="p-6 space-y-3 border border-gray-800 rounded-lg bg-gray-800/50">
-              <Search className="h-8 w-8 text-brand-primary mx-auto" />
+            <div className="p-6 space-y-3 border border-gray-800 rounded-lg bg-gray-800/50 hover:border-brand-secondary-yellow transition-colors">
+              <Search className="h-8 w-8 text-brand-secondary-yellow mx-auto" />
               <h3 className="text-xl font-semibold text-white">On-Demand Topic Analysis</h3>
               <p className="text-gray-400">Type any keyword → get trending posts, comment heat, and counter-angles.</p>
             </div>
-            <div className="p-6 space-y-3 border border-gray-800 rounded-lg bg-gray-800/50">
+            <div className="p-6 space-y-3 border border-gray-800 rounded-lg bg-gray-800/50 hover:border-brand-primary transition-colors">
               <Users className="h-8 w-8 text-brand-primary mx-auto" />
               <h3 className="text-xl font-semibold text-white">Smart Collaboration Targeting</h3>
               <p className="text-gray-400">Reach, Peer, and Rising creator buckets — with ready-to-use DM lines.</p>
@@ -134,10 +141,15 @@ const HomePage: React.FC = () => {
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
             {featureGridData.map((feature, index) => {
                 const Icon = feature.icon;
+                // Cycle through colors for visual interest
+                const iconColor = index % 3 === 0 ? 'text-brand-secondary-blue' : 
+                                  index % 3 === 1 ? 'text-brand-secondary-yellow' : 
+                                  'text-brand-primary';
+                
                 return (
-                    <Card key={index} className="bg-gray-900 border-gray-800 text-left p-4 h-full">
+                    <Card key={index} className="bg-gray-900 border-gray-800 text-left p-4 h-full hover:border-brand-primary/50 transition-colors">
                         <CardHeader className="p-0 pb-2">
-                            <Icon className="h-6 w-6 text-brand-primary mb-2" />
+                            <Icon className={cn("h-6 w-6 mb-2", iconColor)} />
                             <CardTitle className="text-lg font-semibold text-white">{feature.title}</CardTitle>
                         </CardHeader>
                         <CardContent className="p-0">

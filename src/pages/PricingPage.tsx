@@ -43,7 +43,7 @@ const pricingTiersData: PricingTierData[] = [
   {
     tier: 'Free',
     description: 'Static dashboard preview (weekly buzz keyword pre‑loaded)',
-    colorClass: 'text-yellow-400',
+    colorClass: 'text-brand-secondary-yellow',
     ctaText: 'Start Free — No Card Required',
     ctaLink: '/signup',
     isPrimary: false,
@@ -61,7 +61,7 @@ const pricingTiersData: PricingTierData[] = [
   {
     tier: 'Basic',
     description: 'High‑Signal Briefing',
-    colorClass: 'text-blue-400',
+    colorClass: 'text-brand-secondary-blue',
     ctaText: 'Upgrade to Basic — Get Your Weekly Briefing',
     ctaLink: '/signup',
     isPrimary: true,
@@ -84,7 +84,7 @@ const pricingTiersData: PricingTierData[] = [
   {
     tier: 'Pro',
     description: 'Full Radar Access',
-    colorClass: 'text-red-400',
+    colorClass: 'text-brand-primary',
     ctaText: 'Go Pro — Unlock Unlimited Radar',
     ctaLink: '/signup',
     isPrimary: false,
@@ -112,14 +112,14 @@ const PricingPage: React.FC = () => {
 
   return (
     <div className="min-h-[calc(100vh-100px)] p-4 sm:p-8 bg-black text-white relative">
-      {/* Subtle Radial Gradient Overlay */}
+      {/* Subtle Radial Gradient Overlay for Premium Feel */}
       <div className="absolute inset-0 pointer-events-none
                       bg-[radial-gradient(circle_at_center,_rgba(232,99,36,0.05)_0%,_transparent_50%)]
                       opacity-50 z-0"></div>
 
       <div className="max-w-7xl mx-auto py-12 relative z-10">
         <header className="text-center mb-16">
-          <h1 className="text-5xl sm:text-6xl font-extrabold leading-tight mb-4 tracking-tight text-white">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold leading-tight mb-4 tracking-tight text-white">
             Discover What’s Buzzing on Substack — Right Now
           </h1>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
@@ -146,7 +146,7 @@ const PricingPage: React.FC = () => {
                         )}
                     >
                         Yearly
-                        <span className="absolute -top-2 right-0 bg-green-500 text-black text-[10px] font-bold px-2 py-0.5 rounded-full transform translate-x-1/2 -translate-y-1/2">
+                        <span className="absolute -top-2 right-0 bg-brand-secondary-blue text-black text-[10px] font-bold px-2 py-0.5 rounded-full transform translate-x-1/2 -translate-y-1/2">
                             SAVE 17%
                         </span>
                     </TabsTrigger>
