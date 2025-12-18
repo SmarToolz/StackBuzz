@@ -8,7 +8,7 @@ const MockLivePulse: React.FC = () => (
   <Card className="bg-gray-800 border-gray-700 text-white col-span-full shadow-lg">
     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
       <CardTitle className="text-xs font-medium text-gray-400 uppercase tracking-wider">
-        The Live Pulse
+        Live Pulse
       </CardTitle>
       <Flame className="h-4 w-4 text-brand-primary animate-pulse" />
     </CardHeader>
@@ -16,11 +16,14 @@ const MockLivePulse: React.FC = () => (
       <div className="flex items-center space-x-3">
         <Flame className="h-6 w-6 text-brand-primary" />
         <div>
-          <p className="text-xl font-extrabold tabular-nums">
-            1,400
+          <p className="text-sm font-semibold text-red-400 uppercase tracking-wider">
+            🔥 Heat Level: Exploding
           </p>
-          <p className="text-sm text-gray-300 mt-0.5">
-            people are talking about <span className="font-bold text-brand-primary">"AI Ethics"</span> right now.
+          <p className="text-xl font-extrabold tabular-nums text-white mt-0.5">
+            1,400+ comments on <span className="font-bold text-brand-primary">AI Ethics</span>
+          </p>
+          <p className="text-xs text-gray-400 mt-1">
+            <span className="font-bold text-green-400">+218%</span> in the last 24 hours
           </p>
         </div>
       </div>

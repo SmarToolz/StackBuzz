@@ -12,10 +12,10 @@ import { cn } from "@/lib/utils";
 // Section 2 Feature Grid Data
 const featureGridData = [
     { title: "Live Pulse Card", icon: Zap, description: "See the single hottest topic being discussed right now." },
-    { title: "Hot Post Scraper", icon: TrendingUp, description: "Instantly find the most commented-on posts for any keyword." },
+    { title: "Hot Post Scraper", icon: TrendingUp, description: "Instantly find the posts gaining comments the fastest — ranked by momentum." },
     { title: "Comment Word Cloud", icon: MessageSquare, description: "Analyze the core sentiment and sub-topics driving engagement." },
     { title: "“Who to DM Today”", icon: Users, description: "Actionable list of creators ready for collaboration." },
-    { title: "Saved Keywords", icon: Star, description: "Track your niche keywords with velocity alerts." },
+    { title: "Saved Keywords", icon: Star, description: "Track your niche topics and spot when they flip from quiet → hot." },
     { title: "AI Title Generator", icon: Lightbulb, description: "Get counter-angle titles based on viral posts." },
 ];
 
@@ -34,17 +34,25 @@ const HomePage: React.FC = () => {
             The Real-Time Radar for <span className="text-brand-primary">Substack Creators</span>
           </h1>
           <p className="text-xl sm:text-2xl text-gray-400 mb-10 font-light max-w-4xl mx-auto">
-            Know exactly what to write, who to DM, and which topics are blowing up. Creating a manual keyword search or refreshing any of your saved keywords gets you the freshest insights.
+            Know exactly <span className="font-bold text-white">what to write today</span>, <span className="font-bold text-white">who to DM right now</span>, and <span className="font-bold text-white">which topics are gaining momentum</span> — before they’re obvious.
           </p>
           
           {/* CTA Buttons */}
-          <div className="flex justify-center space-x-4 mb-16">
+          <div className="flex justify-center space-x-4 mb-10">
             <Button asChild className="h-12 px-8 text-lg font-semibold bg-brand-primary hover:bg-brand-hover">
               <Link to="/signup">Start Free</Link>
             </Button>
             <Button asChild variant="outline" className="h-12 px-8 text-lg font-semibold bg-black border-gray-700 text-white hover:bg-gray-900">
               <Link to="/pricing">View Pricing</Link>
             </Button>
+          </div>
+          
+          {/* NEW: Momentum Credibility Block */}
+          <div className="max-w-xl mx-auto mb-16 p-4 border-l-4 border-brand-primary bg-gray-900/50 text-left">
+            <p className="text-lg font-bold text-white mb-1">Momentum &gt; Popularity</p>
+            <p className="text-sm text-gray-400">
+              StackBuzz doesn’t show what *was* popular. It highlights what’s <span className="font-semibold text-brand-primary">accelerating right now</span> — so you don’t publish into dead conversations.
+            </p>
           </div>
           
           {/* Hero Visual */}
@@ -62,17 +70,19 @@ const HomePage: React.FC = () => {
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Update cards to use secondary colors for icons and hover borders */}
+            {/* Instant Trend Detection */}
             <div className="p-6 space-y-3 border border-gray-800 rounded-lg bg-gray-800/50 hover:border-brand-secondary-blue transition-colors">
               <TrendingUp className="h-8 w-8 text-brand-secondary-blue mx-auto" />
               <h3 className="text-xl font-semibold text-white">Instant Trend Detection</h3>
-              <p className="text-gray-400">See what thousands of readers are talking about — updated frequently.</p>
+              <p className="text-gray-400">See which conversations are <span className="font-semibold text-white">accelerating</span>, not just active — updated throughout the day.</p>
             </div>
+            {/* Hot Post Scraper */}
             <div className="p-6 space-y-3 border border-gray-800 rounded-lg bg-gray-800/50 hover:border-brand-secondary-yellow transition-colors">
               <Search className="h-8 w-8 text-brand-secondary-yellow mx-auto" />
-              <h3 className="text-xl font-semibold text-white">On-Demand Topic Analysis</h3>
-              <p className="text-gray-400">Type any keyword → get trending posts, comment heat, and counter-angles.</p>
+              <h3 className="text-xl font-semibold text-white">Hot Post Scraper</h3>
+              <p className="text-gray-400">Instantly find the posts gaining comments <span className="font-semibold text-white">the fastest</span> — ranked by momentum.</p>
             </div>
+            {/* Smart Collaboration Targeting */}
             <div className="p-6 space-y-3 border border-gray-800 rounded-lg bg-gray-800/50 hover:border-brand-primary transition-colors">
               <Users className="h-8 w-8 text-brand-primary mx-auto" />
               <h3 className="text-xl font-semibold text-white">Smart Collaboration Targeting</h3>
@@ -89,7 +99,7 @@ const HomePage: React.FC = () => {
             A Daily Tool
           </p>
           <h2 className="text-4xl font-bold mb-12 text-white">
-            Creators open StackBuzz every morning.
+            Creators open StackBuzz every morning to answer one question: <span className="text-brand-primary">“Should I write or wait?”</span>
           </h2>
           
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
@@ -113,6 +123,18 @@ const HomePage: React.FC = () => {
                 );
             })}
           </div>
+        </div>
+      </section>
+      
+      {/* NEW: Hidden Engine Section */}
+      <section className="py-20 bg-gray-900 border-t border-b border-gray-800">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-4xl font-bold mb-6 text-brand-primary">
+            Why StackBuzz Feels Like a Cheat Code
+          </h2>
+          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+            We track how fast conversations grow, how recent they are, and how deep the engagement goes — then compress it into a single signal so you know when to act.
+          </p>
         </div>
       </section>
 
@@ -190,11 +212,11 @@ const HomePage: React.FC = () => {
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {[
-                "Saves time", 
-                "Sparks new growth ideas", 
-                "Generates instant collaboration opportunities", 
-                "Removes writer’s block", 
-                "Stops you from chasing dead topics"
+                "Stops you from publishing at the wrong time",
+                "Replaces guesswork with confidence",
+                "Surfaces opportunities before they’re crowded",
+                "Turns scrolling into decisions",
+                "Makes growth feel intentional again"
             ].map((benefit, index) => (
                 <div key={index} className="flex items-center justify-center p-3 bg-gray-800 rounded-lg">
                     <Check className="h-5 w-5 text-green-400 mr-3 flex-shrink-0" />
