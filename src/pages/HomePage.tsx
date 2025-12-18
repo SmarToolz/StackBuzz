@@ -24,9 +24,9 @@ const HomePage: React.FC = () => {
     <div className="min-h-screen bg-black text-white flex flex-col">
       {/* Hero Section */}
       <section className="py-20 sm:py-32 text-center relative overflow-hidden">
-        {/* Radial Gradient Background - Enhanced with Blue/Yellow */}
+        {/* Radial Gradient Background - Subtle Green Glow */}
         <div className="absolute inset-0 pointer-events-none
-                      bg-[radial-gradient(circle_at_center,_rgba(232,99,36,0.05)_0%,_transparent_50%)]
+                      bg-[radial-gradient(circle_at_center,_rgba(34,197,94,0.1)_0%,_transparent_50%)]
                       opacity-50 z-0"></div>
         
         <div className="max-w-7xl mx-auto px-4 relative z-10">
@@ -123,8 +123,8 @@ const HomePage: React.FC = () => {
       <section className="py-20 bg-black">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <div className="relative p-10 sm:p-16 rounded-2xl bg-gray-900 border-2 border-gray-800 shadow-2xl shadow-brand-primary/10">
-            {/* Subtle Gradient Border/Glow Effect */}
-            <div className="absolute inset-0 rounded-2xl p-[2px] bg-gradient-to-r from-brand-secondary-blue via-brand-secondary-yellow to-brand-primary opacity-50 blur-sm pointer-events-none"></div>
+            {/* Subtle Gradient Border/Glow Effect (Green Radar Glow) */}
+            <div className="absolute inset-0 rounded-2xl p-[2px] bg-gradient-to-r from-transparent via-green-500/20 to-transparent opacity-50 blur-sm pointer-events-none"></div>
             <div className="relative z-10">
               <h2 className="text-4xl sm:text-5xl font-extrabold mb-4 tracking-tight text-white">
                 Ready to Choose Your Edge?

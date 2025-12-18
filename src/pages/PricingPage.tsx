@@ -112,9 +112,9 @@ const PricingPage: React.FC = () => {
 
   return (
     <div className="min-h-[calc(100vh-100px)] p-4 sm:p-8 bg-black text-white relative">
-      {/* Subtle Radial Gradient Overlay for Premium Feel */}
+      {/* Subtle Radial Gradient Overlay for Premium Feel (Updated to Green Glow) */}
       <div className="absolute inset-0 pointer-events-none
-                      bg-[radial-gradient(circle_at_center,_rgba(232,99,36,0.05)_0%,_transparent_50%)]
+                      bg-[radial-gradient(circle_at_center,_rgba(34,197,94,0.1)_0%,_transparent_50%)]
                       opacity-50 z-0"></div>
 
       <div className="max-w-7xl mx-auto py-12 relative z-10">
