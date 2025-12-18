@@ -4,7 +4,7 @@ import { Search, Loader2, Download } from 'lucide-react';
 import { ViralPost, mockPostInsights, PostInsight } from '@/lib/mock-data';
 import PostInsightModal from './PostInsightModal';
 import { toast } from 'sonner';
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 import { downloadCSV } from '@/lib/export-utils';
 import SavedKeywordsList from './SavedKeywordsList';
 import { useQuery } from '@tanstack/react-query';
@@ -109,7 +109,7 @@ const ViralPostList: React.FC = () => {
             // Subtle pulsing glow effect
             "p-0.5 rounded-xl transition-all duration-500",
             isDataLoading 
-                ? "animate-pulse bg-gradient-to-r from-brand-primary/50 via-green-400/50 to-brand-primary/50" 
+                ? "animate-soft-pulse bg-gradient-to-r from-brand-primary/50 via-brand-primary to-brand-primary/50" 
                 : "border-2 border-gray-800"
         )}>
             <div className="relative bg-black rounded-xl">
