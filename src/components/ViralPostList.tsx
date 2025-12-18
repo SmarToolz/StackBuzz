@@ -106,10 +106,10 @@ const ViralPostList: React.FC = () => {
       <div className="w-full text-center mb-10">
         <div className={cn(
             "relative max-w-3xl mx-auto",
-            // Subtle pulsing glow effect
+            // Subtle glow effect
             "p-0.5 rounded-xl transition-all duration-500",
             isDataLoading 
-                ? "animate-soft-pulse bg-gradient-to-r from-brand-primary/50 via-brand-primary to-brand-primary/50" 
+                ? "bg-gradient-to-r from-brand-primary/50 via-brand-primary to-brand-primary/50" 
                 : "border-2 border-gray-800"
         )}>
             <div className="relative bg-black rounded-xl">
