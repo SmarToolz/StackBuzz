@@ -95,7 +95,7 @@ const ViralPostList: React.FC = () => {
     <div className="max-w-4xl mx-auto">
       {/* Dynamic Header: Displays 'Live Pulse' or 'Pulse' based on 24-hour window */}
       <h1 className="text-4xl font-extrabold text-center mb-10 text-white">
-        {isPulseLive ? 'Live Pulse' : 'Pulse'} Results
+        Live Trend Discovery
       </h1>
       
       {/* Search Input */}
