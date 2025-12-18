@@ -25,40 +25,44 @@ interface PricingTierData {
 }
 
 const baseFeatures = [
+    // Free Features
+    { text: 'Weekly Buzz dashboard (pre‑loaded hottest keyword)', included: true },
     { text: 'Live Pulse card + top posts snapshot', included: true },
     { text: '“Who to DM Today” (3 sample cards)', included: true },
-    { text: 'Word cloud view of trending comments', included: true },
-    { text: 'Perfect for seeing the magic and getting one high‑signal insight every week', included: true },
-    { text: '3 keyword searches per week (≈12/month)', included: false },
+    { text: 'Word cloud of trending comments', included: true },
+    
+    // Basic Features
+    { text: '20 keyword searches per month', included: false },
     { text: 'Saved Keywords with live trend arrows', included: false },
     { text: 'Download results as CSV', included: false },
-    { text: 'Unlimited viewing of saved searches', included: false },
-    // Collaboration Intelligence Features
+    { text: 'Unlimited viewing of saved trends', included: false },
+    
+    // Pro Features
+    { text: 'Unlimited keyword searches (any topic, any time)', included: false },
+    { text: '20 monthly credits to update saved keywords with fresh data', included: false },
     { text: 'Creator Match Score (0-100)', included: false },
     { text: 'Audience Overlap Map', included: false },
-    { text: 'Personalized DM Scripts', included: false },
-    { text: 'Unlimited keyword searches (any topic, any time)', included: false },
-    { text: 'AI‑powered title & DM line generator', included: false },
-    { text: 'Superfans tab (connect your Substack to see top commenters)', included: false },
+    { text: 'Personalized AI‑powered title & DM line generator', included: false },
+    { text: 'Superfans tab (see top commenters)', included: false },
     { text: 'Priority support', included: false },
 ];
 
 const pricingTiersData: PricingTierData[] = [
   {
     tier: 'Free',
-    description: 'Static dashboard preview (weekly buzz keyword pre‑loaded)',
+    description: 'Dashboard Glimpse',
     colorClass: 'text-brand-secondary-yellow',
     ctaText: 'Start Free — No Card Required',
     ctaLink: '/signup',
     isPrimary: false,
     monthly: {
         price: '$0 / month',
-        footerNote: 'Need more? Unlock extra searches anytime for $3.50 each or upgrade to Basic.',
+        footerNote: 'Perfect for tasting the magic instantly. Need more? Unlock extra searches anytime for $5 (Radar Surge) or upgrade to Basic.',
     },
     yearly: {
         price: '$0 / year',
         descriptionSuffix: '',
-        footerNote: 'Need more? Unlock extra searches anytime for $3.50 each or upgrade to Basic.',
+        footerNote: 'Perfect for tasting the magic instantly. Need more? Unlock extra searches anytime for $5 (Radar Surge) or upgrade to Basic.',
     },
     features: baseFeatures.slice(0, 4), // First 4 features are included
   },
@@ -71,17 +75,16 @@ const pricingTiersData: PricingTierData[] = [
     isPrimary: true,
     monthly: {
         price: '$29 / month',
-        footerNote: 'Flex option: Add extra searches anytime for $3.50 each.',
+        footerNote: 'Ideal for creators who want regular, self‑serve insights in their niche. Extra searches: $5 for 5 Radar Surges.',
     },
     yearly: {
         price: '$290 / year',
         descriptionSuffix: ' (save 17%)',
-        footerNote: 'Flex option: Add extra searches anytime for $3.50 each.',
+        footerNote: 'Ideal for creators who want regular, self‑serve insights in their niche. Extra searches: $5 for 5 Radar Surges.',
     },
     features: baseFeatures.map((f, i) => ({
         ...f,
         // Basic includes features 0-7.
-        text: i === 4 ? '3 keyword searches per week (≈12/month)' : f.text,
         included: i < 8,
     })),
   },
@@ -89,22 +92,20 @@ const pricingTiersData: PricingTierData[] = [
     tier: 'Pro',
     description: 'Full Radar Access + Collaboration Engine',
     colorClass: 'text-brand-primary',
-    ctaText: 'Go Pro — Unlock Unlimited Radar',
+    ctaText: 'Go Pro — Unlock Full Radar',
     ctaLink: '/signup',
     isPrimary: false,
     monthly: {
         price: '$79 / month',
-        footerNote: 'For serious creators who want the full edge, every day.',
+        footerNote: 'For serious creators who want the full edge + collaboration intelligence every day. Need more updates? Buy Radar Surges: $5 for 5 extra credits.',
     },
     yearly: {
         price: '$790 / year',
         descriptionSuffix: ' (save 17%)',
-        footerNote: 'For serious creators who want the full edge, every day.',
+        footerNote: 'For serious creators who want the full edge + collaboration intelligence every day. Need more updates? Buy Radar Surges: $5 for 5 extra credits.',
     },
-    features: baseFeatures.map((f, i) => ({
+    features: baseFeatures.map(f => ({
         ...f,
-        // Pro includes ALL features.
-        text: i === 11 ? 'Unlimited keyword searches (any topic, any time)' : f.text,
         included: true,
     })),
   },
@@ -172,13 +173,11 @@ const PricingPage: React.FC = () => {
                 features = baseFeatures.map(f => ({ 
                     ...f, 
                     included: true,
-                    text: f.text.includes('Unlimited keyword searches') ? 'Unlimited keyword searches (any topic, any time)' : f.text,
                 }));
             } else if (tierData.tier === 'Basic') {
                 features = baseFeatures.map((f, i) => ({
                     ...f,
                     included: i < 8,
-                    text: i === 4 ? '3 keyword searches per week (≈12/month)' : f.text,
                 }));
             } else {
                 features = baseFeatures.map((f, i) => ({

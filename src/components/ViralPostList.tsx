@@ -18,7 +18,7 @@ const ViralPostList: React.FC = () => {
   const [selectedPost, setSelectedPost] = useState<ViralPost | null>(null);
   const [insight, setInsight] = useState<PostInsight | null>(null);
   
-  const { searchesRemaining, isPro, checkAndDeductQuota } = useSearchQuota();
+  const { basicSearchesRemaining, proUpdateCreditsRemaining, isPro, checkAndDeductQuota } = useSearchQuota();
 
   // Use React Query to manage fetching state
   const { data: results, isLoading, isFetching } = useQuery<ViralPost[]>({
@@ -35,7 +35,7 @@ const ViralPostList: React.FC = () => {
       return;
     }
     
-    // 1. Check Quota and Deduct
+    // 1. Check Quota and Deduct (Action is 'search' for new searches)
     if (!checkAndDeductQuota('search')) {
         return; // Quota exceeded, toast shown by hook
     }
@@ -51,7 +51,15 @@ const ViralPostList: React.FC = () => {
   
   const handleKeywordClick = (clickedKeyword: string) => {
     setKeyword(clickedKeyword);
-    handleSearchAction(clickedKeyword);
+    
+    // 1. Check Quota and Deduct (Action is 'refresh' for saved keyword clicks)
+    if (!checkAndDeductQuota('refresh')) {
+        return; // Quota exceeded, toast shown by hook
+    }
+    
+    // 2. Perform Search/Refresh
+    setSearchQuery(clickedKeyword);
+    toast.info(`Refreshing live data for "${clickedKeyword}"...`);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -107,9 +115,9 @@ const ViralPostList: React.FC = () => {
       {/* Quota Status */}
       <div className="text-center text-sm text-gray-500 mb-4">
         {isPro ? (
-            <span className="text-green-400 font-semibold">Pro Plan: Unlimited Live Searches</span>
+            <span className="text-green-400 font-semibold">Pro Plan: Unlimited Searches. {proUpdateCreditsRemaining} update credits remaining.</span>
         ) : (
-            <span>Basic Plan: <span className="font-semibold text-brand-primary">{searchesRemaining}</span> live searches remaining this week.</span>
+            <span>Basic Plan: <span className="font-semibold text-brand-primary">{basicSearchesRemaining}</span> searches remaining this month.</span>
         )}
       </div>
       
