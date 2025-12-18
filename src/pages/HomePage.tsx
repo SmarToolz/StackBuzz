@@ -34,7 +34,7 @@ const HomePage: React.FC = () => {
             The Real-Time Radar for <span className="text-brand-primary">Substack Creators</span>
           </h1>
           <p className="text-xl sm:text-2xl text-gray-400 mb-10 font-light max-w-4xl mx-auto">
-            Know exactly what to write, who to DM, and which topics are blowing up — without scrolling for hours.
+            Know exactly what to write, who to DM, and which topics are blowing up — by running a quick keyword search or refreshing your saved topics.
           </p>
           
           {/* CTA Buttons */}

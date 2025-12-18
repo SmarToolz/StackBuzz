@@ -26,7 +26,7 @@ const TrialPage: React.FC = () => {
 
         {/* Sub-headline */}
         <p className="text-xl sm:text-2xl text-gray-400 mb-8 font-light">
-          No more guessing what to write or who to DM. Live insights the second you log in.
+          No more guessing what to write or who to DM. Get live insights by running a quick search or refreshing your saved topics.
         </p>
 
         {/* Live Ticker */}
