@@ -11,7 +11,7 @@ const PulsePage: React.FC = () => {
 
   return (
     <div className="max-w-4xl mx-auto pt-8">
-      <h2 className="text-3xl font-bold mb-6 text-white">Live Pulse for "{currentTopic}"</h2>
+      <h2 className="text-3xl font-bold mb-6 text-white">Pulse for "{currentTopic}"</h2>
       <LivePulseCard />
     </div>
   );

@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 
 // Section 2 Feature Grid Data
 const featureGridData = [
-    { title: "Live Pulse Card", icon: Zap, description: "See the single hottest topic being discussed right now." },
+    { title: "Pulse Card", icon: Zap, description: "See the single hottest topic being discussed right now." },
     { title: "Hot Post Scraper", icon: TrendingUp, description: "Instantly find the posts gaining comments the fastest — ranked by momentum." },
     { title: "Comment Word Cloud", icon: MessageSquare, description: "Analyze the core sentiment and sub-topics driving engagement." },
     { title: "“Who to DM Today”", icon: Users, description: "Actionable list of creators ready for collaboration." },

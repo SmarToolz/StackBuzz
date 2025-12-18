@@ -10,7 +10,7 @@ const LivePulseCard: React.FC = () => {
     <Card className="bg-gray-900 border-gray-800 text-white col-span-full">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-sm font-medium text-gray-400 uppercase tracking-wider">
-          The Live Pulse
+          The Pulse
         </CardTitle>
         <Flame className="h-6 w-6 text-brand-primary animate-pulse" />
       </CardHeader>
