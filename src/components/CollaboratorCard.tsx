@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from '@/components/ui/button';
 import { ActionableCreator } from '@/lib/mock-data';
 import { ArrowRight, MessageSquare, User } from 'lucide-react';
+import { ProgressWithIndicator } from '@/components/ProgressWithIndicator';
 
 interface CollaboratorCardProps {
   creator: ActionableCreator;
@@ -51,7 +52,17 @@ const CollaboratorCard: React.FC<CollaboratorCardProps> = ({ creator, onClick })
           <p className="text-sm text-gray-400 mb-4">
             <span className="font-semibold text-brand-primary">{creator.subscribers} subs</span>
           </p>
-          <div className="text-xs text-gray-500 flex items-center space-x-1">
+          
+          {/* NEW: Match Score Display */}
+          <div className="mt-2 space-y-1">
+            <div className="flex justify-between items-center">
+                <span className="text-xs text-gray-500 font-medium">Match Score</span>
+                <span className="text-sm font-bold text-green-400 tabular-nums">{creator.matchScore}%</span>
+            </div>
+            <ProgressWithIndicator value={creator.matchScore} className="h-2 bg-gray-700" indicatorClassName="bg-green-500" />
+          </div>
+          
+          <div className="text-xs text-gray-500 flex items-center space-x-1 mt-4">
             <MessageSquare className="h-3 w-3" />
             <span>Last post: {creator.lastPostDate}</span>
           </div>
@@ -62,7 +73,7 @@ const CollaboratorCard: React.FC<CollaboratorCardProps> = ({ creator, onClick })
           // This button click is now handled by the card click, but we keep the visual for context
           onClick={(e) => { e.stopPropagation(); onClick(creator); }}
         >
-          View Activity <ArrowRight className="ml-2 h-4 w-4" />
+          View Strategy <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
       </CardContent>
     </Card>

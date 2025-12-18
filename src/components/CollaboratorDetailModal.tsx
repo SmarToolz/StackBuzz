@@ -18,6 +18,8 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts';
+import { ProgressWithIndicator } from '@/components/ProgressWithIndicator';
+import { Badge } from '@/components/ui/badge';
 
 interface CollaboratorDetailModalProps {
   creator: ActionableCreator;
@@ -37,7 +39,7 @@ const CollaboratorDetailModal: React.FC<CollaboratorDetailModalProps> = ({ creat
       <DialogContent className="sm:max-w-[800px] bg-gray-900 border-gray-800 text-white">
         <DialogHeader>
           <DialogTitle className="text-3xl font-bold text-brand-primary">
-            @{creator.handle} Activity Radar
+            @{creator.handle} Collaboration Strategy
           </DialogTitle>
           <p className="text-gray-400 text-sm mt-1">
             {creator.subscribers} subscribers · Category: {creator.category}
@@ -45,6 +47,26 @@ const CollaboratorDetailModal: React.FC<CollaboratorDetailModalProps> = ({ creat
         </DialogHeader>
 
         <div className="space-y-8 py-4">
+          
+          {/* NEW: Match Score & Overlap */}
+          <div>
+            <h3 className="text-xl font-semibold mb-4 flex items-center text-gray-300">
+              <TrendingUp className="h-5 w-5 mr-2 text-green-400" />
+              Creator Match Score: <span className="ml-2 text-3xl font-extrabold text-green-400">{creator.matchScore}%</span>
+            </h3>
+            <ProgressWithIndicator value={creator.matchScore} className="h-3 bg-gray-700 mb-4" indicatorClassName="bg-green-500" />
+            
+            <h4 className="text-lg font-semibold mb-2 text-gray-400">Audience Overlap Keywords</h4>
+            <div className="flex flex-wrap gap-2">
+                {creator.overlapKeywords.map((keyword, index) => (
+                    <Badge key={index} variant="secondary" className="bg-gray-800 text-brand-secondary-blue border-brand-secondary-blue/50 hover:bg-gray-700 transition-colors">
+                        {keyword}
+                    </Badge>
+                ))}
+            </div>
+            <p className="text-xs text-gray-500 mt-2">These are the topics where your audiences share the most commenters.</p>
+          </div>
+          
           {/* Posting Cadence Graph */}
           <div>
             <h3 className="text-xl font-semibold mb-4 flex items-center text-gray-300">
@@ -70,7 +92,7 @@ const CollaboratorDetailModal: React.FC<CollaboratorDetailModalProps> = ({ creat
           {/* Recent Posts */}
           <div>
             <h3 className="text-xl font-semibold mb-4 flex items-center text-gray-300">
-              <TrendingUp className="h-5 w-5 mr-2 text-green-400" />
+              <MessageSquare className="h-5 w-5 mr-2 text-green-400" />
               Top 3 Recent Posts
             </h3>
             <div className="space-y-3">
@@ -90,7 +112,7 @@ const CollaboratorDetailModal: React.FC<CollaboratorDetailModalProps> = ({ creat
         {/* Action: Copy Outreach Line */}
         <div className="pt-4 border-t border-gray-800">
           <h3 className="text-lg font-semibold mb-2 text-brand-primary">
-            Actionable Outreach Line
+            Ready-to-Send DM Script (AI-Personalized)
           </h3>
           <p className="text-sm text-gray-300 mb-4 italic p-3 bg-gray-800 rounded-md border border-gray-700">
             {creator.outreachLine}
@@ -100,7 +122,7 @@ const CollaboratorDetailModal: React.FC<CollaboratorDetailModalProps> = ({ creat
             className="w-full bg-brand-primary hover:bg-brand-hover text-white"
           >
             <Copy className="h-4 w-4 mr-2" />
-            Copy outreach line
+            Copy DM Script
           </Button>
         </div>
       </DialogContent>

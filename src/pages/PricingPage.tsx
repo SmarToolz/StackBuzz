@@ -33,6 +33,10 @@ const baseFeatures = [
     { text: 'Saved Keywords with live trend arrows', included: false },
     { text: 'Download results as CSV', included: false },
     { text: 'Unlimited viewing of saved searches', included: false },
+    // Collaboration Intelligence Features
+    { text: 'Creator Match Score (0-100)', included: false },
+    { text: 'Audience Overlap Map', included: false },
+    { text: 'Personalized DM Scripts', included: false },
     { text: 'Unlimited keyword searches (any topic, any time)', included: false },
     { text: 'AI‑powered title & DM line generator', included: false },
     { text: 'Superfans tab (connect your Substack to see top commenters)', included: false },
@@ -76,14 +80,14 @@ const pricingTiersData: PricingTierData[] = [
     },
     features: baseFeatures.map((f, i) => ({
         ...f,
-        // Combine logic: features 0-7 are included. Feature 4 text is customized.
+        // Basic includes features 0-7.
         text: i === 4 ? '3 keyword searches per week (≈12/month)' : f.text,
         included: i < 8,
     })),
   },
   {
     tier: 'Pro',
-    description: 'Full Radar Access',
+    description: 'Full Radar Access + Collaboration Engine',
     colorClass: 'text-brand-primary',
     ctaText: 'Go Pro — Unlock Unlimited Radar',
     ctaLink: '/signup',
@@ -99,8 +103,8 @@ const pricingTiersData: PricingTierData[] = [
     },
     features: baseFeatures.map((f, i) => ({
         ...f,
-        // Combine logic: All features are included. Feature 8 text is customized.
-        text: i === 8 ? 'Unlimited keyword searches (any topic, any time)' : f.text,
+        // Pro includes ALL features.
+        text: i === 11 ? 'Unlimited keyword searches (any topic, any time)' : f.text,
         included: true,
     })),
   },

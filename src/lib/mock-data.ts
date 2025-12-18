@@ -152,6 +152,9 @@ export interface ActionableCreator {
   postHistory: PostHistory[];
   recentPosts: RecentPost[];
   outreachLine: string;
+  // NEW: Collaboration Intelligence Metrics
+  matchScore: number; // 0-100
+  overlapKeywords: string[];
 }
 
 export const mockActionableCreators: ActionableCreator[] = [
@@ -177,6 +180,8 @@ export const mockActionableCreators: ActionableCreator[] = [
       { title: "My Favorite Tools for Substack Growth", commentCount: 120 },
     ],
     outreachLine: "Hey Jane, your post on newsletter scaling was spot on. I'm working on a piece about audience retention—would love to cross-promote or swap insights!",
+    matchScore: 85,
+    overlapKeywords: ["audience retention", "scaling", "growth hacks"],
   },
   { 
     id: 2, 
@@ -200,6 +205,8 @@ export const mockActionableCreators: ActionableCreator[] = [
       { title: "The Power of a Small, Engaged Audience", commentCount: 22 },
     ],
     outreachLine: "Hi Alex, I saw your recent post on idea validation—great stuff. We have similar audience sizes and niches. Interested in a quick peer swap or a joint post?",
+    matchScore: 92,
+    overlapKeywords: ["idea validation", "indie hacking", "Q3 revenue"],
   },
   { 
     id: 3, 
@@ -223,6 +230,8 @@ export const mockActionableCreators: ActionableCreator[] = [
       { title: "My Journey into AI Development", commentCount: 10 },
     ],
     outreachLine: "Hey, your take on GPU costs is everywhere — I just wrote the counter-take. Want to co-write?",
+    matchScore: 78,
+    overlapKeywords: ["AI ethics", "GPU costs", "LLMs"],
   },
   { 
     id: 4, 
@@ -246,6 +255,8 @@ export const mockActionableCreators: ActionableCreator[] = [
       { title: "Interview with a Climate Scientist", commentCount: 50 },
     ],
     outreachLine: "Hi ClimateWriter, I'm a big fan of your work on green energy policy. I have a unique data set on local climate initiatives—could we collaborate on a piece?",
+    matchScore: 65,
+    overlapKeywords: ["green energy", "policy", "carbon capture"],
   },
   { 
     id: 5, 
@@ -269,6 +280,8 @@ export const mockActionableCreators: ActionableCreator[] = [
       { title: "My Favorite Note-Taking App", commentCount: 12 },
     ],
     outreachLine: "Hey ProductivityPro, your focus on deep work aligns perfectly with my audience. Let's explore a mutual recommendation or a quick interview swap!",
+    matchScore: 88,
+    overlapKeywords: ["deep work", "morning routine", "note-taking"],
   },
   { 
     id: 6, 
@@ -292,6 +305,8 @@ export const mockActionableCreators: ActionableCreator[] = [
       { title: "Pricing Strategy for Your First 100 Users", commentCount: 30 },
     ],
     outreachLine: "IndieHackerBot, your recent thread on building SaaS quickly is viral! I'm writing about the next steps after launch—we should connect and share audiences.",
+    matchScore: 95,
+    overlapKeywords: ["SaaS launch", "low-code tools", "pricing strategy"],
   },
 ];
 
