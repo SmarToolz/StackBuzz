@@ -10,12 +10,15 @@ import { downloadCSV } from '@/lib/export-utils';
 import SavedKeywordsList from './SavedKeywordsList';
 import { useQuery } from '@tanstack/react-query';
 import { fetchViralPosts } from '@/api/trends';
+import { useSearchQuota } from '@/hooks/useSearchQuota';
 
 const ViralPostList: React.FC = () => {
   const [keyword, setKeyword] = useState('AI'); // Default initial keyword for input field
   const [searchQuery, setSearchQuery] = useState('AI'); // State to hold the keyword used for the query
   const [selectedPost, setSelectedPost] = useState<ViralPost | null>(null);
   const [insight, setInsight] = useState<PostInsight | null>(null);
+  
+  const { searchesRemaining, isPro, checkAndDeductQuota } = useSearchQuota();
 
   // Use React Query to manage fetching state
   const { data: results, isLoading, isFetching } = useQuery<ViralPost[]>({
@@ -26,20 +29,29 @@ const ViralPostList: React.FC = () => {
     initialData: [],
   });
 
-  const handleSearchInput = () => {
-    if (!keyword.trim()) {
+  const handleSearchAction = (query: string) => {
+    if (!query.trim()) {
       toast.error("Please enter a keyword to find trends.");
       return;
     }
     
-    // Update the state that drives the query key, triggering a new fetch
-    setSearchQuery(keyword.trim());
-    toast.info(`Searching for viral trends related to "${keyword.trim()}"...`);
+    // 1. Check Quota and Deduct
+    if (!checkAndDeductQuota('search')) {
+        return; // Quota exceeded, toast shown by hook
+    }
+
+    // 2. Perform Search
+    setSearchQuery(query.trim());
+    toast.info(`Running live scrape for "${query.trim()}"...`);
+  };
+
+  const handleSearchInput = () => {
+    handleSearchAction(keyword);
   };
   
   const handleKeywordClick = (clickedKeyword: string) => {
     setKeyword(clickedKeyword);
-    setSearchQuery(clickedKeyword);
+    handleSearchAction(clickedKeyword);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -90,6 +102,15 @@ const ViralPostList: React.FC = () => {
           />
         </div>
         <p className="text-xs text-gray-500 mt-2">Press Enter to run a live scrape for fresh data.</p>
+      </div>
+      
+      {/* Quota Status */}
+      <div className="text-center text-sm text-gray-500 mb-4">
+        {isPro ? (
+            <span className="text-green-400 font-semibold">Pro Plan: Unlimited Live Searches</span>
+        ) : (
+            <span>Basic Plan: <span className="font-semibold text-brand-primary">{searchesRemaining}</span> live searches remaining this week.</span>
+        )}
       </div>
       
       {/* Saved Keywords List (New Section) */}

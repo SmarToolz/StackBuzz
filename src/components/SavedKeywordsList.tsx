@@ -1,8 +1,9 @@
 import React from 'react';
 import { mockSavedKeywords, SavedKeyword } from '@/lib/mock-data';
-import { Star, ArrowUp, ArrowDown, X } from 'lucide-react';
+import { Star, RefreshCw, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 
 interface SavedKeywordsListProps {
   onKeywordClick: (keyword: string) => void;
@@ -29,6 +30,25 @@ const KeywordItem: React.FC<{ keyword: SavedKeyword; onClick: (keyword: string) 
         {changeIndicator} {keyword.changePercent} %
       </Badge>
       
+      {/* Last Updated Time */}
+      <span className="text-xs text-gray-500 whitespace-nowrap hidden sm:inline">
+        Updated: {keyword.lastUpdated}
+      </span>
+      
+      {/* Refresh Button (Triggers a new search/quota deduction) */}
+      <Button 
+        variant="ghost" 
+        size="icon" 
+        className="h-6 w-6 text-gray-500 hover:text-brand-primary flex-shrink-0"
+        onClick={(e) => {
+          e.stopPropagation();
+          onClick(keyword.keyword); // Triggers the parent's search/quota logic
+        }}
+        title={`Refresh live data for ${keyword.keyword} (uses 1 search quota)`}
+      >
+        <RefreshCw className="h-4 w-4" />
+      </Button>
+      
       {/* Placeholder for unpin/delete action */}
       <X className="h-3 w-3 text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity hover:text-red-400" onClick={(e) => {
         e.stopPropagation(); // Prevent triggering the keyword click
@@ -51,7 +71,6 @@ const SavedKeywordsList: React.FC<SavedKeywordsListProps> = ({ onKeywordClick })
             Saved Keywords ({savedCount})
           </h3>
         </div>
-        {/* Removed: <p className="text-xs text-gray-500">Auto-refresh every 4 hours</p> */}
       </div>
       
       {savedCount > 0 ? (
@@ -67,7 +86,7 @@ const SavedKeywordsList: React.FC<SavedKeywordsListProps> = ({ onKeywordClick })
       )}
       
       <p className="text-xs text-gray-600 mt-4 pt-3 border-t border-gray-900">
-        Click a keyword to instantly reload the full Trends view.
+        Click a keyword or the refresh icon to instantly reload the full Trends view (uses one search quota).
       </p>
     </div>
   );

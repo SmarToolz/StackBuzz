@@ -392,10 +392,11 @@ export interface SavedKeyword {
   commentCount: number;
   changePercent: number;
   isUp: boolean;
+  lastUpdated: string;
 }
 
 export const mockSavedKeywords: SavedKeyword[] = [
-  { id: 1, keyword: "AI Ethics", commentCount: 1412, changePercent: 28, isUp: true },
-  { id: 2, keyword: "Remote work burnout", commentCount: 890, changePercent: 5, isUp: false },
-  { id: 3, keyword: "Indie hacking", commentCount: 312, changePercent: 12, isUp: true },
+  { id: 1, keyword: "AI Ethics", commentCount: 1412, changePercent: 28, isUp: true, lastUpdated: "4 hours ago" },
+  { id: 2, keyword: "Remote work burnout", commentCount: 890, changePercent: 5, isUp: false, lastUpdated: "1 day ago" },
+  { id: 3, keyword: "Indie hacking", commentCount: 312, changePercent: 12, isUp: true, lastUpdated: "2 hours ago" },
 ];
