@@ -31,10 +31,7 @@ const HomePage: React.FC = () => {
         
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           <h1 className="text-6xl sm:text-7xl md:text-8xl font-extrabold leading-none mb-6 tracking-tighter text-white">
-            The Real-Time Radar for 
-            <span className="text-brand-primary">
-                Substack Creators
-            </span>
+            The Real-Time Radar for <span className="text-brand-primary">Substack Creators</span>
           </h1>
           <p className="text-xl sm:text-2xl text-gray-400 mb-10 font-light max-w-4xl mx-auto">
             Know exactly what to write, who to DM, and which topics are blowing up — without scrolling for hours.
