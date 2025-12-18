@@ -18,7 +18,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts';
-import { ProgressWithIndicator } from '@/components/ProgressWithIndicator';
+import { ProgressWithIndicator } from '@/components/ProgressWithIndicator.tsx';
 import { Badge } from '@/components/ui/badge';
 
 interface CollaboratorDetailModalProps {

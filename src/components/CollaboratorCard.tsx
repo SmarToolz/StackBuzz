@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from '@/components/ui/button';
 import { ActionableCreator } from '@/lib/mock-data';
 import { ArrowRight, MessageSquare, User } from 'lucide-react';
-import { ProgressWithIndicator } from '@/components/ProgressWithIndicator';
+import { ProgressWithIndicator } from '@/components/ProgressWithIndicator.tsx';
 
 interface CollaboratorCardProps {
   creator: ActionableCreator;
