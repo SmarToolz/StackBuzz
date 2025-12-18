@@ -206,6 +206,32 @@ const PricingPage: React.FC = () => {
             );
           })}
         </div>
+        
+        {/* NEW: Compounding Insight Section */}
+        <div className="mt-20 pt-12 border-t border-gray-800 max-w-4xl mx-auto text-left">
+            <h2 className="text-3xl font-bold mb-6 text-white text-center">
+                Why StackBuzz Gets More Valuable Over Time
+            </h2>
+            <div className="space-y-6 text-gray-300">
+                <p>
+                    When you save a keyword, StackBuzz doesn’t just bookmark it. It starts tracking how that topic behaves over time — comment velocity, engagement spikes, and which creators consistently drive discussion.
+                </p>
+                <p className="font-semibold text-white text-lg">
+                    As you save more keywords, StackBuzz quietly builds historical context in the background:
+                </p>
+                <ul className="list-disc list-inside space-y-2 pl-4 text-gray-400">
+                    <li>You see which topics are accelerating vs. fading</li>
+                    <li>You spot patterns earlier instead of reacting late</li>
+                    <li>Trend signals become clearer and more reliable</li>
+                </ul>
+                <p>
+                    Over time, your dashboard stops being a generic analytics view and becomes a personalized map of your niche — built around the topics and creators you actually care about.
+                </p>
+                <p className="font-bold text-brand-primary">
+                    That’s why Pro users don’t just “check trends.” They build an advantage that compounds every week they use StackBuzz.
+                </p>
+            </div>
+        </div>
 
         {/* Why Creators Love StackBuzz Section */}
         <div className="mt-20 pt-12 border-t border-gray-800 text-center">
