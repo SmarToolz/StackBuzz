@@ -4,6 +4,12 @@ import { Star, RefreshCw, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 interface SavedKeywordsListProps {
   onKeywordClick: (keyword: string) => void;
@@ -63,32 +69,39 @@ const SavedKeywordsList: React.FC<SavedKeywordsListProps> = ({ onKeywordClick })
   const savedCount = mockSavedKeywords.length;
 
   return (
-    <div className="w-full max-w-3xl mx-auto text-left mb-10 p-6 bg-gray-900 border border-gray-800 rounded-xl shadow-2xl shadow-black/50">
-      <div className="flex items-center justify-between mb-4 border-b border-gray-800 pb-3">
-        <div className="flex items-center">
-          <Star className="h-5 w-5 text-yellow-400 mr-2 fill-yellow-400" />
-          <h3 className="text-lg font-bold text-white tracking-tight">
-            Saved Keywords ({savedCount})
-          </h3>
+    <Accordion type="single" collapsible defaultValue="keywords" className="w-full max-w-3xl mx-auto text-left mb-10">
+      <AccordionItem value="keywords" className="border-none">
+        <div className="p-0 bg-gray-900 border border-gray-800 rounded-xl shadow-2xl shadow-black/50">
+          
+          <AccordionTrigger className="flex items-center justify-between p-6 hover:no-underline">
+            <div className="flex items-center">
+              <Star className="h-5 w-5 text-yellow-400 mr-2 fill-yellow-400" />
+              <h3 className="text-lg font-bold text-white tracking-tight">
+                Saved Keywords ({savedCount})
+              </h3>
+            </div>
+          </AccordionTrigger>
+
+          <AccordionContent className="px-6 pb-6 pt-0 border-t border-gray-800">
+            {savedCount > 0 ? (
+              <div className="flex flex-wrap gap-3">
+                {mockSavedKeywords.map((keyword) => (
+                  <KeywordItem key={keyword.id} keyword={keyword} onClick={onKeywordClick} />
+                ))}
+              </div>
+            ) : (
+              <p className="text-sm text-gray-500 italic">
+                No keywords saved yet. Click the star icon next to a search result to pin it here.
+              </p>
+            )}
+            
+            <p className="text-xs text-gray-600 mt-4 pt-3 border-t border-gray-900">
+              Click a keyword or the refresh icon to instantly reload the full Trends view (uses one search quota).
+            </p>
+          </AccordionContent>
         </div>
-      </div>
-      
-      {savedCount > 0 ? (
-        <div className="flex flex-wrap gap-3">
-          {mockSavedKeywords.map((keyword) => (
-            <KeywordItem key={keyword.id} keyword={keyword} onClick={onKeywordClick} />
-          ))}
-        </div>
-      ) : (
-        <p className="text-sm text-gray-500 italic">
-          No keywords saved yet. Click the star icon next to a search result to pin it here.
-        </p>
-      )}
-      
-      <p className="text-xs text-gray-600 mt-4 pt-3 border-t border-gray-900">
-        Click a keyword or the refresh icon to instantly reload the full Trends view (uses one search quota).
-      </p>
-    </div>
+      </AccordionItem>
+    </Accordion>
   );
 };
 
