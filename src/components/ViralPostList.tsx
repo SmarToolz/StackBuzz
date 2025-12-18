@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { Input } from "@/components/ui/input";
-import { Search, Loader2, Download } from 'lucide-react';
+import { Search, Loader2 } from 'lucide-react';
 import { ViralPost, mockPostInsights, PostInsight } from '@/lib/mock-data';
 import PostInsightModal from './PostInsightModal';
 import { toast } from 'sonner';
 import { Button } from "@/components/ui/button";
-import { downloadCSV } from '@/lib/export-utils';
 import SavedKeywordsList from './SavedKeywordsList';
 import { useQuery } from '@tanstack/react-query';
 import { fetchViralPosts } from '@/api/trends';
@@ -81,14 +80,7 @@ const ViralPostList: React.FC = () => {
     setInsight(null);
   };
   
-  const handleExport = () => {
-    if (!results || results.length === 0) {
-      toast.error("No data to export. Run a search first.");
-      return;
-    }
-    downloadCSV(results, `stackbuzz_viral_trends_${searchQuery}.csv`);
-    toast.success(`Exported ${results.length} viral trends for "${searchQuery}".`);
-  };
+  // Removed handleExport function
 
   const isDataLoading = isLoading || isFetching;
 
@@ -139,8 +131,8 @@ const ViralPostList: React.FC = () => {
       {/* Saved Keywords List */}
       <SavedKeywordsList onKeywordClick={handleKeywordClick} />
 
-      {/* Action Bar (Run Radar Button & Export) */}
-      <div className="flex justify-between items-center mb-6">
+      {/* Action Bar (Run Radar Button) */}
+      <div className="flex justify-start items-center mb-6">
         <Button 
           onClick={handleSearchInput}
           className="h-10 px-6 text-base font-semibold bg-brand-primary hover:bg-brand-hover"
@@ -154,16 +146,6 @@ const ViralPostList: React.FC = () => {
           ) : (
             "Run Radar"
           )}
-        </Button>
-        
-        <Button 
-          variant="outline" 
-          onClick={handleExport}
-          className="bg-gray-900 border-gray-700 text-gray-300 hover:bg-gray-800"
-          disabled={isDataLoading || !results || results.length === 0}
-        >
-          <Download className="h-4 w-4 mr-2" />
-          Download CSV
         </Button>
       </div>
 
