@@ -30,9 +30,9 @@ const HomePage: React.FC = () => {
                       opacity-50 z-0"></div>
         
         <div className="max-w-7xl mx-auto px-4 relative z-10">
-          <h1 className="text-6xl sm:text-7xl md:text-8xl font-extrabold leading-none mb-6 tracking-tighter">
+          <h1 className="text-6xl sm:text-7xl md:text-8xl font-extrabold leading-none mb-6 tracking-tighter text-white">
             The Real-Time Radar for 
-            <span className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-brand-secondary-blue via-brand-secondary-yellow to-brand-primary">
+            <span className="text-brand-primary">
                 Substack Creators
             </span>
           </h1>
