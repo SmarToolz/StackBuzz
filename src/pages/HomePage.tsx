@@ -9,49 +9,6 @@ import { Feature } from "@/components/PricingCard";
 import FAQSection from "@/components/FAQSection"; // Import FAQSection
 import { cn } from "@/lib/utils";
 
-// Mock data for pricing preview (Monthly Free, Basic and Pro)
-const mockPricingFeatures: Feature[] = [
-    { text: 'Live Pulse card + top posts snapshot', included: true },
-    { text: '“Who to DM Today” (3 sample cards)', included: true },
-    { text: '3 keyword searches per week (≈12/month)', included: true },
-    { text: 'Saved Keywords with live trend arrows', included: true },
-    { text: 'Unlimited keyword searches', included: false },
-    { text: 'Superfans tab (connect your Substack)', included: false },
-];
-
-const mockPricingData = [
-    {
-        tier: 'Free',
-        price: '$0 / month',
-        description: 'Static dashboard preview',
-        colorClass: 'text-brand-secondary-yellow',
-        ctaText: 'Start Free',
-        ctaLink: '/signup',
-        isPrimary: false,
-        features: mockPricingFeatures.slice(0, 2),
-    },
-    {
-        tier: 'Basic',
-        price: '$29 / month',
-        description: 'High‑Signal Briefing',
-        colorClass: 'text-brand-secondary-blue',
-        ctaText: 'Upgrade to Basic',
-        ctaLink: '/signup',
-        isPrimary: true,
-        features: mockPricingFeatures.slice(0, 4),
-    },
-    {
-        tier: 'Pro',
-        price: '$79 / month',
-        description: 'Full Radar Access',
-        colorClass: 'text-brand-primary',
-        ctaText: 'Go Pro',
-        ctaLink: '/signup',
-        isPrimary: false,
-        features: mockPricingFeatures.map(f => ({ ...f, included: true })),
-    },
-];
-
 // Section 2 Feature Grid Data
 const featureGridData = [
     { title: "Live Pulse Card", icon: Zap, description: "See the single hottest topic being discussed right now." },
@@ -162,33 +119,28 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Section 3 — Free, Basic, or Pro (Pricing Preview) */}
-      <section className="py-20 bg-gray-900 border-t border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-12 text-white">
-            Choose your edge.
-          </h2>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {mockPricingData.map((tier, index) => (
-                <PricingCard 
-                    key={index}
-                    tier={tier.tier as any}
-                    price={tier.price}
-                    description={tier.description}
-                    features={tier.features}
-                    ctaText={tier.ctaText}
-                    ctaLink={tier.ctaLink}
-                    isPrimary={tier.isPrimary}
-                    colorClass={tier.colorClass}
-                />
-            ))}
-          </div>
-          
-          <div className="mt-10">
-            <Button asChild variant="link" className="text-lg text-brand-primary hover:text-brand-hover">
-                <Link to="/pricing">View Full Pricing Details →</Link>
-            </Button>
+      {/* Section 3 — Pricing CTA Banner */}
+      <section className="py-20 bg-black">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <div className="relative p-10 sm:p-16 rounded-2xl bg-gray-900 border-2 border-gray-800 shadow-2xl shadow-brand-primary/10">
+            {/* Subtle Gradient Border/Glow Effect */}
+            <div className="absolute inset-0 rounded-2xl p-[2px] bg-gradient-to-r from-brand-secondary-blue via-brand-secondary-yellow to-brand-primary opacity-50 blur-sm pointer-events-none"></div>
+            <div className="relative z-10">
+              <h2 className="text-4xl sm:text-5xl font-extrabold mb-4 tracking-tight text-white">
+                Ready to Choose Your Edge?
+              </h2>
+              <p className="text-lg text-gray-400 mb-8 max-w-2xl mx-auto">
+                From Free to Pro, find the perfect plan to unlock real-time trends, collaboration targets, and superfan insights.
+              </p>
+              
+              <Button asChild className="h-14 px-10 text-xl font-bold transition-all duration-300 
+                                         bg-brand-primary hover:bg-brand-hover text-white 
+                                         hover:scale-[1.02] active:scale-[0.98]">
+                <Link to="/pricing">
+                  View All Plans & Features →
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
