@@ -9,8 +9,8 @@ const ADMIN_EMAIL = "admin@stackbuzz.app";
 
 const navItems = [
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
-  { name: "Intelligent Stack", href: "/stack", icon: Zap },
   { name: "Search Trends", href: "/trends", icon: TrendingUp },
+  { name: "Intelligent Stack", href: "/stack", icon: Zap },
   { name: "Search History", href: "/history", icon: History },
   { name: "Exports CSV", href: "/exports", icon: Download },
 ];
