@@ -1,5 +1,5 @@
 import React from 'react';
-import { Star, RefreshCw, X } from 'lucide-react';
+import { Star, RefreshCw, X, Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -73,7 +73,7 @@ const KeywordItem: React.FC<{
 };
 
 const SavedKeywordsList: React.FC<SavedKeywordsListProps> = ({ onKeywordClick }) => {
-  const { savedKeywords, removeKeyword } = useSavedKeywords();
+  const { savedKeywords, removeKeyword, isLoading } = useSavedKeywords();
   const savedCount = savedKeywords.length;
 
   return (
@@ -88,10 +88,16 @@ const SavedKeywordsList: React.FC<SavedKeywordsListProps> = ({ onKeywordClick })
                 Saved Keywords ({savedCount})
               </h3>
             </div>
+            {isLoading && <Loader2 className="h-4 w-4 animate-spin text-yellow-400" />}
           </AccordionTrigger>
 
           <AccordionContent className="px-6 pb-6 pt-0 border-t border-gray-800">
-            {savedCount > 0 ? (
+            {isLoading ? (
+                <div className="flex items-center justify-center py-4">
+                    <Loader2 className="h-5 w-5 animate-spin text-gray-500 mr-2" />
+                    <span className="text-sm text-gray-500">Loading saved keywords...</span>
+                </div>
+            ) : savedCount > 0 ? (
               <div className="flex flex-wrap gap-3">
                 {savedKeywords.map((keyword) => (
                   <KeywordItem 
