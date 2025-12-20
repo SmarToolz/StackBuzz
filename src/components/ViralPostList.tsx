@@ -132,7 +132,6 @@ const ViralPostList: React.FC = () => {
               className={cn(
                 "h-12 px-8 text-lg font-bold transition-all duration-300",
                 "bg-brand-primary hover:bg-brand-hover shadow-lg shadow-brand-primary/30",
-                !isDataLoading && "animate-soft-pulse", // Apply gentle pulse when not loading
                 isDataLoading && "opacity-70"
               )}
               disabled={isDataLoading}

@@ -3,6 +3,9 @@ import { ActionableCreator, mockActionableCreators } from '@/lib/mock-data';
 import CollaboratorCard from './CollaboratorCard';
 import CollaboratorDetailModal from './CollaboratorDetailModal';
 import { toast } from 'sonner';
+import { Button } from '@/components/ui/button';
+import { Download } from 'lucide-react';
+import { downloadCSV } from '@/lib/export-utils';
 
 // Define the categories based on the mock data structure
 type CategoryKey = ActionableCreator['category'];
@@ -45,11 +48,24 @@ const CollaboratorView: React.FC = () => {
     setSelectedCreator(null);
   };
   
-  // Removed handleExport function
+  const handleExport = () => {
+    downloadCSV(mockActionableCreators, 'stackbuzz_collaborators_current_topic.csv');
+    toast.success(`Exported ${mockActionableCreators.length} collaborators.`);
+  };
 
   return (
     <div className="space-y-12">
-      {/* Removed Export Button */}
+      {/* Export Button */}
+      <div className="flex justify-end">
+        <Button 
+          onClick={handleExport} 
+          variant="outline" 
+          className="bg-gray-900 border-gray-700 text-white hover:bg-gray-800"
+        >
+          <Download className="h-4 w-4 mr-2" />
+          Export Collaborator List ({mockActionableCreators.length})
+        </Button>
+      </div>
       
       {categories.map((category) => {
         const creators = groupedCreators[category] || [];
