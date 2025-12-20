@@ -5,6 +5,9 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.45.0'
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+  // Added headers required for successful CORS preflight checks (POST requests)
+  'Access-Control-Allow-Methods': 'POST, OPTIONS', 
+  'Access-Control-Max-Age': '86400', // Cache preflight response for 24 hours
 }
 
 serve(async (req) => {
@@ -50,9 +53,6 @@ serve(async (req) => {
     console.log(`[Edge Function] Apify Token accessed successfully.`);
     console.log(`[Edge Function] Gemini Key accessed successfully.`);
     
-    // In a real scenario, this is where you would use the APIFY_TOKEN to call Apify
-    // and the GEMINI_API_KEY to enrich the scraped data.
-
     // Returning a mock response that confirms the keyword was processed and secrets were accessed.
     const realMockResponse = [
         { 

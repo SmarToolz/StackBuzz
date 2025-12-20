@@ -29,6 +29,8 @@ const ViralPostList: React.FC = () => {
     // Only run the query if searchQuery is defined and not empty
     enabled: !!searchQuery,
     initialData: [],
+    // FIX: Disable refetching when the window regains focus
+    refetchOnWindowFocus: false,
   });
 
   const handleSearchAction = (query: string) => {
