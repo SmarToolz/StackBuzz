@@ -1,5 +1,5 @@
 import { ViralPost } from "@/lib/mock-data";
-import { supabase } from "@/lib/supabase";
+import { supabase } from "@/integrations/supabase/client";
 
 // NOTE: Replace 'agslsrysuytnjofjxcfy' with your actual Supabase Project ID if it changes.
 const SUPABASE_PROJECT_ID = 'agslsrysuytnjofjxcfy';
