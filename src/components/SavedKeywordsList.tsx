@@ -1,5 +1,4 @@
 import React from 'react';
-import { mockSavedKeywords, SavedKeyword } from '@/lib/mock-data';
 import { Star, RefreshCw, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
@@ -10,12 +9,18 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useSavedKeywords } from '@/hooks/useSavedKeywords';
+import { SavedKeyword } from '@/lib/mock-data';
 
 interface SavedKeywordsListProps {
   onKeywordClick: (keyword: string) => void;
 }
 
-const KeywordItem: React.FC<{ keyword: SavedKeyword; onClick: (keyword: string) => void }> = ({ keyword, onClick }) => {
+const KeywordItem: React.FC<{ 
+  keyword: SavedKeyword; 
+  onClick: (keyword: string) => void;
+  onRemove: (id: number) => void;
+}> = ({ keyword, onClick, onRemove }) => {
   const changeColor = keyword.isUp ? 'text-green-400 bg-green-900/30' : 'text-red-400 bg-red-900/30';
   const changeIndicator = keyword.isUp ? '↑' : '↓';
 
@@ -55,18 +60,21 @@ const KeywordItem: React.FC<{ keyword: SavedKeyword; onClick: (keyword: string) 
         <RefreshCw className="h-4 w-4" />
       </Button>
       
-      {/* Placeholder for unpin/delete action */}
-      <X className="h-3 w-3 text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity hover:text-red-400" onClick={(e) => {
-        e.stopPropagation(); // Prevent triggering the keyword click
-        console.log(`Unpinning ${keyword.keyword}`);
-        // In a real app, this would call a function to remove the keyword
-      }} />
+      {/* Unpin/Delete action */}
+      <X 
+        className="h-3 w-3 text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity hover:text-red-400" 
+        onClick={(e) => {
+          e.stopPropagation(); // Prevent triggering the keyword click
+          onRemove(keyword.id);
+        }} 
+      />
     </div>
   );
 };
 
 const SavedKeywordsList: React.FC<SavedKeywordsListProps> = ({ onKeywordClick }) => {
-  const savedCount = mockSavedKeywords.length;
+  const { savedKeywords, removeKeyword } = useSavedKeywords();
+  const savedCount = savedKeywords.length;
 
   return (
     <Accordion type="single" collapsible defaultValue="keywords" className="w-full max-w-3xl mx-auto text-left mb-10">
@@ -85,8 +93,13 @@ const SavedKeywordsList: React.FC<SavedKeywordsListProps> = ({ onKeywordClick })
           <AccordionContent className="px-6 pb-6 pt-0 border-t border-gray-800">
             {savedCount > 0 ? (
               <div className="flex flex-wrap gap-3">
-                {mockSavedKeywords.map((keyword) => (
-                  <KeywordItem key={keyword.id} keyword={keyword} onClick={onKeywordClick} />
+                {savedKeywords.map((keyword) => (
+                  <KeywordItem 
+                    key={keyword.id} 
+                    keyword={keyword} 
+                    onClick={onKeywordClick} 
+                    onRemove={removeKeyword}
+                  />
                 ))}
               </div>
             ) : (

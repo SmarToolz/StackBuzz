@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Input } from "@/components/ui/input";
-import { Search, Loader2 } from 'lucide-react';
+import { Search, Loader2, Star } from 'lucide-react';
 import { ViralPost, mockPostInsights, PostInsight } from '@/lib/mock-data';
 import PostInsightModal from './PostInsightModal';
 import { toast } from 'sonner';
@@ -11,14 +11,16 @@ import { fetchViralPosts } from '@/api/trends';
 import { useSearchQuota } from '@/hooks/useSearchQuota';
 import TrendSignalCard from './TrendSignalCard';
 import { cn } from '@/lib/utils';
+import { useSavedKeywords } from '@/hooks/useSavedKeywords';
 
 const ViralPostList: React.FC = () => {
   const [keyword, setKeyword] = useState('AI'); // Default initial keyword for input field
-  const [searchQuery, setSearchQuery] = useState('AI'); // State to hold the keyword used for the query
+  const [searchQuery, setSearchQuery] = useState(''); // State to hold the keyword used for the query
   const [selectedPost, setSelectedPost] = useState<ViralPost | null>(null);
   const [insight, setInsight] = useState<PostInsight | null>(null);
   
   const { basicSearchesRemaining, proUpdateCreditsRemaining, isPro, checkAndDeductQuota } = useSearchQuota();
+  const { savedKeywords, addKeyword } = useSavedKeywords();
 
   // Use React Query to manage fetching state
   const { data: results, isLoading, isFetching } = useQuery<ViralPost[]>({
@@ -80,9 +82,14 @@ const ViralPostList: React.FC = () => {
     setInsight(null);
   };
   
-  // Removed handleExport function
+  const handlePinKeyword = () => {
+    if (searchQuery) {
+        addKeyword(searchQuery);
+    }
+  };
 
   const isDataLoading = isLoading || isFetching;
+  const isKeywordSaved = savedKeywords.some(k => k.keyword.toLowerCase() === searchQuery.toLowerCase());
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -131,8 +138,8 @@ const ViralPostList: React.FC = () => {
       {/* Saved Keywords List */}
       <SavedKeywordsList onKeywordClick={handleKeywordClick} />
 
-      {/* Action Bar (Run Radar Button) */}
-      <div className="flex justify-start items-center mb-6">
+      {/* Action Bar (Run Radar Button + Pin Button) */}
+      <div className="flex justify-between items-center mb-6">
         <Button 
           onClick={handleSearchInput}
           className="h-10 px-6 text-base font-semibold bg-brand-primary hover:bg-brand-hover"
@@ -147,6 +154,21 @@ const ViralPostList: React.FC = () => {
             "Run Radar"
           )}
         </Button>
+        
+        {searchQuery && !isDataLoading && (
+            <Button
+                variant="outline"
+                className={cn(
+                    "h-10 px-4 text-base font-semibold bg-gray-900 border-gray-700 text-white hover:bg-gray-800",
+                    isKeywordSaved && "bg-yellow-900/30 border-yellow-400/50 text-yellow-400 hover:bg-yellow-900/50"
+                )}
+                onClick={handlePinKeyword}
+                disabled={isKeywordSaved}
+            >
+                <Star className={cn("h-4 w-4 mr-2", isKeywordSaved ? "fill-yellow-400" : "text-yellow-400")} />
+                {isKeywordSaved ? "Keyword Pinned" : "Pin Keyword"}
+            </Button>
+        )}
       </div>
 
       {/* Results Display */}
@@ -168,7 +190,11 @@ const ViralPostList: React.FC = () => {
             ))
           ) : (
             <div className="text-center text-gray-500 p-10 border border-dashed border-gray-800 rounded-lg col-span-full">
-                No viral signals found yet for "{searchQuery}". Try searching for a broad topic like "AI" or "Finance."
+                {searchQuery ? (
+                    <>No viral signals found yet for "{searchQuery}". Try searching for a broad topic like "AI" or "Finance."</>
+                ) : (
+                    <>Enter a keyword and click 'Run Radar' to start scanning for viral signals.</>
+                )}
             </div>
           )}
         </div>
