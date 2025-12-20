@@ -66,8 +66,8 @@ export default {
         brand: {
           primary: "#E86324",
           hover: "#FF8A3A",
-          "secondary-blue": "#f9cf29",
-          "secondary-yellow": "#5fb0fd",
+          "secondary-blue": "#5fb0fd", // Blue
+          "secondary-yellow": "#f9cf29", // Yellow
         },
       },
       borderRadius: {
