@@ -102,7 +102,7 @@ const ViralPostList: React.FC = () => {
       </p>
       
       {/* Search Input (Radar Style) */}
-      <div className="w-full text-center mb-10">
+      <div className="w-full text-center mb-6">
         <div className={cn(
             "relative max-w-3xl mx-auto",
             // Subtle glow effect
@@ -123,7 +123,45 @@ const ViralPostList: React.FC = () => {
                 />
             </div>
         </div>
-        <p className="text-xs text-gray-500 mt-2">Press Enter or click 'Run Radar' to scan.</p>
+        <p className="text-xs text-gray-500 mt-2 mb-6">Press Enter or click 'Run Radar' below to scan.</p>
+        
+        {/* Run Radar Button & Pin Button */}
+        <div className="flex justify-center items-center space-x-4">
+            <Button 
+              onClick={handleSearchInput}
+              className={cn(
+                "h-12 px-8 text-lg font-bold transition-all duration-300",
+                "bg-brand-primary hover:bg-brand-hover shadow-lg shadow-brand-primary/30",
+                !isDataLoading && "animate-soft-pulse", // Apply gentle pulse when not loading
+                isDataLoading && "opacity-70"
+              )}
+              disabled={isDataLoading}
+            >
+              {isDataLoading ? (
+                <>
+                  <Loader2 className="h-5 w-5 mr-2 animate-spin" />
+                  Scanning...
+                </>
+              ) : (
+                "Run Radar"
+              )}
+            </Button>
+            
+            {searchQuery && !isDataLoading && (
+                <Button
+                    variant="outline"
+                    className={cn(
+                        "h-12 px-4 text-base font-semibold bg-gray-900 border-gray-700 text-white hover:bg-gray-800",
+                        isKeywordSaved && "bg-yellow-900/30 border-yellow-400/50 text-yellow-400 hover:bg-yellow-900/50"
+                    )}
+                    onClick={handlePinKeyword}
+                    disabled={isKeywordSaved}
+                >
+                    <Star className={cn("h-5 w-5 mr-2", isKeywordSaved ? "fill-yellow-400" : "text-yellow-400")} />
+                    {isKeywordSaved ? "Keyword Pinned" : "Pin Keyword"}
+                </Button>
+            )}
+        </div>
       </div>
       
       {/* Quota Status */}
@@ -137,39 +175,6 @@ const ViralPostList: React.FC = () => {
       
       {/* Saved Keywords List */}
       <SavedKeywordsList onKeywordClick={handleKeywordClick} />
-
-      {/* Action Bar (Run Radar Button + Pin Button) */}
-      <div className="flex justify-between items-center mb-6">
-        <Button 
-          onClick={handleSearchInput}
-          className="h-10 px-6 text-base font-semibold bg-brand-primary hover:bg-brand-hover"
-          disabled={isDataLoading}
-        >
-          {isDataLoading ? (
-            <>
-              <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-              Scanning...
-            </>
-          ) : (
-            "Run Radar"
-          )}
-        </Button>
-        
-        {searchQuery && !isDataLoading && (
-            <Button
-                variant="outline"
-                className={cn(
-                    "h-10 px-4 text-base font-semibold bg-gray-900 border-gray-700 text-white hover:bg-gray-800",
-                    isKeywordSaved && "bg-yellow-900/30 border-yellow-400/50 text-yellow-400 hover:bg-yellow-900/50"
-                )}
-                onClick={handlePinKeyword}
-                disabled={isKeywordSaved}
-            >
-                <Star className={cn("h-4 w-4 mr-2", isKeywordSaved ? "fill-yellow-400" : "text-yellow-400")} />
-                {isKeywordSaved ? "Keyword Pinned" : "Pin Keyword"}
-            </Button>
-        )}
-      </div>
 
       {/* Results Display */}
       {isDataLoading ? (
