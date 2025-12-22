@@ -37,7 +37,7 @@ const LandingPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center text-center p-4 sm:p-8 bg-black text-white relative">
+    <div className="min-h-screen flex flex-col items-center justify-center text-center p-4 sm:p-8 text-white relative bg-gradient-to-b from-gray-950 to-black">
       {/* Subtle Radial Gradient Overlay for Premium Feel (Updated to Green Glow) */}
       <div className="absolute inset-0 pointer-events-none
                       bg-[radial-gradient(circle_at_center,_rgba(34,197,94,0.1)_0%,_transparent_50%)]

@@ -4,8 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check, TrendingUp, Search, Users, Zap, Star, MessageSquare, Lightbulb } from "lucide-react";
 import HeroVisual from "@/components/HeroVisual";
-import PricingCard from "@/components/PricingCard";
-import { Feature } from "@/components/PricingCard";
+import PricingCard, { Feature } from "@/components/PricingCard";
 import FAQSection from "@/components/FAQSection"; // Import FAQSection
 import { cn } from "@/lib/utils";
 import LiveSignalBanner from "@/components/LiveSignalBanner"; // Import the new component
@@ -22,7 +21,7 @@ const featureGridData = [
 
 const HomePage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col">
+    <div className="min-h-screen text-white flex flex-col bg-gradient-to-b from-gray-950 to-black">
       {/* Hero Section */}
       <section className="py-20 sm:py-32 text-center relative overflow-hidden">
         {/* Radial Gradient Background - Subtle Green Glow */}
