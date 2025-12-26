@@ -33,13 +33,13 @@ const baseFeatures = [
     
     // Basic Features
     { text: '20 keyword searches per month', included: false },
-    { text: 'Saved Keywords with refreshes', included: false },
+    { text: 'Saved Keywords with optional refreshes', included: false },
     { text: 'Download results as CSV', included: false },
     { text: 'Unlimited viewing of saved trends', included: false },
     
     // Pro Features
     { text: 'Unlimited keyword searches (any topic)', included: false },
-    { text: '20 monthly credits to update saved keywords with fresh data', included: false },
+    { text: '20 monthly credits to refresh your keywords', included: false },
     { text: 'Creator Match Score (0-100)', included: false },
     { text: 'Audience Overlap Map', included: false },
     { text: 'Personalized AI‑powered title & DM line generator', included: false },
