@@ -7,7 +7,6 @@ import { cn } from "@/lib/utils";
 // Define a type for the full tier object, including both monthly and yearly data
 interface PricingTierData {
     tier: 'Free' | 'Basic' | 'Pro';
-    // Removed: price: string; // Price is now defined within monthly/yearly
     description: string;
     colorClass: string;
     ctaText: string;
@@ -229,7 +228,7 @@ const PricingPage: React.FC = () => {
                     <li>Trend signals become clearer and more reliable</li>
                 </ul>
                 <p>
-                    Over time, your dashboard stops being a generic analytics view and becomes a personalized map of your niche — built around the topics and creators you actually care about.
+                    Your dashboard stops being a generic analytics view and becomes a personalized map of your niche — built around the topics and creators you actually care about.
                 </p>
                 <p className="font-bold text-brand-primary">
                     That’s why Pro users don’t just “check trends.” They build an advantage that compounds every week they use StackBuzz.
