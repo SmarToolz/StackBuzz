@@ -33,7 +33,7 @@ const baseFeatures = [
     
     // Basic Features
     { text: '20 keyword searches per month', included: false },
-    { text: 'Saved Keywords with live trend arrows', included: false },
+    { text: 'Saved Keywords with refreshes', included: false },
     { text: 'Download results as CSV', included: false },
     { text: 'Unlimited viewing of saved trends', included: false },
     
