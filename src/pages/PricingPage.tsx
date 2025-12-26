@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 // Define a type for the full tier object, including both monthly and yearly data
 interface PricingTierData {
     tier: 'Free' | 'Basic' | 'Pro';
+    // Removed: price: string; // Price is now defined within monthly/yearly
     description: string;
     colorClass: string;
     ctaText: string;
@@ -38,7 +39,7 @@ const baseFeatures = [
     { text: 'Unlimited viewing of saved trends', included: false },
     
     // Pro Features
-    { text: 'Unlimited keyword searches (any topic, any time)', included: false },
+    { text: 'Unlimited keyword searches (any topic)', included: false },
     { text: '20 monthly credits to update saved keywords with fresh data', included: false },
     { text: 'Creator Match Score (0-100)', included: false },
     { text: 'Audience Overlap Map', included: false },
@@ -173,10 +174,13 @@ const PricingPage: React.FC = () => {
             
             // Special handling for Pro features to ensure they override Basic features correctly
             if (tierData.tier === 'Pro') {
-                features = baseFeatures.map(f => ({ 
-                    ...f, 
-                    included: true,
-                }));
+                // Filter out the Basic search limit feature (index 4: '20 keyword searches per month')
+                features = baseFeatures
+                    .filter((_, i) => i !== 4) 
+                    .map(f => ({ 
+                        ...f, 
+                        included: true,
+                    }));
             } else if (tierData.tier === 'Basic') {
                 features = baseFeatures.map((f, i) => ({
                     ...f,
