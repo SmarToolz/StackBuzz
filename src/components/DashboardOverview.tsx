@@ -12,6 +12,7 @@ import {
 } from 'recharts';
 import { ArrowUp } from "lucide-react";
 import ActivityHeatmap from "./ActivityHeatmap";
+import DashboardKeywords from "./DashboardKeywords"; // Import the Pinned Keywords component
 
 // Helper component for the summary cards
 const SummaryCard: React.FC<{ stat: SummaryStat }> = ({ stat }) => {
@@ -70,7 +71,12 @@ const DashboardOverview: React.FC = () => {
       <ActivityHeatmap />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* 3. Trend Velocity Chart */}
+        {/* 3. Pinned Trend Radar (New) */}
+        <div className="lg:col-span-1">
+            <DashboardKeywords />
+        </div>
+
+        {/* 4. Trend Velocity Chart (Now lg:col-span-2) */}
         <Card className="lg:col-span-2 bg-gray-900 border-gray-800 text-white">
           <CardHeader>
             <CardTitle className="text-xl font-semibold text-gray-300">
@@ -94,9 +100,10 @@ const DashboardOverview: React.FC = () => {
             </ResponsiveContainer>
           </CardContent>
         </Card>
+      </div>
 
-        {/* 4. Top Influencers List */}
-        <Card className="lg:col-span-1 bg-gray-900 border-gray-800 text-white">
+      {/* 5. Top Influencers List (Moved to full width below) */}
+      <Card className="bg-gray-900 border-gray-800 text-white">
           <CardHeader>
             <CardTitle className="text-xl font-semibold text-gray-300">
               Top Influencers & Collaborators
@@ -111,7 +118,6 @@ const DashboardOverview: React.FC = () => {
             </div>
           </CardContent>
         </Card>
-      </div>
     </div>
   );
 };
