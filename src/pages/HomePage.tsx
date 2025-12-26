@@ -15,7 +15,7 @@ const featureGridData = [
     { title: "Hot Post Scraper", icon: TrendingUp, description: "Instantly find the posts gaining comments the fastest — ranked by momentum." },
     { title: "Comment Word Cloud", icon: MessageSquare, description: "Analyze the core sentiment and sub-topics driving engagement." },
     { title: "“Who to DM Today”", icon: Users, description: "Actionable list of creators ready for collaboration." },
-    { title: "Saved Keywords", icon: Star, description: "Saved keywords get smarter over time. Track the topics you care about and see which ones are gaining momentum — so you stop chasing dead trends and start acting earlier." },
+    { title: "Saved Keywords", icon: Star, description: "Saved keywords get smarter over time. Weekly refreshes is recommended" },
     { title: "AI Title Generator", icon: Lightbulb, description: "Get counter-angle titles based on viral posts." },
 ];
 
