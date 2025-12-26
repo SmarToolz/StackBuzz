@@ -19,8 +19,8 @@ const footerLinks = [
   {
     title: "Support",
     links: [
-      { text: "Help & Support", href: "#" }, // Placeholder link
-      { text: "Report a Bug", href: "mailto:support@substrate.bot" },
+      { text: "Help & Support", href: "/support" }, // Updated link
+      { text: "Report a Bug", href: "/report-bug" }, // Updated link
     ],
   },
   {
