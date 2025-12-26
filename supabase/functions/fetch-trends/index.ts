@@ -36,24 +36,22 @@ serve(async (req) => {
         })
     }
 
-    // --- 1. Access Secrets ---
+    // --- 1. Access Secrets (Simulated) ---
+    // In a real scenario, we would use APIFY_TOKEN here.
     const APIFY_TOKEN = Deno.env.get('APIFY_TOKEN');
-    const GEMINI_API_KEY = Deno.env.get('GEMINI_API_KEY');
-
-    if (!APIFY_TOKEN || !GEMINI_API_KEY) {
+    
+    if (!APIFY_TOKEN) {
         console.error("Missing API tokens in environment.");
-        // Return a generic error to the client, but log the specific issue on the server
         return new Response(JSON.stringify({ error: 'Server configuration error: External API tokens are missing.' }), { 
             status: 500, 
             headers: { ...corsHeaders, 'Content-Type': 'application/json' }
         })
     }
     
-    // --- 2. Conceptual Apify & Gemini Integration (Simulated) ---
-    console.log(`[Edge Function] Apify Token accessed successfully.`);
-    console.log(`[Edge Function] Gemini Key accessed successfully.`);
+    // --- 2. Conceptual Apify Integration (Simulated) ---
+    console.log(`[Edge Function] Apify Token accessed successfully. Running mock scrape for ${keyword}.`);
     
-    // Returning a mock response that confirms the keyword was processed and secrets were accessed.
+    // Returning a mock response that confirms the keyword was processed.
     const realMockResponse = [
         { 
             id: 100, 

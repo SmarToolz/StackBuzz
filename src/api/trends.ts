@@ -38,6 +38,6 @@ export async function fetchViralPosts(keyword: string): Promise<ViralPost[]> {
 
   const data = await response.json();
   
-  // Simulate the structure of ViralPost[]
+  // The Edge Function returns an array of ViralPost objects directly.
   return data as ViralPost[];
 }
