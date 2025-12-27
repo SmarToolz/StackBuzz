@@ -3,7 +3,8 @@ import PricingCard, { PricingCardProps } from "@/components/PricingCard";
 import { Check } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
-import AlexPhoto from "@/assets/alex_founder.png";
+// Using a placeholder from the public folder as a fallback to ensure the image path resolves
+import PlaceholderPhoto from "/placeholder.svg"; 
 
 // Define a type for the full tier object, including both monthly and yearly data
 interface PricingTierData {
@@ -257,7 +258,7 @@ const PricingPage: React.FC = () => {
             {/* Photo and Signature */}
             <div className="mt-10 flex items-center justify-center space-x-4">
                 <img 
-                    src={AlexPhoto} 
+                    src={PlaceholderPhoto} 
                     alt="Alex, Founder of StackBuzz" 
                     className="w-[100px] h-[100px] rounded-full object-cover border-4 border-brand-primary"
                 />
