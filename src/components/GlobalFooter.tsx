@@ -19,8 +19,9 @@ const footerLinks = [
   {
     title: "Support",
     links: [
-      { text: "Help & Support", href: "/support" }, // Updated link
-      { text: "Report a Bug", href: "/report-bug" }, // Updated link
+      { text: "Contact Us", href: "/contact" }, // New link
+      { text: "Help & Support", href: "/support" }, // Existing link
+      { text: "Report a Bug", href: "/report-bug" }, // Existing link
     ],
   },
   {
