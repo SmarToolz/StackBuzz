@@ -10,6 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Mail, Send, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Link } from "react-router-dom"; // Import Link
 
 const contactReasons = [
   "General Inquiry",
@@ -120,7 +121,12 @@ const ContactPage: React.FC = () => {
                 name="subject"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-gray-300">Reason for Contact</FormLabel>
+                    <div className="flex justify-between items-baseline">
+                        <FormLabel className="text-gray-300">Reason for Contact</FormLabel>
+                        <Link to="/report-bug" className="text-xs text-red-400 hover:text-red-300 underline">
+                            Report a Bug? Click here
+                        </Link>
+                    </div>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger className="bg-black border-gray-700 text-white focus:ring-brand-primary">
