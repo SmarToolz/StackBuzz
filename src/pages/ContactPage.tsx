@@ -9,11 +9,20 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Mail, Send, Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+
+const contactReasons = [
+  "General Inquiry",
+  "Feature Request",
+  "Partnership/Collaboration",
+  "Billing/Account Issue",
+  "Other",
+];
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
   email: z.string().email({ message: "Invalid email address." }),
-  subject: z.string().min(5, { message: "Subject must be at least 5 characters." }),
+  subject: z.string().min(1, { message: "Please select a reason for contact." }),
   message: z.string().min(10, { message: "Message must be at least 10 characters." }),
 });
 
@@ -105,20 +114,27 @@ const ContactPage: React.FC = () => {
                 )}
               />
 
-              {/* Subject */}
+              {/* Subject (Dropdown) */}
               <FormField
                 control={form.control}
                 name="subject"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-gray-300">Subject</FormLabel>
-                    <FormControl>
-                      <Input 
-                        placeholder="Inquiry about Pro features" 
-                        {...field} 
-                        className="bg-black border-gray-700 text-white focus:ring-brand-primary"
-                      />
-                    </FormControl>
+                    <FormLabel className="text-gray-300">Reason for Contact</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger className="bg-black border-gray-700 text-white focus:ring-brand-primary">
+                          <SelectValue placeholder="Select a reason" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent className="bg-gray-900 border-gray-700 text-white">
+                        {contactReasons.map((reason) => (
+                          <SelectItem key={reason} value={reason}>
+                            {reason}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                     <FormMessage />
                   </FormItem>
                 )}
