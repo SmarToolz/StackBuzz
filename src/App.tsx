@@ -21,6 +21,7 @@ import AdminPage from "./pages/AdminPage";
 import PricingPage from "./pages/PricingPage";
 import HelpAndSupportPage from "./pages/HelpAndSupportPage"; // New Import
 import ReportBugPage from "./pages/ReportBugPage"; // New Import
+import AboutPage from "./pages/AboutPage"; // New Import
 import { Layout } from "./components/Layout";
 import { DashboardLayout } from "./components/DashboardLayout";
 import { SupabaseAuthProvider } from "./context/SupabaseAuthProvider";
@@ -45,6 +46,7 @@ const App = () => (
               <Route path="/login" element={<AuthPage />} />
               <Route path="/signup" element={<AuthPage />} />
               <Route path="/pricing" element={<PricingPage />} />
+              <Route path="/about" element={<AboutPage />} /> {/* New About Page */}
               <Route path="/thank-you" element={<ThankYouPage />} /> {/* Thank you page should also have header/footer */}
               <Route path="/support" element={<HelpAndSupportPage />} /> {/* New Support Page */}
               <Route path="/report-bug" element={<ReportBugPage />} /> {/* New Report Bug Page */}

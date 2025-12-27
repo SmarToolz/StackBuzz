@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 
 const navLinks = [
   { name: "Pricing", href: "/pricing" },
+  { name: "About", href: "/about" },
 ];
 
 export const PublicHeader: React.FC = () => {

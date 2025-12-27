@@ -6,7 +6,8 @@ const footerLinks = [
     title: "Product",
     links: [
       { text: "Home", href: "/" },
-      { text: "Pricing", href: "/pricing" }, // Added Pricing, removed Dashboard
+      { text: "Pricing", href: "/pricing" },
+      { text: "About", href: "/about" }, // Added About link
     ],
   },
   {
