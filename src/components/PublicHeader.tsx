@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { name: "Dashboard", href: "/dashboard" },
+  { name: "Pricing", href: "/pricing" },
 ];
 
 export const PublicHeader: React.FC = () => {
@@ -25,10 +25,7 @@ export const PublicHeader: React.FC = () => {
               to={link.href} 
               className={cn(
                 "text-sm font-medium text-gray-300 hover:text-white transition-colors",
-                // Highlight Dashboard link if on dashboard/stack routes
-                (link.href === "/dashboard" || link.href === "/stack") && (
-                    window.location.pathname.startsWith("/dashboard") || window.location.pathname.startsWith("/stack")
-                ) && "text-brand-primary"
+                window.location.pathname === link.href && "text-brand-primary"
               )}
             >
               {link.name}
