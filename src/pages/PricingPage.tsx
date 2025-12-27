@@ -238,8 +238,8 @@ const PricingPage: React.FC = () => {
         </div>
 
         {/* Founder's Note: Why I Built StackBuzz */}
-        <div className="mt-20 pt-12 border-t border-gray-800 text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold mb-6 text-white">
+        <div className="mt-20 pt-12 border-t border-gray-800 text-left max-w-3xl mx-auto">
+            <h2 className="text-3xl font-bold mb-6 text-white text-center">
                 Founder’s Note: Why I Built StackBuzz
             </h2>
             <div className="text-lg text-gray-300 space-y-6 text-left">
@@ -254,13 +254,8 @@ const PricingPage: React.FC = () => {
                 <p>If you’ve ever felt behind, overwhelmed, or unsure what to write next, I built this for you — because I’ve been there too.</p>
             </div>
             
-            {/* Photo and Signature */}
-            <div className="mt-10 flex items-center justify-center space-x-4">
-                <img 
-                    src="/placeholder.svg" 
-                    alt="Alex, Founder of StackBuzz" 
-                    className="w-[100px] h-[100px] rounded-full object-cover border-4 border-brand-primary bg-gray-700"
-                />
+            {/* Signature (Now left-aligned) */}
+            <div className="mt-10 flex items-center justify-start space-x-4">
                 <p className="text-2xl font-semibold text-brand-primary">— Alex</p>
             </div>
         </div>
