@@ -3,6 +3,7 @@ import PricingCard, { PricingCardProps } from "@/components/PricingCard";
 import { Check } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
+import AlexPhoto from "@/assets/alex_founder.png";
 
 // Define a type for the full tier object, including both monthly and yearly data
 interface PricingTierData {
@@ -236,17 +237,32 @@ const PricingPage: React.FC = () => {
             </div>
         </div>
 
-        {/* Why Creators Love StackBuzz Section */}
-        <div className="mt-20 pt-12 border-t border-gray-800 text-center">
-          <h2 className="text-3xl font-bold text-brand-primary mb-6 flex items-center justify-center">
-            <Check className="h-6 w-6 mr-2" />
-            Why Creators Love StackBuzz
-          </h2>
-          <div className="text-lg text-gray-300 space-y-2">
-            <p>10 seconds of insight replaces hours of scrolling.</p>
-            <p>Never guess what to write or who to DM again.</p>
-            <p>From Free to Pro, every tier is designed to give you the radar edge.</p>
-          </div>
+        {/* Founder's Note: Why I Built StackBuzz */}
+        <div className="mt-20 pt-12 border-t border-gray-800 text-center max-w-3xl mx-auto">
+            <h2 className="text-3xl font-bold mb-6 text-white">
+                Founder’s Note: Why I Built StackBuzz
+            </h2>
+            <div className="text-lg text-gray-300 space-y-6 text-left">
+                <p>I built StackBuzz because I know what it feels like to create in the dark.</p>
+                <p>You sit there staring at a blank page, wondering what your audience actually cares about, scrolling through Substack threads trying to spot a spark — and by the time you find it, someone else has already published the piece you could have written.</p>
+                <p>I hated that feeling.</p>
+                <p className="font-bold text-brand-primary">Not the work — the guessing.</p>
+                <p>So I built StackBuzz as a way out of that fog.</p>
+                <p>A tool that shows you, instantly, what’s buzzing in your niche, what conversations are heating up, and which creators are driving the momentum. No more detective work. No more hoping you’re early. No more writing blind.</p>
+                <p className="font-bold text-white">This isn’t analytics.</p>
+                <p>It’s a radar for creators who want to move with intention.</p>
+                <p>If you’ve ever felt behind, overwhelmed, or unsure what to write next, I built this for you — because I’ve been there too.</p>
+            </div>
+            
+            {/* Photo and Signature */}
+            <div className="mt-10 flex items-center justify-center space-x-4">
+                <img 
+                    src={AlexPhoto} 
+                    alt="Alex, Founder of StackBuzz" 
+                    className="w-[100px] h-[100px] rounded-full object-cover border-4 border-brand-primary"
+                />
+                <p className="text-2xl font-semibold text-brand-primary">— Alex</p>
+            </div>
         </div>
       </div>
     </div>
