@@ -77,7 +77,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
         <Button 
           asChild
           className={cn(
-            "w-full h-12 text-sm font-semibold",
+            "w-full h-12 text-base font-semibold",
             buttonClasses
           )}
         >
