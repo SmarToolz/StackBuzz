@@ -19,9 +19,10 @@ import SuperfansPage from "./pages/SuperfansPage";
 import AuthPage from "./pages/AuthPage";
 import AdminPage from "./pages/AdminPage";
 import PricingPage from "./pages/PricingPage";
-import HelpAndSupportPage from "./pages/HelpAndSupportPage"; // New Import
-import ReportBugPage from "./pages/ReportBugPage"; // New Import
-import AboutPage from "./pages/AboutPage"; // New Import
+import HelpAndSupportPage from "./pages/HelpAndSupportPage";
+import ReportBugPage from "./pages/ReportBugPage";
+import AboutPage from "./pages/AboutPage";
+import FAQPage from "./pages/FAQPage"; // New Import
 import { Layout } from "./components/Layout";
 import { DashboardLayout } from "./components/DashboardLayout";
 import { SupabaseAuthProvider } from "./context/SupabaseAuthProvider";
@@ -50,6 +51,7 @@ const App = () => (
               <Route path="/thank-you" element={<ThankYouPage />} /> {/* Thank you page should also have header/footer */}
               <Route path="/support" element={<HelpAndSupportPage />} /> {/* New Support Page */}
               <Route path="/report-bug" element={<ReportBugPage />} /> {/* New Report Bug Page */}
+              <Route path="/faq" element={<FAQPage />} /> {/* New FAQ Page */}
               {/* Catch-all for 404 within the standard layout */}
               <Route path="*" element={<NotFound />} />
             </Route>

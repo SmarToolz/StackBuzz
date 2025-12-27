@@ -2,28 +2,33 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { HelpCircle, Bug, Mail, Zap } from "lucide-react";
+import { HelpCircle, Bug, Mail, Zap, ChevronRight } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const supportSections = [
   {
     title: "Getting Started",
     icon: Zap,
     content: "New to StackBuzz? Learn how to set up your first keyword search, understand the Pulse Card, and pin your first collaborator target. We cover everything from niche selection to initial outreach strategy.",
+    href: "#", // Static link for now
   },
   {
     title: "FAQs",
     icon: HelpCircle,
-    content: "Find quick answers to common questions about pricing, data sources, refresh quotas, and how StackBuzz calculates trend velocity and match scores. (See also the FAQ section on the homepage.)",
+    content: "Find quick answers to common questions about pricing, data sources, refresh quotas, and how StackBuzz calculates trend velocity and match scores.",
+    href: "/faq", // Link to the new FAQ page
   },
   {
     title: "Troubleshooting",
     icon: Bug,
     content: "If your dashboard isn't loading, your search is timing out, or you're experiencing unexpected behavior, check here for common fixes and known issues. (If the issue persists, please report a bug below.)",
+    href: "#", // Static link for now
   },
   {
     title: "Contact Support",
     icon: Mail,
     content: "Need personalized help? Our support team is here for Pro users. For Basic and Free users, please check the FAQs first. Email us at support@stackbuzz.app.",
+    href: "mailto:support@stackbuzz.app", // Mailto link
   },
 ];
 
@@ -43,18 +48,55 @@ const HelpAndSupportPage: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
           {supportSections.map((section, index) => {
             const Icon = section.icon;
+            const isInternalLink = section.href && section.href.startsWith('/');
+            
+            const cardContent = (
+                <Card 
+                  className={cn(
+                    "bg-gray-900 border-gray-800 text-white h-full flex flex-col justify-between",
+                    isInternalLink && "hover:border-brand-primary/50 transition-colors cursor-pointer"
+                  )}
+                >
+                  <CardHeader>
+                    <CardTitle className="text-xl font-semibold text-white flex items-center justify-between">
+                      <div className="flex items-center">
+                        <Icon className="h-5 w-5 mr-2 text-brand-primary" />
+                        {section.title}
+                      </div>
+                      {isInternalLink && <ChevronRight className="h-5 w-5 text-gray-500" />}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-gray-400">{section.content}</p>
+                    {section.href && !isInternalLink && (
+                        <a 
+                            href={section.href} 
+                            className="text-sm text-brand-primary hover:text-brand-hover mt-3 inline-block"
+                            target={section.href.startsWith('mailto') ? "_self" : "_blank"}
+                        >
+                            {section.title === "Contact Support" ? "Send Email" : "Learn More"}
+                        </a>
+                    )}
+                  </CardContent>
+                </Card>
+            );
+
+            if (isInternalLink) {
+                return (
+                    <Link 
+                        key={index} 
+                        to={section.href!} 
+                        className="block h-full"
+                    >
+                        {cardContent}
+                    </Link>
+                );
+            }
+            
             return (
-              <Card key={index} className="bg-gray-900 border-gray-800 text-white h-full">
-                <CardHeader>
-                  <CardTitle className="text-xl font-semibold text-white flex items-center">
-                    <Icon className="h-5 w-5 mr-2 text-brand-primary" />
-                    {section.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-gray-400">{section.content}</p>
-                </CardContent>
-              </Card>
+                <div key={index} className="block h-full">
+                    {cardContent}
+                </div>
             );
           })}
         </div>
