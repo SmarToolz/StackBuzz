@@ -127,7 +127,7 @@ const PricingPage: React.FC = () => {
       <div className="max-w-7xl mx-auto py-12 relative z-10">
         <header className="text-center mb-16">
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold leading-tight mb-4 tracking-tight text-white">
-            Discover What’s Buzzing on Substack — Right Now
+            Discover What’s Buzzing on <span className="text-orange-400">Substack</span> — Right Now
           </h1>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
             StackBuzz shows you the hottest topics, the posts getting thousands of comments, and exactly who to reach out to — all in seconds.
