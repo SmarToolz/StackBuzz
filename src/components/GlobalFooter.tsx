@@ -41,18 +41,18 @@ export const GlobalFooter: React.FC = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
           {footerLinks.map((column) => (
             <div key={column.title}>
-              <h4 className="text-sm font-semibold text-white mb-4 uppercase tracking-wider">
+              <div className="text-sm font-semibold text-white mb-4 uppercase tracking-wider">
                 {column.title}
-              </h4>
+              </div>
               <ul className="space-y-3">
                 {column.links.map((link) => (
                   <li key={link.text}>
-                    <Link
-                      to={link.href}
+                    <a
+                      href={link.href}
                       className="text-xs hover:text-brand-hover transition-colors"
                     >
                       {link.text}
-                    </Link>
+                    </a>
                   </li>
                 ))}
               </ul>
