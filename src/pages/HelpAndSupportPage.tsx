@@ -27,8 +27,8 @@ const supportSections = [
   {
     title: "Contact Support",
     icon: Mail,
-    content: "Need personalized help? Our support team is here for Pro users. For Basic and Free users, please check the FAQs first. Email us at support@stackbuzz.app.",
-    href: "mailto:support@stackbuzz.app", // Mailto link
+    content: "Need personalized help? Our support team is here for Pro users. For Basic and Free users, please check the FAQs first.",
+    href: "/contact", // Changed to internal link
   },
 ];
 
