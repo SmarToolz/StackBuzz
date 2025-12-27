@@ -36,6 +36,11 @@ const PricingCard: React.FC<PricingCardProps> = ({
     ? "shadow-2xl shadow-brand-primary/30 border-brand-primary" 
     : "shadow-none border-gray-800 hover:border-brand-primary/50";
 
+  // Determine button classes
+  const buttonClasses = isPrimary 
+    ? "bg-brand-primary hover:bg-brand-hover text-white" // Primary button is orange background, white text
+    : `bg-gray-800 hover:bg-gray-700 border border-gray-700 ${colorClass}`; // Secondary button is dark background, accent text
+
   return (
     <Card 
       className={cn(
@@ -73,9 +78,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
           asChild
           className={cn(
             "w-full h-12 text-sm font-semibold",
-            isPrimary 
-              ? "bg-brand-primary hover:bg-brand-hover text-white" 
-              : "bg-gray-800 hover:bg-gray-700 text-white border border-gray-700"
+            buttonClasses
           )}
         >
           <Link to={ctaLink}>{ctaText}</Link>
