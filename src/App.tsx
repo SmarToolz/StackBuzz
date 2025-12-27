@@ -6,7 +6,6 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import LandingPage from "./pages/LandingPage"; // Updated import
 import DashboardPage from "./pages/DashboardPage";
-import TrialPage from "./pages/TrialPage";
 import TrendsPage from "./pages/TrendsPage";
 import NotFound from "./pages/NotFound";
 import ThankYouPage from "./pages/ThankYouPage";
@@ -44,7 +43,6 @@ const App = () => (
             <Route element={<Layout />}>
               <Route path="/" element={<HomePage />} /> {/* Now uses Layout */}
               <Route path="/landing" element={<LandingPage />} />
-              <Route path="/trial" element={<TrialPage />} />
               <Route path="/login" element={<AuthPage />} />
               <Route path="/signup" element={<AuthPage />} />
               <Route path="/pricing" element={<PricingPage />} />
