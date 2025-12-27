@@ -53,7 +53,7 @@ const pricingTiersData: PricingTierData[] = [
     description: 'Dashboard Glimpse',
     // SWAP: text-brand-secondary-yellow -> text-brand-secondary-blue
     colorClass: 'text-brand-secondary-blue',
-    ctaText: 'Start Free — No Card Required',
+    ctaText: 'Start Free',
     ctaLink: '/signup',
     isPrimary: false,
     monthly: {
@@ -72,7 +72,7 @@ const pricingTiersData: PricingTierData[] = [
     description: 'High‑Signal Briefing',
     // SWAP: text-brand-secondary-blue -> text-brand-secondary-yellow
     colorClass: 'text-brand-secondary-yellow',
-    ctaText: 'Upgrade to Basic — Get Your Weekly Briefing',
+    ctaText: 'Upgrade to Basic',
     ctaLink: '/signup',
     isPrimary: true,
     monthly: {
@@ -94,7 +94,7 @@ const pricingTiersData: PricingTierData[] = [
     tier: 'Pro',
     description: 'Full Radar Access + Collaboration Engine',
     colorClass: 'text-brand-primary',
-    ctaText: 'Go Pro — Unlock Full Radar',
+    ctaText: 'Go Pro',
     ctaLink: '/signup',
     isPrimary: false,
     monthly: {
